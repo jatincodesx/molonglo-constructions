@@ -1,0 +1,615 @@
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[5].use[3]!./components/home/BuildJourneyScrollStory.module.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************/
+.BuildJourneyScrollStory_section__mBh5_ {
+  position: relative;
+  overflow: clip;
+  padding: 6rem 0;
+}
+
+.BuildJourneyScrollStory_section__mBh5_::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159, 116, 64, 0.16), transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.06), transparent 22%);
+  content: "";
+  pointer-events: none;
+}
+
+.BuildJourneyScrollStory_intro___Fr22 {
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+}
+
+.BuildJourneyScrollStory_heading__LYZYU {
+  margin-top: 1rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  font-weight: 600;
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  color: #f7f2eb;
+}
+
+.BuildJourneyScrollStory_description__8zzKv {
+  margin-top: 1.5rem;
+  max-width: 38rem;
+  font-size: 1.08rem;
+  line-height: 1.95;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.BuildJourneyScrollStory_storyShell__1A9cm {
+  position: relative;
+  z-index: 1;
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.BuildJourneyScrollStory_visualColumn__Ol_d7,
+.BuildJourneyScrollStory_contentColumn__no5nO {
+  min-width: 0;
+}
+
+.BuildJourneyScrollStory_visualFrame__CH8fG {
+  position: relative;
+  min-height: 28rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2.25rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(12, 15, 14, 0.74), rgba(12, 15, 14, 0.92));
+  box-shadow: 0 40px 110px rgba(0, 0, 0, 0.28);
+}
+
+.BuildJourneyScrollStory_world__wfZTk {
+  position: relative;
+  display: flex;
+  min-height: 28rem;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.BuildJourneyScrollStory_contourField__Kt_iK,
+.BuildJourneyScrollStory_blueprintGrid__6rI5j,
+.BuildJourneyScrollStory_glow___EDmd,
+.BuildJourneyScrollStory_measurements__eIo8b,
+.BuildJourneyScrollStory_approvalCard__kfJQk,
+.BuildJourneyScrollStory_detailPin___CeNg,
+.BuildJourneyScrollStory_keyIcon__WX0bU {
+  position: absolute;
+}
+
+.BuildJourneyScrollStory_contourField__Kt_iK {
+  inset: 8% 6%;
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.06), transparent 62%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 16px, rgba(255, 255, 255, 0.05) 16px 17px);
+  filter: blur(0.2px);
+  opacity: 0.4;
+}
+
+.BuildJourneyScrollStory_blueprintGrid__6rI5j {
+  inset: 10% 12%;
+  border: 1px solid rgba(140, 180, 214, 0.16);
+  border-radius: 1.8rem;
+  background-image:
+    linear-gradient(rgba(140, 180, 214, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 180, 214, 0.1) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  -webkit-mask-image: radial-gradient(circle at center, black 58%, transparent 90%);
+          mask-image: radial-gradient(circle at center, black 58%, transparent 90%);
+  opacity: 0.12;
+}
+
+.BuildJourneyScrollStory_glow___EDmd {
+  top: 24%;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(191, 147, 89, 0.36), rgba(191, 147, 89, 0) 70%);
+  filter: blur(8px);
+  opacity: 0.28;
+}
+
+.BuildJourneyScrollStory_measurements__eIo8b {
+  inset: 13% 10%;
+  color: rgba(201, 223, 243, 0.72);
+  opacity: 0;
+}
+
+.BuildJourneyScrollStory_measureTop__ZhzO5,
+.BuildJourneyScrollStory_measureSide__LfGBs {
+  position: absolute;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.BuildJourneyScrollStory_measureTop__ZhzO5 {
+  top: 10%;
+  right: 16%;
+}
+
+.BuildJourneyScrollStory_measureSide__LfGBs {
+  bottom: 22%;
+  left: 12%;
+  transform: rotate(-90deg);
+  transform-origin: left center;
+}
+
+.BuildJourneyScrollStory_measureLineHorizontal__9wob6,
+.BuildJourneyScrollStory_measureLineVertical__5nHZL {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(201, 223, 243, 0.86), transparent);
+}
+
+.BuildJourneyScrollStory_measureLineHorizontal__9wob6 {
+  top: 23%;
+  left: 20%;
+  width: 52%;
+  height: 1px;
+}
+
+.BuildJourneyScrollStory_measureLineVertical__5nHZL {
+  top: 22%;
+  right: 22%;
+  width: 1px;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(201, 223, 243, 0.86), transparent);
+}
+
+.BuildJourneyScrollStory_approvalCard__kfJQk {
+  top: 14%;
+  right: 12%;
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(191, 147, 89, 0.28);
+  border-radius: 1rem;
+  background: rgba(10, 13, 14, 0.72);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.BuildJourneyScrollStory_approvalCard__kfJQk span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.BuildJourneyScrollStory_approvalCard__kfJQk strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #f4d5a4;
+}
+
+.BuildJourneyScrollStory_houseWrap___6M_z {
+  position: relative;
+  width: min(100%, 28rem);
+  height: 22rem;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.BuildJourneyScrollStory_houseShadow__ZppNZ {
+  position: absolute;
+  inset: auto 15% 1.2rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.35), transparent 70%);
+  filter: blur(12px);
+}
+
+.BuildJourneyScrollStory_houseShell__AXlpZ {
+  position: relative;
+  width: clamp(14rem, 32vw, 21rem);
+  aspect-ratio: 1 / 1.06;
+  border: 1px solid rgba(235, 219, 198, 0.3);
+  border-radius: 1.7rem;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 56%),
+    linear-gradient(180deg, rgba(26, 31, 33, 0.96), rgba(36, 41, 44, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 28px 60px rgba(0, 0, 0, 0.22);
+  transform: translateZ(0);
+}
+
+.BuildJourneyScrollStory_houseShell__AXlpZ::before {
+  position: absolute;
+  inset: 7% 8%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  content: "";
+}
+
+.BuildJourneyScrollStory_houseRoof__YqAvt {
+  position: absolute;
+  top: -3rem;
+  left: 12%;
+  width: 76%;
+  height: 5.5rem;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(180deg, rgba(225, 202, 170, 0.72), rgba(145, 104, 62, 0.52));
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.25));
+}
+
+.BuildJourneyScrollStory_houseFacade__KAusP {
+  position: absolute;
+  inset: 18% 10% 10%;
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)),
+    linear-gradient(180deg, rgba(27, 33, 36, 0.1), rgba(27, 33, 36, 0.34));
+}
+
+.BuildJourneyScrollStory_houseFrame__WTgX8 {
+  position: absolute;
+  inset: 14% 8% 8%;
+  border: 1px solid rgba(244, 213, 164, 0.48);
+  border-radius: 1.35rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(244, 213, 164, 0.12),
+    0 0 60px rgba(244, 213, 164, 0.08);
+  opacity: 0.15;
+}
+
+.BuildJourneyScrollStory_houseFrame__WTgX8::before,
+.BuildJourneyScrollStory_houseFrame__WTgX8::after {
+  position: absolute;
+  background: rgba(244, 213, 164, 0.35);
+  content: "";
+}
+
+.BuildJourneyScrollStory_houseFrame__WTgX8::before {
+  top: 16%;
+  bottom: 16%;
+  left: 50%;
+  width: 1px;
+}
+
+.BuildJourneyScrollStory_houseFrame__WTgX8::after {
+  left: 16%;
+  right: 16%;
+  top: 50%;
+  height: 1px;
+}
+
+.BuildJourneyScrollStory_windowGrid__a_fUg {
+  position: absolute;
+  inset: 24% 16% 18%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  opacity: 0.42;
+}
+
+.BuildJourneyScrollStory_windowGrid__a_fUg span {
+  border-radius: 0.7rem;
+  border: 1px solid rgba(173, 204, 228, 0.34);
+  background:
+    linear-gradient(180deg, rgba(175, 213, 241, 0.3), rgba(89, 128, 155, 0.08)),
+    rgba(10, 14, 16, 0.25);
+  box-shadow: inset 0 0 24px rgba(173, 204, 228, 0.08);
+}
+
+.BuildJourneyScrollStory_door__rsaeE {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: 18%;
+  height: 22%;
+  border-radius: 1rem 1rem 0.8rem 0.8rem;
+  border: 1px solid rgba(244, 213, 164, 0.22);
+  background: linear-gradient(180deg, rgba(17, 23, 25, 0.9), rgba(29, 34, 37, 0.96));
+  transform: translateX(-50%);
+}
+
+.BuildJourneyScrollStory_blueprintPlate__XB99m {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  width: 26%;
+  height: 12%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(140, 180, 214, 0.12), rgba(255, 255, 255, 0.05));
+}
+
+.BuildJourneyScrollStory_detailPin___CeNg {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  color: rgba(255, 255, 255, 0.78);
+  text-align: center;
+  opacity: 0;
+}
+
+.BuildJourneyScrollStory_detailPin___CeNg span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid rgba(244, 213, 164, 0.88);
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(244, 213, 164, 0.28);
+}
+
+.BuildJourneyScrollStory_detailPin___CeNg em {
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.BuildJourneyScrollStory_pinOne__CJOhy {
+  top: 26%;
+  left: 13%;
+}
+
+.BuildJourneyScrollStory_pinTwo__YlBT0 {
+  top: 58%;
+  right: 15%;
+}
+
+.BuildJourneyScrollStory_pinThree__shNeQ {
+  bottom: 19%;
+  left: 24%;
+}
+
+.BuildJourneyScrollStory_keyIcon__WX0bU {
+  right: 18%;
+  bottom: 18%;
+  width: 4.5rem;
+  height: 4.5rem;
+  opacity: 0;
+}
+
+.BuildJourneyScrollStory_keyRing__k8G4r,
+.BuildJourneyScrollStory_keyStem__LIIFc,
+.BuildJourneyScrollStory_keyToothOne__54Wxg,
+.BuildJourneyScrollStory_keyToothTwo__oNm7A {
+  position: absolute;
+  background: linear-gradient(180deg, #f4d5a4, #9f7440);
+}
+
+.BuildJourneyScrollStory_keyRing__k8G4r {
+  top: 0.35rem;
+  left: 0.35rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 0.25rem solid #f4d5a4;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.BuildJourneyScrollStory_keyStem__LIIFc {
+  top: 1.05rem;
+  left: 1.65rem;
+  width: 2.25rem;
+  height: 0.42rem;
+  border-radius: 999px;
+}
+
+.BuildJourneyScrollStory_keyToothOne__54Wxg,
+.BuildJourneyScrollStory_keyToothTwo__oNm7A {
+  width: 0.42rem;
+  border-radius: 999px;
+}
+
+.BuildJourneyScrollStory_keyToothOne__54Wxg {
+  top: 1.45rem;
+  right: 0.95rem;
+  height: 1rem;
+}
+
+.BuildJourneyScrollStory_keyToothTwo__oNm7A {
+  top: 1.45rem;
+  right: 0.2rem;
+  height: 0.72rem;
+}
+
+.BuildJourneyScrollStory_progressRail__edqec {
+  position: absolute;
+  top: 8%;
+  right: 1.1rem;
+  bottom: 8%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.BuildJourneyScrollStory_progressTrack__idwSS {
+  position: relative;
+  width: 2px;
+  height: min(58vh, 26rem);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.BuildJourneyScrollStory_progressFill__OVYgL {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, #f4d5a4, #9f7440);
+  transform-origin: top center;
+}
+
+.BuildJourneyScrollStory_progressMarkers__23Iaa {
+  display: grid;
+  gap: 1rem;
+}
+
+.BuildJourneyScrollStory_progressMarker__ghA6r {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  opacity: 0.38;
+}
+
+.BuildJourneyScrollStory_progressDot__xC3J5 {
+  width: 0.72rem;
+  height: 0.72rem;
+  flex: none;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 213, 164, 0.72);
+  background: rgba(244, 213, 164, 0.16);
+}
+
+.BuildJourneyScrollStory_progressLabel__wO1xN {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.BuildJourneyScrollStory_cardStack__hsGl9 {
+  display: grid;
+  gap: 1rem;
+}
+
+.BuildJourneyScrollStory_card__sfSGa {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  padding: 1.6rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(12, 15, 14, 0.8);
+  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.BuildJourneyScrollStory_cardEyebrow__R1z2J {
+  margin-bottom: 0.85rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #f4d5a4;
+}
+
+.BuildJourneyScrollStory_cardTitle__DyH4f {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.95rem, 3vw, 2.8rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #f7f2eb;
+}
+
+.BuildJourneyScrollStory_cardBody__wJdgp {
+  margin-top: 1rem;
+  max-width: 30rem;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+@media (min-width: 900px) {
+  .BuildJourneyScrollStory_section__mBh5_ {
+    padding: 7.5rem 0;
+  }
+
+  .BuildJourneyScrollStory_storyShell__1A9cm {
+    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+    align-items: stretch;
+  }
+
+  .BuildJourneyScrollStory_visualFrame__CH8fG,
+  .BuildJourneyScrollStory_world__wfZTk,
+  .BuildJourneyScrollStory_contentColumn__no5nO {
+    min-height: min(74vh, 44rem);
+  }
+
+  .BuildJourneyScrollStory_isEnhanced___yEe1 .BuildJourneyScrollStory_contentColumn__no5nO {
+    position: relative;
+  }
+
+  .BuildJourneyScrollStory_isEnhanced___yEe1 .BuildJourneyScrollStory_cardStack__hsGl9 {
+    position: relative;
+    min-height: 100%;
+  }
+
+  .BuildJourneyScrollStory_isEnhanced___yEe1 .BuildJourneyScrollStory_card__sfSGa {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 2.1rem;
+  }
+
+  .BuildJourneyScrollStory_isEnhanced___yEe1 .BuildJourneyScrollStory_card__sfSGa article {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .BuildJourneyScrollStory_progressRail__edqec {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    margin: 1.25rem 1.25rem 0;
+    justify-content: center;
+  }
+
+  .BuildJourneyScrollStory_progressTrack__idwSS {
+    height: 8rem;
+  }
+
+  .BuildJourneyScrollStory_progressMarkers__23Iaa {
+    gap: 0.7rem;
+  }
+
+  .BuildJourneyScrollStory_approvalCard__kfJQk {
+    right: 8%;
+  }
+}
+
+@media (max-width: 640px) {
+  .BuildJourneyScrollStory_section__mBh5_ {
+    padding: 5rem 0;
+  }
+
+  .BuildJourneyScrollStory_visualFrame__CH8fG,
+  .BuildJourneyScrollStory_world__wfZTk {
+    min-height: 23rem;
+  }
+
+  .BuildJourneyScrollStory_houseWrap___6M_z {
+    height: 18rem;
+  }
+
+  .BuildJourneyScrollStory_card__sfSGa {
+    padding: 1.35rem;
+    border-radius: 1.6rem;
+  }
+
+  .BuildJourneyScrollStory_cardBody__wJdgp {
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  .BuildJourneyScrollStory_progressRail__edqec {
+    gap: 0.8rem;
+  }
+
+  .BuildJourneyScrollStory_progressLabel__wO1xN {
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+  }
+}
+
