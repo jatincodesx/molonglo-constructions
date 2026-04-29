@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CTA } from "@/components/CTA";
+import { HouseWalkthroughScene } from "@/components/home/HouseWalkthroughScene";
 import { JsonLd } from "@/components/JsonLd";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
 import { getPublishedBlogs } from "@/lib/blog";
@@ -90,6 +91,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <HouseWalkthroughScene />
 
       <section className="section bg-white">
         <div className="container grid gap-10 lg:grid-cols-[1fr_0.9fr]">

@@ -6,14 +6,21 @@ type JsonLdProps = {
   schema?: SchemaObject | SchemaObject[] | null;
 };
 
+function hasSchemaType(value: unknown) {
+  if (typeof value === "string") {
+    return value.trim().length > 0;
+  }
+
+  return Array.isArray(value) && value.some((item) => typeof item === "string" && item.trim().length > 0);
+}
+
 function isValidSchemaObject(value: unknown): value is SchemaObject {
   return (
     Boolean(value) &&
     typeof value === "object" &&
     !Array.isArray(value) &&
     Object.keys(value as SchemaObject).length > 0 &&
-    typeof (value as SchemaObject)["@type"] === "string" &&
-    ((value as SchemaObject)["@type"] as string).trim().length > 0
+    hasSchemaType((value as SchemaObject)["@type"])
   );
 }
 
