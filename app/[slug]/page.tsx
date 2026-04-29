@@ -2,7 +2,9 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTA } from "@/components/CTA";
 import { Hero } from "@/components/Hero";
+import { HouseJourneyObject } from "@/components/home/HouseJourneyObject";
 import { JsonLd } from "@/components/JsonLd";
+import { MotionSection } from "@/components/motion/MotionSection";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
 import { getPublishedBlogs } from "@/lib/blog";
 import { getLocationBySlug, getServiceBySlug, locations, services } from "@/lib/content";
@@ -83,7 +85,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
         <Hero eyebrow="Service" title={service.h1} text={service.intro} image={service.image} />
 
-        <section className="section bg-white">
+        <MotionSection as="section" className="section bg-white" staggerSelector="[data-motion-item]" parallax={12}>
           <div className="container grid gap-10 lg:grid-cols-[1fr_320px]">
             <article className="prose-seo">
               <h2>Who this service is for</h2>
@@ -119,7 +121,17 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
             </article>
 
             <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-              <div className="surface-panel p-6">
+              <div className="surface-panel p-6" data-motion-item="">
+                <p className="text-xs font-semibold uppercase tracking-[0.22em] text-molonglo-gold">Build snapshot</p>
+                <div className="mt-5">
+                  <HouseJourneyObject stage="blueprint" compact />
+                </div>
+                <p className="mt-5 text-sm leading-7 text-zinc-600">
+                  Service planning is supported by the same blueprint-to-handover sequence shown on the homepage, but kept lightweight here for readability.
+                </p>
+              </div>
+
+              <div className="surface-panel p-6" data-motion-item="">
                 <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Related locations</h2>
                 <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                   {relatedLocations.map((location) => (
@@ -130,7 +142,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 </ul>
               </div>
 
-              <div className="surface-panel p-6">
+              <div className="surface-panel p-6" data-motion-item="">
                 <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Relevant guides</h2>
                 <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                   {relatedBlogs.map((post) => (
@@ -141,7 +153,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 </ul>
               </div>
 
-              <div className="surface-panel bg-molonglo-ink p-6 text-white">
+              <div className="surface-panel bg-molonglo-ink p-6 text-white" data-motion-item="">
                 <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-white">Talk about your project</h2>
                 <p className="mt-3 text-sm leading-7 text-white/72">
                   Share your block, suburb and project goals and we can discuss the next practical step.
@@ -152,7 +164,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
               </div>
             </aside>
           </div>
-        </section>
+        </MotionSection>
 
         <SignatureBuildingProcess />
         <CTA />
@@ -188,7 +200,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
       <Hero eyebrow="Service Area" title={location.h1} text={location.intro} image={location.image} />
 
-      <section className="section bg-white">
+      <MotionSection as="section" className="section bg-white" staggerSelector="[data-motion-item]" parallax={12}>
         <div className="container grid gap-10 lg:grid-cols-[1fr_320px]">
           <article className="prose-seo">
             {location.sections.map((section) => (
@@ -219,7 +231,17 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
           </article>
 
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-            <div className="surface-panel p-6">
+            <div className="surface-panel p-6" data-motion-item="">
+              <p className="text-xs font-semibold uppercase tracking-[0.22em] text-molonglo-gold">Area snapshot</p>
+              <div className="mt-5">
+                <HouseJourneyObject stage="handover" compact />
+              </div>
+              <p className="mt-5 text-sm leading-7 text-zinc-600">
+                Local pages keep the story lighter: a sticky architectural visual, readable guidance, and supporting links that stay visible beside the long-form content.
+              </p>
+            </div>
+
+            <div className="surface-panel p-6" data-motion-item="">
               <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Nearby service areas</h2>
               <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                 {nearbyLocations.map((item) => (
@@ -227,10 +249,10 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                     <Link href={`/${item.slug}`}>{item.h1}</Link>
                   </li>
                 ))}
-              </ul>
-            </div>
+                </ul>
+              </div>
 
-            <div className="surface-panel p-6">
+            <div className="surface-panel p-6" data-motion-item="">
               <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Helpful articles</h2>
               <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                 {relatedBlogs.map((post) => (
@@ -238,10 +260,10 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                     <Link href={`/blog/${post.slug}`}>{post.title}</Link>
                   </li>
                 ))}
-              </ul>
-            </div>
+                </ul>
+              </div>
 
-            <div className="surface-panel bg-molonglo-ink p-6 text-white">
+            <div className="surface-panel bg-molonglo-ink p-6 text-white" data-motion-item="">
               <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-white">Start with a local consultation</h2>
               <p className="mt-3 text-sm leading-7 text-white/72">
                 We can review the block, suburb context and the most suitable project path for your property.
@@ -249,10 +271,10 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
               <Link href="/contact#quote" className="cta mt-5 w-full">
                 Request a Quote
               </Link>
-            </div>
-          </aside>
-        </div>
-      </section>
+              </div>
+            </aside>
+          </div>
+      </MotionSection>
 
       <SignatureBuildingProcess />
       <CTA />

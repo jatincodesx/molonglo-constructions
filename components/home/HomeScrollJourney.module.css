@@ -1,0 +1,529 @@
+.journeySection {
+  position: relative;
+  overflow: clip;
+  padding: clamp(4rem, 8vw, 6rem) 0 clamp(5rem, 9vw, 7rem);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(196, 147, 88, 0.18), transparent 28%),
+    radial-gradient(circle at 82% 22%, rgba(110, 139, 190, 0.14), transparent 24%),
+    linear-gradient(180deg, #0f1724 0%, #111827 36%, #171b1f 100%);
+  color: #f6f1e7;
+}
+
+.journeySection::before {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 120px 120px;
+  content: "";
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.75), transparent 92%);
+  pointer-events: none;
+}
+
+.desktopScene {
+  display: none;
+}
+
+.sceneGrid {
+  display: grid;
+  gap: 3rem;
+}
+
+.copyColumn {
+  position: relative;
+}
+
+.sceneTitle {
+  margin-top: 1rem;
+  max-width: 12ch;
+  font-size: clamp(2.8rem, 5vw, 5.1rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 0.94;
+  color: #fff9ef;
+}
+
+.sceneLead {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+  font-size: 1.05rem;
+  line-height: 1.95;
+  color: rgba(246, 241, 231, 0.78);
+}
+
+.progressWrap {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.25rem;
+  margin-top: 2rem;
+  align-items: start;
+}
+
+.progressTrack {
+  position: relative;
+  width: 2px;
+  min-height: 13rem;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #d7ab72 0%, #f4dfbf 100%);
+  box-shadow: 0 0 24px rgba(215, 171, 114, 0.4);
+  transform-origin: top center;
+}
+
+.progressList {
+  display: grid;
+  gap: 0.85rem;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.progressItem {
+  display: flex;
+  gap: 0.9rem;
+  align-items: baseline;
+  color: rgba(246, 241, 231, 0.46);
+  transition: color 260ms ease, transform 260ms ease;
+}
+
+.progressItemActive {
+  color: rgba(255, 249, 239, 0.95);
+  transform: translateX(6px);
+}
+
+.progressNumber {
+  min-width: 2.2rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.progressLabel {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.chapterStack {
+  position: relative;
+  min-height: 20rem;
+  margin-top: 2rem;
+}
+
+.chapterCard {
+  position: absolute;
+  inset: 0;
+  max-width: 33rem;
+  opacity: 0;
+  transform: translateY(1.2rem);
+  transition: opacity 320ms ease, transform 320ms ease;
+  pointer-events: none;
+}
+
+.chapterCardActive {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.chapterStep {
+  margin: 0;
+  color: rgba(215, 171, 114, 0.88);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.chapterTitle {
+  margin-top: 1rem;
+  font-size: clamp(2rem, 3vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  color: #fff8ec;
+}
+
+.chapterBody {
+  margin-top: 1.2rem;
+  max-width: 28rem;
+  font-size: 1.02rem;
+  line-height: 1.95;
+  color: rgba(246, 241, 231, 0.75);
+}
+
+.objectColumn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.houseRoot {
+  position: relative;
+  width: min(100%, 36rem);
+  aspect-ratio: 1 / 1;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(183, 219, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 50% 82%, rgba(206, 157, 95, 0.12), transparent 38%),
+    linear-gradient(180deg, rgba(14, 19, 28, 0.98), rgba(19, 24, 34, 0.98));
+  box-shadow:
+    0 32px 80px rgba(4, 8, 14, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.houseRootCompact {
+  width: min(100%, 19rem);
+  aspect-ratio: 1.05 / 1;
+}
+
+.objectAura {
+  position: absolute;
+  inset: 12% 18% 22%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(120, 170, 234, 0.16), transparent 68%);
+  filter: blur(40px);
+}
+
+.blueprintGrid {
+  position: absolute;
+  inset: 14% 12%;
+  border-radius: 1.5rem;
+  opacity: 0.12;
+  background:
+    linear-gradient(90deg, rgba(167, 212, 255, 0.18) 1px, transparent 1px),
+    linear-gradient(rgba(167, 212, 255, 0.18) 1px, transparent 1px);
+  background-size: 2.1rem 2.1rem;
+  box-shadow: inset 0 0 0 1px rgba(167, 212, 255, 0.16);
+}
+
+.finalGlow {
+  position: absolute;
+  inset: 44% 16% 8%;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(240, 196, 126, 0.28), transparent 70%);
+  filter: blur(36px);
+  opacity: 0.18;
+}
+
+.approvalCard {
+  position: absolute;
+  top: 12%;
+  right: 10%;
+  display: grid;
+  gap: 0.25rem;
+  width: 11rem;
+  padding: 1rem;
+  border: 1px solid rgba(215, 171, 114, 0.28);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(22, 31, 45, 0.95), rgba(16, 22, 32, 0.95));
+  color: #f7eedf;
+  box-shadow: 0 18px 44px rgba(4, 8, 14, 0.34);
+  opacity: 0;
+  transform-origin: center center;
+}
+
+.approvalLabel {
+  color: rgba(215, 171, 114, 0.78);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+.keySymbol {
+  position: absolute;
+  right: 14%;
+  bottom: 14%;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  opacity: 0;
+}
+
+.keyRing {
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 3px solid rgba(242, 216, 165, 0.9);
+  border-radius: 999px;
+}
+
+.keyStem {
+  position: relative;
+  width: 3.6rem;
+  height: 0.34rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 223, 171, 0.92), rgba(196, 147, 88, 0.82));
+}
+
+.keyTeeth {
+  position: absolute;
+  right: -0.2rem;
+  bottom: -0.5rem;
+  width: 1rem;
+  height: 1rem;
+  border-right: 0.34rem solid rgba(242, 216, 165, 0.92);
+  border-bottom: 0.34rem solid rgba(242, 216, 165, 0.92);
+}
+
+.detailPin {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: 999px;
+  background: rgba(11, 21, 34, 0.9);
+  border: 1px solid rgba(236, 196, 126, 0.38);
+  box-shadow: 0 0 0 0.45rem rgba(236, 196, 126, 0.1);
+  opacity: 0;
+}
+
+.detailPin span {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: #f7d5a3;
+}
+
+.detailPinNorth {
+  top: 31%;
+  left: 54%;
+}
+
+.detailPinWest {
+  top: 49%;
+  left: 34%;
+}
+
+.detailPinEast {
+  top: 51%;
+  right: 28%;
+}
+
+.houseViewport {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+}
+
+.objectSvg {
+  width: 90%;
+  height: 90%;
+  overflow: visible;
+}
+
+.landOutline path {
+  fill: none;
+  stroke: rgba(210, 177, 123, 0.6);
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.measurementLines line {
+  fill: none;
+  stroke: rgba(160, 209, 255, 0.78);
+  stroke-dasharray: 7 6;
+  stroke-width: 2;
+}
+
+.frameLines path {
+  fill: none;
+  stroke: rgba(124, 172, 219, 0.92);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.houseShell {
+  filter: drop-shadow(0 28px 36px rgba(0, 0, 0, 0.35));
+}
+
+.windowGroup {
+  opacity: 0.35;
+}
+
+.roofHighlight path {
+  fill: none;
+  stroke: rgba(255, 240, 212, 0.32);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.houseRoot :is(.approvalCard, .blueprintGrid, .finalGlow, .detailPin, .keySymbol, .houseViewport) {
+  transition:
+    opacity 260ms ease,
+    transform 260ms ease,
+    scale 260ms ease;
+}
+
+.houseRoot[data-stage="land"] .blueprintGrid {
+  opacity: 0.1;
+}
+
+.houseRoot[data-stage="land"] .finalGlow {
+  opacity: 0.18;
+}
+
+.houseRoot[data-stage="land"] .measurementLines,
+.houseRoot[data-stage="land"] .approvalCard,
+.houseRoot[data-stage="land"] .detailPin,
+.houseRoot[data-stage="land"] .keySymbol {
+  opacity: 0;
+}
+
+.houseRoot[data-stage="blueprint"] .blueprintGrid {
+  opacity: 0.74;
+  transform: scale(1.03);
+}
+
+.houseRoot[data-stage="blueprint"] .measurementLines {
+  opacity: 0.95;
+}
+
+.houseRoot[data-stage="approval"] .approvalCard {
+  opacity: 1;
+  transform: rotate(-3deg);
+}
+
+.houseRoot[data-stage="frame"] .frameLines {
+  opacity: 1;
+}
+
+.houseRoot[data-stage="construction"] .windowGroup {
+  opacity: 0.82;
+}
+
+.houseRoot[data-stage="construction"] .finalGlow {
+  opacity: 0.62;
+  transform: scale(1.08);
+}
+
+.houseRoot[data-stage="inspection"] .detailPin {
+  opacity: 1;
+}
+
+.houseRoot[data-stage="inspection"] .finalGlow {
+  opacity: 0.78;
+}
+
+.houseRoot[data-stage="handover"] .detailPin,
+.houseRoot[data-stage="handover"] .keySymbol {
+  opacity: 1;
+}
+
+.houseRoot[data-stage="handover"] .finalGlow {
+  opacity: 1;
+  transform: scale(1.14);
+}
+
+.fallbackWrap {
+  display: block;
+}
+
+.fallbackScene {
+  display: grid;
+  gap: 2rem;
+}
+
+.fallbackIntro {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+
+.fallbackCopy {
+  max-width: 38rem;
+}
+
+.fallbackObject {
+  justify-self: center;
+}
+
+.fallbackGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.fallbackCard {
+  padding: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(14px);
+}
+
+.fallbackCardHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+}
+
+.fallbackCardNumber,
+.fallbackStageLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.fallbackStageLabel {
+  color: rgba(255, 241, 220, 0.55);
+}
+
+.fallbackCardTitle {
+  margin-top: 1rem;
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.02;
+  color: #fff7ea;
+}
+
+.fallbackCardBody {
+  margin-top: 0.9rem;
+  font-size: 0.98rem;
+  line-height: 1.9;
+  color: rgba(246, 241, 231, 0.78);
+}
+
+@media (min-width: 1024px) {
+  .sceneGrid {
+    min-height: calc(100svh - var(--site-header-height, 80px) - 3rem);
+    grid-template-columns: minmax(0, 1.05fr) minmax(24rem, 0.95fr);
+    align-items: center;
+    gap: clamp(3rem, 5vw, 5rem);
+  }
+
+  .journeySection[data-enhanced="true"][data-force-fallback="false"] .desktopScene {
+    display: block;
+  }
+
+  .journeySection[data-enhanced="true"][data-force-fallback="false"] .fallbackWrap {
+    display: none;
+  }
+
+  .fallbackIntro {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .fallbackGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1023px) {
+  .sceneTitle {
+    max-width: 14ch;
+  }
+}

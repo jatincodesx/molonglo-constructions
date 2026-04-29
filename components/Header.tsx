@@ -4,7 +4,7 @@ import { navLinks, site } from "@/lib/site";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">
+    <header data-site-header="" className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">
       <div className="container flex min-h-20 flex-wrap items-center justify-between gap-4 py-3">
         <Link href="/" className="flex items-center gap-3">
           <Image

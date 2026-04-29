@@ -3,6 +3,8 @@ import Link from "next/link";
 import { CTA } from "@/components/CTA";
 import { JsonLd } from "@/components/JsonLd";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
+import { HomeScrollJourney } from "@/components/home/HomeScrollJourney";
+import { MotionSection } from "@/components/motion/MotionSection";
 import { getPublishedBlogs } from "@/lib/blog";
 import { locations, projects, services } from "@/lib/content";
 import { breadcrumbSchema, resolveMetadata, serviceSchema } from "@/lib/seo";
@@ -91,9 +93,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <section className="section bg-white">
+      <MotionSection as="section" className="section bg-white" staggerSelector="[data-motion-item]">
         <div className="container grid gap-10 lg:grid-cols-[1fr_0.9fr]">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl" data-motion-item="">
             <p className="eyebrow">Why Molonglo Construction</p>
             <h2 className="heading-lg mt-4">A Canberra builder focused on process, communication and homes that work beyond handover.</h2>
             <p className="mt-5 text-lg leading-8 text-zinc-700">
@@ -102,18 +104,20 @@ export default async function HomePage() {
           </div>
           <div className="grid gap-4">
             {differentiators.map((item) => (
-              <div key={item} className="surface-panel flex gap-4 p-6">
+              <div key={item} className="surface-panel flex gap-4 p-6" data-motion-item="">
                 <span className="mt-2 h-2.5 w-2.5 rounded-full bg-molonglo-gold" aria-hidden />
                 <p className="text-base leading-7 text-zinc-700">{item}</p>
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
-      <section className="section bg-[#f6f3ee]">
+      <HomeScrollJourney />
+
+      <MotionSection as="section" className="section bg-[#f6f3ee]" staggerSelector="[data-motion-item]">
         <div className="container">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl" data-motion-item="">
             <p className="eyebrow">Services</p>
             <h2 className="heading-lg mt-4">Residential construction services built around real Canberra project needs.</h2>
             <p className="mt-4 text-lg leading-8 text-zinc-700">
@@ -122,7 +126,7 @@ export default async function HomePage() {
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {services.slice(0, 6).map((service) => (
-              <article key={service.slug} className="surface-panel flex h-full flex-col justify-between p-6">
+              <article key={service.slug} className="surface-panel flex h-full flex-col justify-between p-6" data-motion-item="">
                 <div>
                   <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">
                     {service.title}
@@ -136,24 +140,24 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       <SignatureBuildingProcess />
 
-      <section className="section bg-white">
+      <MotionSection as="section" className="section bg-white" staggerSelector="[data-motion-item]">
         <div className="container">
           <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div className="max-w-3xl">
+            <div className="max-w-3xl" data-motion-item="">
               <p className="eyebrow">Selected Projects</p>
               <h2 className="heading-lg mt-4">Recent work across Canberra and the Molonglo Valley corridor.</h2>
             </div>
-            <Link href="/projects" className="cta-secondary w-fit">
+            <Link href="/projects" className="cta-secondary w-fit" data-motion-item="">
               Explore Projects
             </Link>
           </div>
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
             {projects.map((project) => (
-              <article key={project.title} className="surface-panel overflow-hidden">
+              <article key={project.title} className="surface-panel overflow-hidden" data-motion-item="">
                 <Image src={project.image} alt={`${project.title} in ${project.location}`} width={960} height={720} className="h-64 w-full object-cover" />
                 <div className="p-6">
                   <p className="text-xs font-semibold uppercase tracking-[0.2em] text-molonglo-gold">{project.location}</p>
@@ -165,11 +169,11 @@ export default async function HomePage() {
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
-      <section className="section bg-[#f6f3ee]">
+      <MotionSection as="section" className="section bg-[#f6f3ee]" staggerSelector="[data-motion-item]" parallax={18}>
         <div className="container grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div>
+          <div data-motion-item="">
             <p className="eyebrow">Service Areas</p>
             <h2 className="heading-lg mt-4">Building across Canberra, the ACT and nearby NSW service areas.</h2>
             <p className="mt-5 text-lg leading-8 text-zinc-700">
@@ -178,25 +182,25 @@ export default async function HomePage() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {featuredLocations.map((location) => (
-              <Link key={location.slug} href={`/${location.slug}`} className="surface-panel p-6 transition hover:border-molonglo-gold/40">
+              <Link key={location.slug} href={`/${location.slug}`} className="surface-panel p-6 transition hover:border-molonglo-gold/40" data-motion-item="">
                 <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">{location.h1}</h3>
                 <p className="mt-3 text-sm leading-7 text-zinc-600">{location.intro}</p>
               </Link>
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
-      <section className="section bg-white">
+      <MotionSection as="section" className="section bg-white" staggerSelector="[data-motion-item]">
         <div className="container">
-          <div className="max-w-3xl">
+          <div className="max-w-3xl" data-motion-item="">
             <p className="eyebrow">Building Guides</p>
             <h2 className="heading-lg mt-4">Helpful articles for homeowners planning a build in Canberra.</h2>
           </div>
           {recentBlogs.length ? (
             <div className="mt-12 grid gap-6 lg:grid-cols-3">
               {recentBlogs.map((post) => (
-                <article key={post.slug} className="surface-panel overflow-hidden">
+                <article key={post.slug} className="surface-panel overflow-hidden" data-motion-item="">
                   <Image src={post.featuredImage} alt={post.title} width={900} height={640} className="h-56 w-full object-cover" />
                   <div className="p-6">
                     <p className="text-xs font-semibold uppercase tracking-[0.2em] text-molonglo-gold">
@@ -214,7 +218,7 @@ export default async function HomePage() {
               ))}
             </div>
           ) : (
-            <div className="surface-panel mt-12 p-8">
+            <div className="surface-panel mt-12 p-8" data-motion-item="">
               <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">No blog posts published yet</h3>
               <p className="mt-3 text-sm leading-7 text-zinc-600">
                 The public blog will appear here after the database is migrated and posts are published from the admin area.
@@ -222,7 +226,7 @@ export default async function HomePage() {
             </div>
           )}
         </div>
-      </section>
+      </MotionSection>
 
       <CTA />
     </>

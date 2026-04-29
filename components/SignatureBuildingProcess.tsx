@@ -1,3 +1,5 @@
+import { MotionSection } from "@/components/motion/MotionSection";
+
 const steps = [
   {
     title: "Initial Consultation",
@@ -28,8 +30,8 @@ const steps = [
 export function SignatureBuildingProcess() {
   return (
     <section className="section bg-[#f6f3ee]">
-      <div className="container">
-        <div className="max-w-3xl">
+      <MotionSection as="div" className="container" staggerSelector="[data-motion-item]">
+        <div className="max-w-3xl" data-motion-item="">
           <p className="eyebrow">Our Signature Building Process</p>
           <h2 className="heading-lg mt-4">A refined approach to creating your dream home</h2>
           <p className="mt-4 text-lg leading-8 text-zinc-700">
@@ -39,7 +41,7 @@ export function SignatureBuildingProcess() {
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {steps.map((step, index) => (
-            <article key={step.title} className="surface-panel h-full p-6">
+            <article key={step.title} className="surface-panel h-full p-6" data-motion-item="">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-molonglo-gold">
                 Step {index + 1}
               </p>
@@ -50,7 +52,7 @@ export function SignatureBuildingProcess() {
             </article>
           ))}
         </div>
-      </div>
+      </MotionSection>
     </section>
   );
 }
