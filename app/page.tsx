@@ -1,4 +1,5 @@
 import Image from "next/image";
+import nextDynamic from "next/dynamic";
 import Link from "next/link";
 import { CTA } from "@/components/CTA";
 import { JsonLd } from "@/components/JsonLd";
@@ -25,6 +26,10 @@ const differentiators = [
   "A personalised process with direct communication from consultation to handover.",
   "Quality craftsmanship backed by practical decision-making at every stage."
 ];
+
+const BuildJourneyScrollStory = nextDynamic(() =>
+  import("@/components/home/BuildJourneyScrollStory").then((mod) => mod.BuildJourneyScrollStory)
+);
 
 export default async function HomePage() {
   const recentBlogs = (await getPublishedBlogs()).slice(0, 3);
@@ -110,6 +115,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <BuildJourneyScrollStory />
 
       <section className="section bg-[#f6f3ee]">
         <div className="container">

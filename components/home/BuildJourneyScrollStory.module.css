@@ -1,0 +1,610 @@
+.section {
+  position: relative;
+  overflow: clip;
+  padding: 6rem 0;
+}
+
+.section::before {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(159, 116, 64, 0.16), transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(255, 255, 255, 0.06), transparent 22%);
+  content: "";
+  pointer-events: none;
+}
+
+.intro {
+  position: relative;
+  z-index: 1;
+  max-width: 44rem;
+}
+
+.heading {
+  margin-top: 1rem;
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(2.5rem, 5vw, 4.75rem);
+  font-weight: 600;
+  line-height: 0.96;
+  letter-spacing: -0.05em;
+  color: #f7f2eb;
+}
+
+.description {
+  margin-top: 1.5rem;
+  max-width: 38rem;
+  font-size: 1.08rem;
+  line-height: 1.95;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.storyShell {
+  position: relative;
+  z-index: 1;
+  margin-top: 3rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.visualColumn,
+.contentColumn {
+  min-width: 0;
+}
+
+.visualFrame {
+  position: relative;
+  min-height: 28rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2.25rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.02)),
+    linear-gradient(180deg, rgba(12, 15, 14, 0.74), rgba(12, 15, 14, 0.92));
+  box-shadow: 0 40px 110px rgba(0, 0, 0, 0.28);
+}
+
+.world {
+  position: relative;
+  display: flex;
+  min-height: 28rem;
+  align-items: center;
+  justify-content: center;
+  isolation: isolate;
+}
+
+.contourField,
+.blueprintGrid,
+.glow,
+.measurements,
+.approvalCard,
+.detailPin,
+.keyIcon {
+  position: absolute;
+}
+
+.contourField {
+  inset: 8% 6%;
+  border-radius: 2rem;
+  background:
+    radial-gradient(circle at center, rgba(255, 255, 255, 0.06), transparent 62%),
+    repeating-radial-gradient(circle at 50% 50%, transparent 0 16px, rgba(255, 255, 255, 0.05) 16px 17px);
+  filter: blur(0.2px);
+  opacity: 0.4;
+}
+
+.blueprintGrid {
+  inset: 10% 12%;
+  border: 1px solid rgba(140, 180, 214, 0.16);
+  border-radius: 1.8rem;
+  background-image:
+    linear-gradient(rgba(140, 180, 214, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(140, 180, 214, 0.1) 1px, transparent 1px);
+  background-size: 2.5rem 2.5rem;
+  mask-image: radial-gradient(circle at center, black 58%, transparent 90%);
+  opacity: 0.12;
+}
+
+.glow {
+  top: 24%;
+  width: 24rem;
+  height: 24rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(191, 147, 89, 0.36), rgba(191, 147, 89, 0) 70%);
+  filter: blur(8px);
+  opacity: 0.28;
+}
+
+.measurements {
+  inset: 13% 10%;
+  color: rgba(201, 223, 243, 0.72);
+  opacity: 0;
+}
+
+.measureTop,
+.measureSide {
+  position: absolute;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.measureTop {
+  top: 10%;
+  right: 16%;
+}
+
+.measureSide {
+  bottom: 22%;
+  left: 12%;
+  transform: rotate(-90deg);
+  transform-origin: left center;
+}
+
+.measureLineHorizontal,
+.measureLineVertical {
+  position: absolute;
+  background: linear-gradient(90deg, transparent, rgba(201, 223, 243, 0.86), transparent);
+}
+
+.measureLineHorizontal {
+  top: 23%;
+  left: 20%;
+  width: 52%;
+  height: 1px;
+}
+
+.measureLineVertical {
+  top: 22%;
+  right: 22%;
+  width: 1px;
+  height: 42%;
+  background: linear-gradient(180deg, transparent, rgba(201, 223, 243, 0.86), transparent);
+}
+
+.approvalCard {
+  top: 14%;
+  right: 12%;
+  display: grid;
+  gap: 0.3rem;
+  padding: 1rem 1.15rem;
+  border: 1px solid rgba(191, 147, 89, 0.28);
+  border-radius: 1rem;
+  background: rgba(10, 13, 14, 0.72);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.approvalCard span {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.58);
+}
+
+.approvalCard strong {
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  color: #f4d5a4;
+}
+
+.houseWrap {
+  position: relative;
+  width: min(100%, 28rem);
+  height: 22rem;
+  display: grid;
+  place-items: center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.houseShadow {
+  position: absolute;
+  inset: auto 15% 1.2rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.35), transparent 70%);
+  filter: blur(12px);
+}
+
+.houseShell {
+  position: relative;
+  width: clamp(14rem, 32vw, 21rem);
+  aspect-ratio: 1 / 1.06;
+  border: 1px solid rgba(235, 219, 198, 0.3);
+  border-radius: 1.7rem;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.02) 56%),
+    linear-gradient(180deg, rgba(26, 31, 33, 0.96), rgba(36, 41, 44, 0.94));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.14),
+    0 28px 60px rgba(0, 0, 0, 0.22);
+  transform: translateZ(0);
+}
+
+.houseShell::before {
+  position: absolute;
+  inset: 7% 8%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1.25rem;
+  content: "";
+}
+
+.houseRoof {
+  position: absolute;
+  top: -3rem;
+  left: 12%;
+  width: 76%;
+  height: 5.5rem;
+  clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+  background: linear-gradient(180deg, rgba(225, 202, 170, 0.72), rgba(145, 104, 62, 0.52));
+  filter: drop-shadow(0 16px 26px rgba(0, 0, 0, 0.25));
+}
+
+.houseFacade {
+  position: absolute;
+  inset: 18% 10% 10%;
+  border-radius: 1.25rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.01)),
+    linear-gradient(180deg, rgba(27, 33, 36, 0.1), rgba(27, 33, 36, 0.34));
+}
+
+.houseFrame {
+  position: absolute;
+  inset: 14% 8% 8%;
+  border: 1px solid rgba(244, 213, 164, 0.48);
+  border-radius: 1.35rem;
+  box-shadow:
+    inset 0 0 0 1px rgba(244, 213, 164, 0.12),
+    0 0 60px rgba(244, 213, 164, 0.08);
+  opacity: 0.15;
+}
+
+.houseFrame::before,
+.houseFrame::after {
+  position: absolute;
+  background: rgba(244, 213, 164, 0.35);
+  content: "";
+}
+
+.houseFrame::before {
+  top: 16%;
+  bottom: 16%;
+  left: 50%;
+  width: 1px;
+}
+
+.houseFrame::after {
+  left: 16%;
+  right: 16%;
+  top: 50%;
+  height: 1px;
+}
+
+.windowGrid {
+  position: absolute;
+  inset: 24% 16% 18%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.85rem;
+  opacity: 0.42;
+}
+
+.windowGrid span {
+  border-radius: 0.7rem;
+  border: 1px solid rgba(173, 204, 228, 0.34);
+  background:
+    linear-gradient(180deg, rgba(175, 213, 241, 0.3), rgba(89, 128, 155, 0.08)),
+    rgba(10, 14, 16, 0.25);
+  box-shadow: inset 0 0 24px rgba(173, 204, 228, 0.08);
+}
+
+.door {
+  position: absolute;
+  left: 50%;
+  bottom: 12%;
+  width: 18%;
+  height: 22%;
+  border-radius: 1rem 1rem 0.8rem 0.8rem;
+  border: 1px solid rgba(244, 213, 164, 0.22);
+  background: linear-gradient(180deg, rgba(17, 23, 25, 0.9), rgba(29, 34, 37, 0.96));
+  transform: translateX(-50%);
+}
+
+.blueprintPlate {
+  position: absolute;
+  right: 10%;
+  bottom: 10%;
+  width: 26%;
+  height: 12%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(140, 180, 214, 0.12), rgba(255, 255, 255, 0.05));
+}
+
+.detailPin {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  color: rgba(255, 255, 255, 0.78);
+  text-align: center;
+  opacity: 0;
+}
+
+.detailPin span {
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid rgba(244, 213, 164, 0.88);
+  border-radius: 999px;
+  box-shadow: 0 0 18px rgba(244, 213, 164, 0.28);
+}
+
+.detailPin em {
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.68);
+}
+
+.pinOne {
+  top: 26%;
+  left: 13%;
+}
+
+.pinTwo {
+  top: 58%;
+  right: 15%;
+}
+
+.pinThree {
+  bottom: 19%;
+  left: 24%;
+}
+
+.keyIcon {
+  right: 18%;
+  bottom: 18%;
+  width: 4.5rem;
+  height: 4.5rem;
+  opacity: 0;
+}
+
+.keyRing,
+.keyStem,
+.keyToothOne,
+.keyToothTwo {
+  position: absolute;
+  background: linear-gradient(180deg, #f4d5a4, #9f7440);
+}
+
+.keyRing {
+  top: 0.35rem;
+  left: 0.35rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 0.25rem solid #f4d5a4;
+  border-radius: 999px;
+  background: transparent;
+}
+
+.keyStem {
+  top: 1.05rem;
+  left: 1.65rem;
+  width: 2.25rem;
+  height: 0.42rem;
+  border-radius: 999px;
+}
+
+.keyToothOne,
+.keyToothTwo {
+  width: 0.42rem;
+  border-radius: 999px;
+}
+
+.keyToothOne {
+  top: 1.45rem;
+  right: 0.95rem;
+  height: 1rem;
+}
+
+.keyToothTwo {
+  top: 1.45rem;
+  right: 0.2rem;
+  height: 0.72rem;
+}
+
+.progressRail {
+  position: absolute;
+  top: 8%;
+  right: 1.1rem;
+  bottom: 8%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progressTrack {
+  position: relative;
+  width: 2px;
+  height: min(58vh, 26rem);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  overflow: hidden;
+}
+
+.progressFill {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(180deg, #f4d5a4, #9f7440);
+  transform-origin: top center;
+}
+
+.progressMarkers {
+  display: grid;
+  gap: 1rem;
+}
+
+.progressMarker {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  opacity: 0.38;
+}
+
+.progressDot {
+  width: 0.72rem;
+  height: 0.72rem;
+  flex: none;
+  border-radius: 999px;
+  border: 1px solid rgba(244, 213, 164, 0.72);
+  background: rgba(244, 213, 164, 0.16);
+}
+
+.progressLabel {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.cardStack {
+  display: grid;
+  gap: 1rem;
+}
+
+.card {
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 2rem;
+  padding: 1.6rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.02)),
+    rgba(12, 15, 14, 0.8);
+  box-shadow: 0 32px 70px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.cardEyebrow {
+  margin-bottom: 0.85rem;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #f4d5a4;
+}
+
+.cardTitle {
+  font-family: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  font-size: clamp(1.95rem, 3vw, 2.8rem);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+  color: #f7f2eb;
+}
+
+.cardBody {
+  margin-top: 1rem;
+  max-width: 30rem;
+  font-size: 1rem;
+  line-height: 1.9;
+  color: rgba(255, 255, 255, 0.74);
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding: 7.5rem 0;
+  }
+
+  .storyShell {
+    grid-template-columns: minmax(0, 1.15fr) minmax(20rem, 0.85fr);
+    align-items: stretch;
+  }
+
+  .visualFrame,
+  .world,
+  .contentColumn {
+    min-height: min(74vh, 44rem);
+  }
+
+  .isEnhanced .contentColumn {
+    position: relative;
+  }
+
+  .isEnhanced .cardStack {
+    position: relative;
+    min-height: 100%;
+  }
+
+  .isEnhanced .card {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 2.1rem;
+  }
+
+  .isEnhanced .card article {
+    max-width: 30rem;
+  }
+}
+
+@media (max-width: 899px) {
+  .progressRail {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    margin: 1.25rem 1.25rem 0;
+    justify-content: center;
+  }
+
+  .progressTrack {
+    height: 8rem;
+  }
+
+  .progressMarkers {
+    gap: 0.7rem;
+  }
+
+  .approvalCard {
+    right: 8%;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 5rem 0;
+  }
+
+  .visualFrame,
+  .world {
+    min-height: 23rem;
+  }
+
+  .houseWrap {
+    height: 18rem;
+  }
+
+  .card {
+    padding: 1.35rem;
+    border-radius: 1.6rem;
+  }
+
+  .cardBody {
+    font-size: 0.98rem;
+    line-height: 1.75;
+  }
+
+  .progressRail {
+    gap: 0.8rem;
+  }
+
+  .progressLabel {
+    font-size: 0.64rem;
+    letter-spacing: 0.18em;
+  }
+}
