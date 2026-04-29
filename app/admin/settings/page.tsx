@@ -26,7 +26,7 @@ export default async function AdminSettingsPage() {
           <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Admin authentication</h2>
           <div className="mt-5 space-y-3 text-sm leading-7 text-zinc-600">
             <p><strong>Required env vars:</strong> <code>ADMIN_EMAIL</code>, <code>ADMIN_PASSWORD_HASH</code> and <code>SESSION_SECRET</code>.</p>
-            <p><strong>Recommended:</strong> use a <code>pbkdf2_sha256:</code> hash generated from the included script.</p>
+            <p><strong>Recommended:</strong> use a bcrypt hash generated from <code>scripts/hash-password.mjs</code>.</p>
             <p><strong>Runtime:</strong> blog posts, leads and SEO overrides are stored in Supabase rather than the local filesystem.</p>
           </div>
         </div>
