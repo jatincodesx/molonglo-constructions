@@ -67,7 +67,7 @@ Step 6: run the app.
 npm run dev
 ```
 
-If you see `Could not find the table public.blogs`, run:
+If public pages show missing table warnings for `blogs` or `seo_pages`, run:
 
 ```bash
 npm run db:link
@@ -78,9 +78,11 @@ npm run db:push
 
 The source of truth is:
 
-- [supabase/config.toml](/Users/jatinvohra/Documents/VSC/MologoloContructions/supabase/config.toml)
-- [supabase/migrations/0001_initial_schema.sql](/Users/jatinvohra/Documents/VSC/MologoloContructions/supabase/migrations/0001_initial_schema.sql)
-- [supabase/seed.sql](/Users/jatinvohra/Documents/VSC/MologoloContructions/supabase/seed.sql)
+- `supabase/config.toml`
+- `supabase/migrations/0001_initial_schema.sql`
+- `supabase/schema.sql`
+- `supabase/policies.sql`
+- `supabase/seed.sql`
 
 The initial migration creates:
 
