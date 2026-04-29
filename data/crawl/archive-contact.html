@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Contact Molonglo Construction Group for your home building needs in Canberra. Get in touch with our expert team today.">
+    <meta name="robots" content="index, follow">
+    <meta name="author" content="Molonglo Construction Group">
+    <link rel="icon" type="image/jpeg" href="../assets/images/favicon/favicon.jpg">
+    <title>Contact Us - Molonglo Construction Group</title>
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script src="../js/analytics.js"></script>
+    <link rel="preload" href="../css/base.css" as="style">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="preload" href="../css/style.css" as="style">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preload" href="../css/nav.css" as="style">
+    <link rel="stylesheet" href="../css/nav.css">
+    <link rel="preload" href="../css/responsive.css" as="style">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="preload" href="../css/colors.css" as="style">
+    <link rel="stylesheet" href="../css/colors.css">
+    <link rel="preload" href="../css/icons.css" as="style">
+    <link rel="stylesheet" href="../css/icons.css">
+    <link rel="preload" href="../css/ferrari.css" as="style">
+    <link rel="stylesheet" href="../css/ferrari.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preload" href="../css/map.css" as="style">
+    <link rel="stylesheet" href="../css/map.css">
+    <link rel="preload" href="../css/footer.css" as="style">
+    <link rel="stylesheet" href="../css/footer.css">
+    <script>
+        // Function to handle form submissions
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            // Show loading state
+            const submitButton = document.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+            
+            const formStatus = document.getElementById('form-status');
+            formStatus.innerHTML = '';
+            
+            // Get form data
+            const form = document.getElementById('consultation-form');
+            const formData = new FormData(form);
+            
+            // Convert FormData to URL-encoded string
+            const data = [...formData.entries()]
+                .map(e => encodeURIComponent(e[0]) + '=' + encodeURIComponent(e[1]))
+                .join('&');
+            
+            // Send the form data to Google Apps Script
+            fetch('https://script.google.com/macros/s/AKfycbzjJ_iPPqlBojn8X1uxns2qgyPLsVx5zhiolLGk4ZQw6MLlaIghDFM_Cvqdvs81tI26/exec', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: data
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success') {
+                    // Show success message
+                    formStatus.innerHTML = '<div class="success-message">Thank you for your message! We have received your inquiry and will get back to you within 24-48 hours.</div>';
+                    // Reset form
+                    form.reset();
+                } else {
+                    // Show error message
+                    formStatus.innerHTML = '<div class="error-message">Sorry, there was a problem submitting your form. Please try again or contact us directly at info@molongloconstruction.com.au</div>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                formStatus.innerHTML = '<div class="error-message">Sorry, there was a problem submitting your form. Please try again later or contact us directly at info@molongloconstruction.com.au</div>';
+            })
+            .finally(() => {
+                // Restore button
+                submitButton.textContent = originalButtonText;
+                submitButton.disabled = false;
+            });
+        }
+        
+        // Add event listener after DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('consultation-form');
+            if (form) {
+                form.addEventListener('submit', handleFormSubmit);
+            }
+        });
+    </script>
+</head>
+<body>
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-mobile">
+                <a href="../index.html" class="logo-container">
+                    <img src="../assets/images/logo/logo_new.jpg" alt="Molonglo Construction Group Logo" class="logo" loading="lazy">
+                </a>
+                <div class="mobile-right">
+                    <a href="tel:+61452110005" class="nav-phone">
+                        <i class="fas fa-phone"></i>
+                        +61 452 110 005
+                    </a>
+                    <button class="menu-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="nav-desktop">
+                <a href="../index.html" class="logo-container">
+                    <img src="../assets/images/logo/logo_new.jpg" alt="Molonglo Construction Group Logo" class="logo" loading="lazy">
+                    <div class="company-name">
+                        <span class="company-first">Molonglo</span>
+                        <span class="company-last">Construction Group</span>
+                    </div>
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <header class="hero hero-contact">
+        <div class="hero-content">
+            <h1>Let's Build Your Dream Home</h1>
+            <p>Ready to start your building journey? Our team is here to turn your vision into reality. Contact us today to discuss your project and experience the Molonglo difference.</p>
+            <a href="#consultation-form" class="cta-button">Schedule a Consultation</a>
+        </div>
+    </header>
+
+    <section class="contact-content">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <p class="section-subtitle">Take the first step towards your dream home</p>
+
+            <div class="features-grid contact-methods">
+                <div class="feature">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h3>Visit Our Design Studio</h3>
+                    <p>13 Romano Street<br>Denman Prospect, ACT 2611</p>
+                    <p class="detail">Monday - Friday: 9am - 5pm<br>By appointment only</p>
+                </div>
+
+                <div class="feature">
+                    <i class="fas fa-phone"></i>
+                    <h3>Call Us</h3>
+                    <p>Director</p>
+                    <p>Molonglo Construction Group</p>
+                    <p>+61 452 110 005</p>
+                    <p class="detail">Available during business hours<br>Quick response guaranteed</p>
+                </div>
+
+                <div class="feature">
+                    <i class="fas fa-envelope"></i>
+                    <h3>Email Us</h3>
+                    <p>info@molongloconstruction.com.au</p>
+                    <p class="detail">24-hour response time<br>Detailed information welcome</p>
+                </div>
+            </div>
+
+            <div class="contact-form-section">
+                <div class="form-container">
+                    <h2>Request a Consultation</h2>
+                    <p class="section-subtitle">Let's discuss your vision for your new home</p>
+                    
+                    <form id="consultation-form" class="styled-form">
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="project-type">Project Type *</label>
+                                <select id="project-type" name="project_type" required>
+                                    <option value="">Select Project Type</option>
+                                    <option value="custom">New Custom Home</option>
+                                    <option value="knockdown">Knockdown Rebuild</option>
+                                    <option value="multi-storey">Multi Storey Dwelling</option>
+                                    <option value="dual-occ">Dual Occupancy</option>
+                                    <option value="terrace">Terrace Home</option>
+                                    <option value="greenfield">Greenfield Project</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="budget">Estimated Budget Range *</label>
+                                <select id="budget" name="budget" required>
+                                    <option value="">Select Budget Range</option>
+                                    <option value="600-800K">$600K - $800K</option>
+                                    <option value="800-1M">$800K - $1M</option>
+                                    <option value="1-1.2M">$1M - $1.2M</option>
+                                    <option value="1.2M+">$1.2M+</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="message">Project Details</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell us about your vision, preferred location, and any specific requirements"></textarea>
+                        </div>
+
+                        <button type="submit" class="cta-button">Schedule Consultation</button>
+                        <div id="form-status" class="form-status"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Google Maps Section -->
+        <div class="map-section">
+            <div class="container">
+                <h2>Our Location</h2>
+                <p class="section-subtitle">Visit us at our design studio</p>
+                <div class="google-map">
+                    <iframe 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3255.5225247692747!2d149.04756807677547!3d-35.31999797241745!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b17b44da6c54ef3%3A0x583d44957de46c4f!2s13%20Romano%20St%2C%20Denman%20Prospect%20ACT%202611!5e0!3m2!1sen!2sau!4v1704450150457!5m2!1sen!2sau"
+                        width="100%" 
+                        height="450" 
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-user"></i> Director</p>
+                <p><i class="fas fa-briefcase"></i> Molonglo Construction Group</p>
+                <p><i class="fas fa-mobile-alt"></i> +61 452 110 005</p>
+                <p><i class="fas fa-envelope"></i> info@molongloconstruction.com.au</p>
+            </div>
+            <div class="footer-section">
+                <h3>Locations</h3>
+                <p>ACT | Queanbeyan | Surrounding NSW Regions</p>
+            </div>
+            <div class="footer-section">
+                <h3>Molonglo Construction Group</h3>
+                <p>Crafting Quality Homes in Canberra Since 2019</p>
+                <p>ACT License No.: 2019760</p>
+                <p>NSW License No.: 340764C</p>
+            </div>
+            <div class="footer-section social-links">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/p/Molonglo-Constructions-100063601235529/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://www.instagram.com/molonglocg/" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://au.linkedin.com/in/molonglo-cg-825638337" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Molonglo Construction Group Pty Ltd.  All rights reserved.</p>
+            <p>ABN: 45 634 243 306 | ACT License No. 2019760 | NSW License No. 340764C</p>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+</body>
+</html>

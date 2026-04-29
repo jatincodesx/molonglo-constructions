@@ -1,0 +1,6 @@
+-- Deprecated helper file.
+-- Source of truth now lives in supabase/migrations/0001_initial_schema.sql
+-- and should be applied with:
+--   npx supabase login
+--   npx supabase link --project-ref vloamtiochlgrvouafgm
+--   npx supabase db push

@@ -1,0 +1,2 @@
+-- Deprecated helper file.
+-- Policies are created by supabase/migrations/0001_initial_schema.sql via Supabase CLI.

@@ -1,0 +1,15 @@
+name = "molonglo-constructions"
+main = ".open-next/worker.js"
+compatibility_date = "2026-04-27"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "molonglo-constructions"
+
+[observability]
+enabled = true

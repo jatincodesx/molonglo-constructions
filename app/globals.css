@@ -1,0 +1,114 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #111512;
+  --secondary-color: #c41230;
+  --button-color: #9f7440;
+  --button-hover: #81552f;
+  --accent-color: #ff2800;
+  --text-color: #1e2321;
+  --light-bg: #f6f3ee;
+}
+
+html {
+  background: #0c0f0e;
+}
+
+body {
+  color: var(--text-color);
+  background:
+    radial-gradient(circle at top, rgba(159, 116, 64, 0.08), transparent 28%),
+    linear-gradient(180deg, #ffffff 0%, #f8f5ef 100%);
+}
+
+img {
+  max-width: 100%;
+}
+
+* {
+  border-color: rgba(17, 21, 18, 0.12);
+}
+
+::selection {
+  background: rgba(159, 116, 64, 0.2);
+  color: #111512;
+}
+
+.container {
+  @apply mx-auto max-w-7xl px-5 sm:px-6 lg:px-8;
+}
+
+.section {
+  @apply py-20 sm:py-24 lg:py-28;
+}
+
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.32em] text-molonglo-gold sm:text-sm;
+}
+
+.heading-xl {
+  @apply font-display text-4xl font-semibold leading-[0.95] tracking-[-0.045em] text-molonglo-ink sm:text-5xl lg:text-7xl;
+}
+
+.heading-lg {
+  @apply font-display text-3xl font-semibold leading-[0.98] tracking-[-0.04em] text-molonglo-ink sm:text-4xl lg:text-5xl;
+}
+
+.cta {
+  @apply inline-flex items-center justify-center rounded-full bg-molonglo-gold px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-white shadow-soft transition duration-300 hover:-translate-y-0.5 hover:bg-molonglo-bronze focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2;
+}
+
+.cta-secondary {
+  @apply inline-flex items-center justify-center rounded-full border border-molonglo-gold px-6 py-3.5 text-sm font-semibold uppercase tracking-[0.18em] text-molonglo-gold transition duration-300 hover:-translate-y-0.5 hover:bg-molonglo-gold hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2;
+}
+
+.prose-seo {
+  @apply max-w-none text-[1.04rem] leading-8 text-zinc-700;
+}
+
+.prose-seo h2 {
+  @apply font-display mb-5 mt-14 text-3xl font-semibold leading-tight tracking-[-0.03em] text-molonglo-ink md:text-4xl;
+}
+
+.prose-seo h3 {
+  @apply mb-3 mt-8 text-2xl font-semibold text-molonglo-navy;
+}
+
+.prose-seo p {
+  @apply mb-5;
+}
+
+.prose-seo ul {
+  @apply mb-6 list-disc pl-6;
+}
+
+.prose-seo a {
+  @apply font-semibold text-molonglo-gold underline-offset-4 hover:underline;
+}
+
+.surface-panel {
+  @apply rounded-[2rem] border border-black/5 bg-white/80 shadow-panel backdrop-blur;
+}
+
+.surface-dark {
+  background:
+    radial-gradient(circle at top, rgba(159, 116, 64, 0.18), transparent 32%),
+    linear-gradient(180deg, #111512 0%, #161b19 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

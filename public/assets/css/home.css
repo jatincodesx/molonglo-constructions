@@ -1,0 +1,76 @@
+/* Home Page Specific Styles */
+.hero-section i,
+.features-section i,
+.services-section i,
+.process-section i,
+.stats-section i,
+.cta-section i {
+    font-size: 2rem;
+    color: var(--button-color);
+}
+
+/* Process Steps */
+.process-step i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--button-color);
+}
+
+/* Feature Icons */
+.feature-icon i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--button-color);
+}
+
+/* Service Icons */
+.service-icon i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--button-color);
+}
+
+/* Stats Icons */
+.stat-item i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--button-color);
+}
+
+/* Benefits Icons */
+.benefit-item i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--button-color);
+}
+
+/* Phone Icon in Header */
+.nav-phone i {
+    color: var(--button-color);
+}
+
+/* Menu Toggle Icon */
+.menu-toggle i {
+    color: var(--button-color);
+}
+
+/* CTA Section Icons */
+.cta-content i {
+    color: var(--button-color);
+}
+
+/* Hover States */
+.hero-section i:hover,
+.features-section i:hover,
+.services-section i:hover,
+.process-section i:hover,
+.stats-section i:hover,
+.cta-section i:hover,
+.process-step i:hover,
+.feature-icon i:hover,
+.service-icon i:hover,
+.stat-item i:hover,
+.benefit-item i:hover,
+.cta-content i:hover {
+    color: var(--button-hover);
+}

@@ -1,0 +1,231 @@
+/* Color Variables */
+:root {
+    --button-color: #996515;  /* Gold for buttons */
+    --button-hover: #8B5E3C;  /* Darker gold for button hover */
+    --icon-color: #996515;    /* Gold for icons */
+    --icon-hover: #8B5E3C;    /* Darker gold for icon hover */
+    --gold-color: #996515;    /* Gold for filter buttons */
+    --gold-hover: #8B5E3C;    /* Darker gold for filter button hover */
+    --primary-color: #2c3e50;
+    --secondary-color: #FF2800;  /* Ferrari Red */
+    --accent-color: #FF2800;     /* Ferrari Red */
+    --text-color: #333;
+    --light-text: #666;
+    --lighter-text: #999;
+    --white: #ffffff;
+    --light-bg: #f9f9f9;
+    --border-color: #e1e1e1;
+    --hover-color: #FF0000;      /* Slightly darker red for hover effects */
+}
+
+/* ===== Button Styles ===== */
+/* Primary Buttons */
+.cta-button, 
+.button,
+button[type="submit"],
+.read-more-btn,
+.contact-button,
+.project-button,
+.service-button {
+    background-color: var(--button-color);
+    color: white;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Button Hover States */
+.cta-button:hover, 
+.button:hover,
+button[type="submit"]:hover,
+.read-more-btn:hover,
+.contact-button:hover,
+.project-button:hover,
+.service-button:hover {
+    background-color: var(--button-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* ===== Icon Styles ===== */
+/* All Font Awesome Icons */
+.fas, .fab, .far, .fa,
+.feature-icon i,
+.service-icon i,
+.process-icon i,
+.stat-icon i,
+.contact-icon i,
+.about-icon i,
+.team-icon i,
+.project-icon i,
+.blog-icon i,
+.testimonial-icon i {
+    color: var(--icon-color);
+}
+
+/* Specific Section Icons */
+.hero-section i,
+.features-section i,
+.services-section i,
+.process-section i,
+.stats-section i,
+.cta-section i,
+.about-section i,
+.team-section i,
+.contact-section i,
+.blog-section i,
+.testimonials-section i,
+.projects-section i {
+    color: var(--icon-color);
+}
+
+/* Social Media Icons */
+.social-links a {
+    color: var(--icon-color);
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--icon-hover);
+}
+
+/* ===== Interactive Elements ===== */
+/* Navigation */
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--button-color);
+}
+
+/* Timeline Elements */
+.timeline-item::before {
+    background-color: var(--button-color);
+}
+
+/* Achievement Numbers */
+.achievement-number {
+    color: var(--button-color);
+}
+
+/* Card Icons */
+.card i,
+.feature-card i,
+.service-card i,
+.process-card i,
+.team-card i,
+.project-card i {
+    color: var(--icon-color);
+}
+
+/* Form Icons */
+.form-group i,
+.input-group i {
+    color: var(--icon-color);
+}
+
+/* Navigation Icons */
+.nav-icon,
+.menu-toggle i {
+    color: var(--icon-color);
+}
+
+/* Phone Icon in Header */
+.phone-icon {
+    color: var(--icon-color);
+}
+
+/* Read More Icons */
+.read-more i {
+    color: var(--icon-color);
+    transition: transform 0.3s ease;
+}
+
+.read-more:hover i {
+    color: var(--icon-hover);
+    transform: translateX(5px);
+}
+
+/* Rating Stars */
+.rating i {
+    color: var(--icon-color);
+}
+
+.rating i:hover {
+    color: var(--icon-hover);
+}
+
+/* Footer Icons */
+footer i {
+    color: var(--icon-color);
+}
+
+footer i:hover {
+    color: var(--icon-hover);
+}
+
+/* Meta Icons (dates, categories, etc.) */
+.meta-icon i,
+.date-icon i,
+.category-icon i,
+.author-icon i {
+    color: var(--icon-color);
+}
+
+.meta-icon i:hover,
+.date-icon i:hover,
+.category-icon i:hover,
+.author-icon i:hover {
+    color: var(--icon-hover);
+}
+
+/* Process Steps */
+.process-step i {
+    color: var(--icon-color);
+}
+
+.process-step i:hover {
+    color: var(--icon-hover);
+}
+
+/* Quote Icons */
+.quote-icon i {
+    color: var(--icon-color);
+}
+
+.quote-icon i:hover {
+    color: var(--icon-hover);
+}
+
+/* Feature Icons */
+.feature-item i {
+    color: var(--icon-color);
+}
+
+.feature-item i:hover {
+    color: var(--icon-hover);
+}
+
+/* Contact Information Icons */
+.contact-info i {
+    color: var(--icon-color);
+}
+
+.contact-info i:hover {
+    color: var(--icon-hover);
+}
+
+/* Contact Methods Icons */
+.contact-methods .feature i,
+.contact-content .feature i {
+    color: var(--button-color) !important;
+}
+
+.contact-methods .feature i:hover,
+.contact-content .feature i:hover {
+    color: var(--button-hover) !important;
+}
