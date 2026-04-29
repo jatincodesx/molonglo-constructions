@@ -25,7 +25,8 @@ export default function AdminLoginPage() {
     setLoading(false);
 
     if (!response.ok) {
-      setError("Invalid email or password.");
+      const data = await response.json().catch(() => ({}));
+      setError(response.status === 401 ? "Invalid email or password." : data.error || "Unable to sign in. Please try again later.");
       return;
     }
 
