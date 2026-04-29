@@ -4,7 +4,7 @@ import { navLinks, site } from "@/lib/site";
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-50 border-b border-black/5 bg-white/95 backdrop-blur">
+    <header className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-white/90 backdrop-blur-xl">
       <div className="container flex min-h-20 flex-wrap items-center justify-between gap-4 py-3">
         <Link href="/" className="flex items-center gap-3">
           <Image
@@ -17,13 +17,13 @@ export function Header() {
           />
           <div className="hidden sm:block">
             <p className="text-xs font-semibold uppercase tracking-[0.28em] text-molonglo-gold">Canberra Builder</p>
-            <p className="font-display text-lg font-semibold tracking-[-0.03em] text-molonglo-ink">{site.name}</p>
+            <p className="font-display text-lg font-semibold text-molonglo-ink">{site.name}</p>
           </div>
         </Link>
 
         <nav aria-label="Primary" className="hidden items-center gap-6 lg:flex">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="text-sm font-semibold uppercase tracking-[0.18em] text-zinc-700 transition hover:text-molonglo-gold">
+            <Link key={link.href} href={link.href} className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-700 transition hover:text-molonglo-gold">
               {link.label}
             </Link>
           ))}

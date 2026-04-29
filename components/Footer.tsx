@@ -6,7 +6,7 @@ export function Footer() {
     <footer className="surface-dark text-white">
       <div className="container grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-4">
         <div>
-          <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-white">{site.name}</h2>
+          <h2 className="font-display text-2xl font-semibold text-white">{site.name}</h2>
           <p className="mt-4 text-sm leading-7 text-zinc-300">
             Local Canberra-focused builder delivering custom homes, knockdown rebuilds and tailored residential construction with a refined process.
           </p>

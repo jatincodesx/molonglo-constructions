@@ -27,7 +27,7 @@ const steps = [
 
 export function SignatureBuildingProcess() {
   return (
-    <section className="section bg-[#f6f3ee]">
+    <section className="section bg-[var(--color-stone)]">
       <div className="container">
         <div className="max-w-3xl">
           <p className="eyebrow">Our Signature Building Process</p>
@@ -37,13 +37,13 @@ export function SignatureBuildingProcess() {
           </p>
         </div>
 
-        <div className="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-12 grid gap-px overflow-hidden rounded-lg border border-[var(--color-border)] bg-[var(--color-border)] md:grid-cols-2 xl:grid-cols-3">
           {steps.map((step, index) => (
-            <article key={step.title} className="surface-panel h-full p-6">
+            <article key={step.title} className="h-full bg-[var(--color-paper)] p-6">
               <p className="text-sm font-semibold uppercase tracking-[0.22em] text-molonglo-gold">
                 Step {index + 1}
               </p>
-              <h3 className="mt-3 font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">
+              <h3 className="mt-3 font-display text-2xl font-semibold text-molonglo-ink">
                 {step.title}
               </h3>
               <p className="mt-4 text-base leading-7 text-zinc-700">{step.body}</p>

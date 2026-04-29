@@ -7,7 +7,7 @@ export function CTA() {
       <div className="container surface-panel border-white/10 bg-white/6 px-6 py-10 sm:px-8 lg:flex lg:items-end lg:justify-between lg:gap-10 lg:px-12">
         <div className="max-w-3xl">
           <p className="eyebrow text-white/75">Plan Your Build</p>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-[0.96] tracking-[-0.045em] text-white sm:text-5xl">
+          <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.02] text-white sm:text-5xl">
             Speak with a Canberra builder about your next residential project.
           </h2>
           <p className="mt-4 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">

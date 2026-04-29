@@ -2,6 +2,8 @@ import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { MapEmbed } from "@/components/MapEmbed";
 import { QuoteForm } from "@/components/QuoteForm";
+import { IntentionalSection } from "@/components/public-ui/IntentionalSection";
+import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
 import { serviceAreas, site } from "@/lib/site";
@@ -22,15 +24,16 @@ export default async function ContactPage() {
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Contact", href: "/contact" }])} />
       {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
-      <Hero
-        eyebrow="Contact"
-        title="Talk to a Canberra builder about your project."
-        text="Share your suburb, project type and priorities, and we will help you understand the most practical next step."
-        image="/assets/images/hero.jpg"
-        primaryLabel="Request Consultation"
-      />
+      <PremiumScrollShell mode="light">
+        <Hero
+          eyebrow="Contact"
+          title="Talk to a Canberra builder about your project."
+          text="Share your suburb, project type and priorities, and we will help you understand the most practical next step."
+          image="/assets/images/hero.jpg"
+          primaryLabel="Request Consultation"
+        />
 
-      <section id="quote" className="section bg-white">
+      <section id="quote" className="section bg-white scroll-mt-[var(--header-height)]">
         <div className="container grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="eyebrow">Get In Touch</p>
@@ -63,15 +66,16 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <section className="section bg-[#f6f3ee]">
-        <div className="container">
-          <p className="eyebrow text-center">Location</p>
-          <h2 className="heading-lg mt-3 text-center">Visit Molonglo Construction Group in Denman Prospect</h2>
+      <IntentionalSection
+        eyebrow="Location"
+        title="Visit Molonglo Construction Group in Denman Prospect"
+        tone="stone"
+      >
           <div className="mt-8 overflow-hidden rounded-[1.5rem] shadow-soft">
             <MapEmbed />
           </div>
-        </div>
-      </section>
+      </IntentionalSection>
+      </PremiumScrollShell>
     </>
   );
 }

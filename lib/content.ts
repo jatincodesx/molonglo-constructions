@@ -761,6 +761,8 @@ export const projects = [
   }
 ];
 
+export type Project = (typeof projects)[number];
+
 export const blogCategories = [
   "Building Costs",
   "Custom Homes",

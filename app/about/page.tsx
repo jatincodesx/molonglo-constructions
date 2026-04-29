@@ -2,6 +2,8 @@ import { CTA } from "@/components/CTA";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
+import { IntentionalSection } from "@/components/public-ui/IntentionalSection";
+import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
 
@@ -22,15 +24,22 @@ export default async function AboutPage() {
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Home", href: "/" }, { name: "About", href: "/about" }])} />
       {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
-      <Hero
-        eyebrow="About Molonglo Construction"
-        title="A local builder focused on clear process, direct communication and quality outcomes."
-        text="Molonglo Construction Group works with Canberra homeowners who want a more personalised building experience grounded in practical planning and careful delivery."
-        image="/assets/images/about-banner.jpg"
-      />
+      <PremiumScrollShell mode="light">
+        <Hero
+          eyebrow="About Molonglo Construction"
+          title="A local builder focused on clear process, direct communication and quality outcomes."
+          text="Molonglo Construction Group works with Canberra homeowners who want a more personalised building experience grounded in practical planning and careful delivery."
+          image="/assets/images/about-banner.jpg"
+        />
 
-      <section className="section bg-white">
-        <div className="container grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <IntentionalSection
+          eyebrow="Local knowledge"
+          title="Built around practical planning before the project reaches site."
+          text="The about page stays editorial and crawlable, with lighter architectural motion instead of a dense promotional grid."
+          tone="white"
+          accent
+        >
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="prose-seo">
             <h2>Built around local knowledge and practical planning</h2>
             <p>
@@ -57,17 +66,18 @@ export default async function AboutPage() {
               ["Direct Communication", "A more personalised experience than large-scale volume builder workflows."],
               ["Residential Expertise", "Custom homes, rebuilds, renovations and selected dual occupancy projects."]
             ].map(([title, body]) => (
-              <div key={title} className="surface-panel p-6">
-                <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">{title}</h3>
+              <div key={title} className="surface-panel p-6" data-scroll-reveal>
+                <h3 className="font-display text-2xl font-semibold text-molonglo-ink">{title}</h3>
                 <p className="mt-3 text-sm leading-7 text-zinc-600">{body}</p>
               </div>
             ))}
           </aside>
         </div>
-      </section>
+        </IntentionalSection>
 
-      <SignatureBuildingProcess />
-      <CTA />
+        <SignatureBuildingProcess />
+        <CTA />
+      </PremiumScrollShell>
     </>
   );
 }
