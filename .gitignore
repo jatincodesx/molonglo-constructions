@@ -3,6 +3,8 @@
 .env.*.local
 .dev.vars
 .dev.vars.*
+.next
 .open-next
 .wrangler
 node_modules
+.DS_Store
