@@ -1,4 +1,4 @@
-import { normalizeStructuredDataPayload, type SchemaObject } from "@/lib/structured-data";
+import { normalizeStructuredData, type SchemaObject } from "@/lib/structured-data";
 
 type JsonLdProps = {
   data?: SchemaObject | SchemaObject[] | null;
@@ -8,17 +8,22 @@ type JsonLdProps = {
 
 export function JsonLd({ data, json, schema }: JsonLdProps) {
   const source = data ?? json ?? schema;
-  const payload = normalizeStructuredDataPayload(source);
+  const payload = normalizeStructuredData(source);
 
-  if (!payload) return null;
+  if (payload.length === 0) return null;
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(payload).replace(/</g, "\\u003c")
-      }}
-    />
+    <>
+      {payload.map((item, index) => (
+        <script
+          key={`${String(item["@type"])}-${index}`}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(item).replace(/</g, "\\u003c")
+          }}
+        />
+      ))}
+    </>
   );
 }
 

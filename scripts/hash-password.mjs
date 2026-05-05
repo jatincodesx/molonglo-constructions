@@ -8,4 +8,4 @@ if (!password) {
 }
 
 const hash = await bcrypt.hash(password, 12);
-console.log(hash);
+console.log(`ADMIN_PASSWORD_HASH='${hash}'`);

@@ -1,22 +1,23 @@
 import { NextResponse } from "next/server";
 import { ADMIN_COOKIE, createAdminToken } from "@/lib/admin-auth";
-import { AdminAuthConfigError, getAdminAuthConfig } from "@/lib/admin-auth-config";
+import { AdminAuthConfigError, getAdminAuthConfig, getAdminAuthDiagnostics } from "@/lib/admin-auth-config";
 import { validAdminCredentials } from "@/lib/admin-credentials";
 
 export async function POST(request: Request) {
   try {
-    if (process.env.NODE_ENV !== "production") {
-      console.error("[admin-login] config", {
-        hasAdminEmail: Boolean(process.env.ADMIN_EMAIL),
-        hasPasswordHash: Boolean(process.env.ADMIN_PASSWORD_HASH),
-        passwordHashLength: process.env.ADMIN_PASSWORD_HASH?.length ?? 0,
-        hasSessionSecret: Boolean(process.env.SESSION_SECRET)
-      });
-    }
-
     const body = await request.json().catch(() => ({}));
     const email = typeof body.email === "string" ? body.email : "";
     const password = typeof body.password === "string" ? body.password : "";
+    const configuredEmail = process.env.ADMIN_EMAIL?.trim().toLowerCase() || "";
+
+    if (!configuredEmail) {
+      getAdminAuthConfig();
+    }
+
+    if (!password || email.trim().toLowerCase() !== configuredEmail) {
+      return NextResponse.json({ error: "Invalid email or password" }, { status: 401 });
+    }
+
     const config = getAdminAuthConfig();
 
     if (!(await validAdminCredentials(email, password))) {
@@ -37,7 +38,9 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           error: "Admin authentication is not configured.",
-          ...(process.env.NODE_ENV !== "production" && error.missing.length > 0 ? { missing: error.missing } : {})
+          ...(process.env.NODE_ENV !== "production"
+            ? { detail: error.message, missing: error.missing, diagnostics: getAdminAuthDiagnostics() }
+            : {})
         },
         { status: 500 }
       );

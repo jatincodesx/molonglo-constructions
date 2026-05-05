@@ -12,7 +12,7 @@
   --color-clay: #e7ddd0;
   --color-muted: #91887c;
   --color-border: #d8cec0;
-  --header-height: 72px;
+  --header-height: 84px;
   --section-padding: clamp(5rem, 9vw, 9rem);
   --primary-color: var(--color-charcoal);
   --secondary-color: var(--color-bronze);

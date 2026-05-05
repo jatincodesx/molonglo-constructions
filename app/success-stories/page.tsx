@@ -3,14 +3,15 @@ import { CTA } from "@/components/CTA";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
-import { googleReviewsUrl, reviews } from "@/lib/reviews";
+import { reviews } from "@/lib/reviews";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
+import { site } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   return resolveMetadata({
-    title: "Reviews | Molonglo Construction Group",
+    title: "Success Stories | Molonglo Construction Group",
     description: "Verified Google reviews and client feedback for Molonglo Construction Group will be published here once confirmed.",
     path: "/success-stories",
     image: "/assets/images/hero.jpg"
@@ -23,13 +24,13 @@ export default function SuccessStoriesPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", href: "/" },
-          { name: "Reviews", href: "/success-stories" }
+          { name: "Success Stories", href: "/success-stories" }
         ])}
       />
       <PremiumScrollShell mode="light">
         <Hero
           eyebrow="Reviews"
-          title="Reviews and Google feedback"
+          title="Success stories and Google feedback"
           text="Verified reviews and client feedback for Molonglo Construction Group will be shown here once confirmed."
           image="/assets/images/hero.jpg"
           primaryLabel="Contact Molonglo"
@@ -63,11 +64,15 @@ export default function SuccessStoriesPage() {
                 <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-700">
                   The reviews data file is ready for confirmed Google review content. No placeholder testimonials are published.
                 </p>
-                {googleReviewsUrl ? (
-                  <Link href={googleReviewsUrl} className="cta mt-6">
-                    View Google Profile
+                {site.googleReviewsUrl ? (
+                  <Link href={site.googleReviewsUrl} className="cta mt-6" target="_blank" rel="noopener noreferrer">
+                    Read our Google Reviews
                   </Link>
-                ) : null}
+                ) : (
+                  <p className="mt-6 text-sm font-semibold text-zinc-600">
+                    Google review link will be added once verified.
+                  </p>
+                )}
               </div>
             )}
           </div>

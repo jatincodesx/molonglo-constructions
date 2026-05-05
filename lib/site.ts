@@ -20,7 +20,8 @@ export const site = {
   heroImage: "/assets/images/hero.jpg",
   facebook: "https://www.facebook.com/p/Molonglo-Constructions-100063601235529/",
   instagram: "https://www.instagram.com/molonglocg/",
-  linkedin: "https://au.linkedin.com/in/molonglo-cg-825638337"
+  linkedin: "https://au.linkedin.com/in/molonglo-cg-825638337",
+  googleReviewsUrl: ""
 } as const;
 
 export const servicesNavLinks = [
@@ -42,12 +43,11 @@ export const moreNavLinks = [
 ] as const;
 
 export const navLinks = [
-  { href: "/", label: "Home" },
+  { label: "Homes", children: servicesNavLinks },
   { href: "/projects", label: "Projects" },
-  { label: "Services", children: servicesNavLinks },
-  { label: "Display Home", children: displayHomeNavLinks },
-  { label: "More", children: moreNavLinks },
-  { href: "/contact", label: "Contact" }
+  { href: "/display-home/denman-prospect", label: "Visit Display Home" },
+  { href: "/success-stories", label: "Success Stories" },
+  { href: "/contact", label: "Start a Build" }
 ] as const;
 
 export const footerGroups = {
@@ -57,7 +57,7 @@ export const footerGroups = {
     { href: "/projects", label: "Projects" },
     { href: "/display-home/denman-prospect", label: "Display Home" },
     { href: "/house-and-land-packages", label: "House & Land" },
-    { href: "/success-stories", label: "Reviews" },
+    { href: "/success-stories", label: "Success Stories" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" }
   ],

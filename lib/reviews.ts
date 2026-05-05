@@ -8,5 +8,3 @@ export type Review = {
 
 // TODO: Replace this manual list with verified Google review data when a live reviews source or approved exports are available.
 export const reviews: Review[] = [];
-
-export const googleReviewsUrl = "";

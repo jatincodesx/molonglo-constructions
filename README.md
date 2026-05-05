@@ -35,6 +35,8 @@ Fill `.env.local` with real values for:
 
 This repository does not commit real secrets. Put real values only in `.env.local` and Cloudflare Worker secrets.
 
+For local development only, admin login can fall back to `ADMIN_PASSWORD` when `ADMIN_PASSWORD_HASH` is not set, and `ADMIN_JWT_SECRET` when `SESSION_SECRET` is not set. Production must use `ADMIN_PASSWORD_HASH` and `SESSION_SECRET`; do not configure plain `ADMIN_PASSWORD` in production.
+
 ## 3. Supabase CLI Workflow
 
 Step 2: log in to the Supabase CLI.
@@ -106,20 +108,21 @@ SUPABASE_SECRET_KEY=...
 ADMIN_EMAIL=...
 ADMIN_PASSWORD_HASH=...
 SESSION_SECRET=...
+ADMIN_PASSWORD=... # development-only fallback
+ADMIN_JWT_SECRET=... # legacy local fallback
 ```
 
 Notes:
 
 - `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are browser-safe.
-- `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_SECRET_KEY`, `ADMIN_PASSWORD_HASH`, and `SESSION_SECRET` must stay secret.
+- `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_SECRET_KEY`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET`, `ADMIN_PASSWORD`, and `ADMIN_JWT_SECRET` must stay secret.
 - `.env.local` is gitignored and must not be committed.
 
-Optional notification variables already used by the app:
+Optional future contact email placeholders. The contact form stores leads in Supabase and does not require email sending:
 
-- `LEAD_NOTIFY_WEBHOOK_URL`
 - `RESEND_API_KEY`
-- `LEAD_NOTIFY_EMAIL`
-- `LEAD_NOTIFY_FROM`
+- `CONTACT_TO_EMAIL`
+- `CONTACT_FROM_EMAIL`
 
 ## 6. Admin Password Hash Generation
 
@@ -129,11 +132,11 @@ Generate a bcrypt password hash with the same library used by the login route:
 node scripts/hash-password.mjs "Admin12345!"
 ```
 
-Copy the output into `.env.local`:
+Copy the output line into `.env.local`. Keep the single quotes around the bcrypt hash so dotenv does not expand the `$` characters:
 
 ```bash
 ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD_HASH=<output>
+ADMIN_PASSWORD_HASH='$2b$12$...'
 SESSION_SECRET=<long-random-secret>
 ```
 
@@ -145,6 +148,8 @@ Password = Admin12345!
 ```
 
 Do not type the hash into the login form. The hash belongs only in `ADMIN_PASSWORD_HASH`.
+
+For quick local testing, you may instead set `ADMIN_PASSWORD=<plain-local-password>` without `ADMIN_PASSWORD_HASH`. This fallback is ignored in production and must never be committed.
 
 ## 7. Local Development
 

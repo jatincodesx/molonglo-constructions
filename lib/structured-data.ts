@@ -19,6 +19,14 @@ function isSchemaObject(value: unknown): value is SchemaObject {
 }
 
 function sanitizeSchemaObject(value: unknown): SchemaObject | null {
+  if (typeof value === "string") {
+    try {
+      return sanitizeSchemaObject(JSON.parse(value));
+    } catch {
+      return null;
+    }
+  }
+
   if (!isSchemaObject(value)) {
     return null;
   }

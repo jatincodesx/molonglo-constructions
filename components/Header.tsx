@@ -2,134 +2,106 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
-import { navLinks, site } from "@/lib/site";
+import { useEffect, useId, useRef, useState } from "react";
+import { site } from "@/lib/site";
 
-type NavLinkItem = (typeof navLinks)[number];
-type DropdownItem = Extract<NavLinkItem, { children: readonly { href: string; label: string }[] }>;
+type NavItem = {
+  href: string;
+  label: string;
+};
 
-function MobileNavItem({
-  item,
-  onNavigate
-}: {
-  item: NavLinkItem;
-  onNavigate: () => void;
-}) {
-  if ("children" in item) {
-    return (
-      <details className="group border-b border-[var(--color-border)] py-3">
-        <summary className="flex cursor-pointer list-none items-center justify-between text-base font-semibold text-zinc-900 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 [&::-webkit-details-marker]:hidden">
-          <span>{item.label}</span>
-          <span aria-hidden="true" className="text-lg leading-none text-molonglo-gold transition group-open:rotate-45">+</span>
-        </summary>
-        <div className="mt-3 grid gap-1 pl-3">
-          {item.children.map((child) => (
-            <Link
-              key={child.href}
-              href={child.href}
-              onClick={onNavigate}
-              className="rounded-md px-3 py-2 text-sm font-semibold text-zinc-700 transition hover:bg-[var(--color-stone)] hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
-            >
-              {child.label}
-            </Link>
-          ))}
-        </div>
-      </details>
-    );
+type NavGroup = {
+  label: string;
+  items: NavItem[];
+};
+
+const homesGroups: NavGroup[] = [
+  {
+    label: "Build new",
+    items: [
+      { href: "/custom-home-builders-canberra", label: "Custom Homes" },
+      { href: "/new-home-builders-canberra", label: "New Home Builds" },
+      { href: "/house-and-land-packages", label: "House & Land Packages" }
+    ]
+  },
+  {
+    label: "Rebuild & develop",
+    items: [
+      { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
+      { href: "/construction-services-canberra", label: "Construction Services" },
+      { href: "/dual-occupancy-builders-act", label: "Dual Occupancy" }
+    ]
+  },
+  {
+    label: "Where we build",
+    items: [
+      { href: "/builder-canberra", label: "Canberra & ACT" },
+      { href: "/contact", label: "Queanbeyan" },
+      { href: "/contact", label: "Googong" },
+      { href: "/contact", label: "Jerrabomberra" },
+      { href: "/contact", label: "South Coast" }
+    ]
   }
+];
 
-  return (
-    <Link
-      href={item.href}
-      onClick={onNavigate}
-      className="block border-b border-[var(--color-border)] py-3 text-base font-semibold text-zinc-900 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
-    >
-      {item.label}
-    </Link>
-  );
-}
+const desktopLinks: NavItem[] = [
+  { href: "/projects", label: "Projects" },
+  { href: "/display-home/denman-prospect", label: "Visit Display Home" },
+  { href: "/success-stories", label: "Success Stories" }
+];
 
-function DesktopDropdown({
-  item,
-  isOpen,
-  onOpen,
-  onClose
-}: {
-  item: DropdownItem;
-  isOpen: boolean;
-  onOpen: () => void;
-  onClose: () => void;
-}) {
-  const dropdownRef = useRef<HTMLDivElement>(null);
-
-  return (
-    <div
-      ref={dropdownRef}
-      className="relative"
-      onMouseEnter={onOpen}
-      onMouseLeave={onClose}
-      onFocus={onOpen}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-          onClose();
-        }
-      }}
-    >
-      <button
-        type="button"
-        aria-expanded={isOpen}
-        aria-haspopup="menu"
-        className="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-1 py-2 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
-        onClick={() => {
-          if (isOpen) {
-            onClose();
-          } else {
-            onOpen();
-          }
-        }}
-      >
-        <span>{item.label}</span>
-        <span aria-hidden="true" className={`text-xs leading-none text-molonglo-gold transition ${isOpen ? "rotate-45" : ""}`}>+</span>
-      </button>
-
-      {isOpen ? (
-        <div
-          role="menu"
-          className="absolute left-0 top-full z-50 mt-3 grid min-w-72 gap-1 rounded-lg border border-[var(--color-border)] bg-white p-3 shadow-soft"
-        >
-          {item.children.map((child) => (
-            <Link
-              key={child.href}
-              href={child.href}
-              role="menuitem"
-              onClick={onClose}
-              className="rounded-md px-3 py-2 text-sm font-semibold text-zinc-800 transition hover:bg-[var(--color-stone)] hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
-            >
-              {child.label}
-            </Link>
-          ))}
-        </div>
-      ) : null}
-    </div>
-  );
-}
+const mobileGroups: NavGroup[] = [
+  {
+    label: "Homes",
+    items: [
+      { href: "/custom-home-builders-canberra", label: "Custom Homes" },
+      { href: "/new-home-builders-canberra", label: "New Home Builds" },
+      { href: "/house-and-land-packages", label: "House & Land Packages" },
+      { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
+      { href: "/construction-services-canberra", label: "Construction Services" },
+      { href: "/dual-occupancy-builders-act", label: "Dual Occupancy" }
+    ]
+  },
+  {
+    label: "Main",
+    items: [
+      { href: "/projects", label: "Projects" },
+      { href: "/display-home/denman-prospect", label: "Visit Display Home" },
+      { href: "/success-stories", label: "Success Stories" },
+      { href: "/about", label: "About" },
+      { href: "/blog", label: "Blog" },
+      { href: "/contact", label: "Contact" }
+    ]
+  },
+  {
+    label: "Where We Build",
+    items: [
+      { href: "/builder-canberra", label: "Canberra & ACT" },
+      { href: "/contact", label: "Queanbeyan" },
+      { href: "/contact", label: "Googong" },
+      { href: "/contact", label: "Jerrabomberra" },
+      { href: "/contact", label: "South Coast" }
+    ]
+  }
+];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [homesOpen, setHomesOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const homesPanelId = useId();
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
       if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setOpenDropdown(null);
+        setHomesOpen(false);
         setMenuOpen(false);
       }
     }
 
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setOpenDropdown(null);
+        setHomesOpen(false);
         setMenuOpen(false);
       }
     }
@@ -143,58 +115,111 @@ export function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [menuOpen]);
+
   const closeMenus = () => {
-    setOpenDropdown(null);
+    setHomesOpen(false);
     setMenuOpen(false);
   };
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-white/[0.96] backdrop-blur-xl">
-      <div className="container flex min-h-[72px] items-center justify-between gap-5 py-2">
-        <Link href="/" className="flex shrink-0 items-center" onClick={closeMenus}>
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[#fbfaf6]/95 shadow-[0_16px_40px_rgba(23,26,24,0.06)] backdrop-blur-xl">
+      <div className="container flex min-h-[80px] items-center justify-between gap-4 py-2 lg:min-h-[84px]">
+        <Link href="/" className="flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2" onClick={closeMenus}>
           <Image
-            src={site.logo}
+            src="/assets/logo/logo_new.jpg"
             alt="Molonglo Construction Group"
-            width={192}
-            height={96}
+            width={188}
+            height={94}
             priority
-            className="h-10 w-auto object-contain sm:h-12 lg:h-14"
+            className="h-[42px] w-auto object-contain sm:h-[48px] lg:h-[52px]"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-5 xl:gap-6 lg:flex">
-          {navLinks.map((link) => {
-            if ("children" in link) {
-              return (
-                <DesktopDropdown
-                  key={link.label}
-                  item={link}
-                  isOpen={openDropdown === link.label}
-                  onOpen={() => setOpenDropdown(link.label)}
-                  onClose={() => setOpenDropdown((current) => current === link.label ? null : current)}
-                />
-              );
-            }
+        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+          <div
+            className="relative"
+            onMouseEnter={() => setHomesOpen(true)}
+            onMouseLeave={() => setHomesOpen(false)}
+            onFocus={() => setHomesOpen(true)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
+                setHomesOpen(false);
+              }
+            }}
+          >
+            <button
+              type="button"
+              aria-expanded={homesOpen}
+              aria-controls={homesPanelId}
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
+              onClick={() => setHomesOpen((open) => !open)}
+            >
+              Homes
+              <span aria-hidden="true" className={`mt-[-0.15rem] h-1.5 w-1.5 border-b-2 border-r-2 border-current transition ${homesOpen ? "-rotate-[135deg]" : "rotate-45"}`} />
+            </button>
 
-            return (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setOpenDropdown(null)}
-                className="whitespace-nowrap text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
-              >
-                {link.label}
-              </Link>
-            );
-          })}
+            {homesOpen ? (
+              <div className="absolute left-1/2 top-full z-50 w-[min(58rem,calc(100vw-3rem))] -translate-x-1/2 pt-3">
+                <div
+                  id={homesPanelId}
+                  className="grid gap-6 rounded-lg border border-[var(--color-border)] bg-[#fbfaf6] p-6 shadow-[0_28px_80px_rgba(23,26,24,0.16)] lg:grid-cols-[1fr_1fr_1fr_0.95fr]"
+                >
+                  {homesGroups.map((group) => (
+                    <div key={group.label}>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">{group.label}</p>
+                      <div className="mt-4 grid gap-1">
+                        {group.items.map((item) => (
+                          <Link
+                            key={`${group.label}-${item.label}`}
+                            href={item.href}
+                            onClick={closeMenus}
+                            className="rounded-md px-3 py-2.5 text-sm font-semibold text-zinc-800 transition hover:bg-white hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
+                          >
+                            {item.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="rounded-lg border border-[var(--color-border)] bg-white p-5">
+                    <p className="text-sm font-semibold leading-6 text-molonglo-ink">
+                      Planning a build in Canberra or the South Coast?
+                    </p>
+                    <Link href="/contact" className="cta mt-5 w-full px-4 py-3 text-sm" onClick={closeMenus}>
+                      Start a Build
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ) : null}
+          </div>
+
+          {desktopLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setHomesOpen(false)}
+              className="whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
+            >
+              {link.label}
+            </Link>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-3">
-          <a href={site.phoneHref} className="hidden whitespace-nowrap text-sm font-semibold text-molonglo-ink transition hover:text-molonglo-gold md:inline-flex">
-            {site.phone}
-          </a>
-          <Link href="/contact" className="cta hidden px-4 py-2.5 text-sm xl:inline-flex" onClick={() => setOpenDropdown(null)}>
-            Enquire
+        <div className="flex items-center gap-2 sm:gap-3">
+          <Link href="/contact" className="cta hidden px-4 py-2.5 text-sm sm:inline-flex" onClick={closeMenus}>
+            Start a Build
           </Link>
           <button
             type="button"
@@ -203,32 +228,50 @@ export function Header() {
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-molonglo-ink shadow-sm transition hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
             onClick={() => {
               setMenuOpen((open) => !open);
-              setOpenDropdown(null);
+              setHomesOpen(false);
             }}
           >
-            <span className="sr-only">Open menu</span>
+            <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
             <span aria-hidden="true" className="grid gap-1">
-              <span className="block h-0.5 w-5 bg-current" />
-              <span className="block h-0.5 w-5 bg-current" />
-              <span className="block h-0.5 w-5 bg-current" />
+              <span className={`block h-0.5 w-5 bg-current transition ${menuOpen ? "translate-y-1.5 rotate-45" : ""}`} />
+              <span className={`block h-0.5 w-5 bg-current transition ${menuOpen ? "opacity-0" : ""}`} />
+              <span className={`block h-0.5 w-5 bg-current transition ${menuOpen ? "-translate-y-1.5 -rotate-45" : ""}`} />
             </span>
           </button>
         </div>
       </div>
 
       {menuOpen ? (
-        <div id="mobile-menu" className="border-t border-[var(--color-border)] bg-white lg:hidden">
-          <nav aria-label="Mobile" className="container py-3">
-            {navLinks.map((link) => (
-              <MobileNavItem key={"href" in link ? link.href : link.label} item={link} onNavigate={closeMenus} />
+        <div id="mobile-menu" className="max-h-[calc(100vh-80px)] overflow-y-auto border-t border-[var(--color-border)] bg-[#fbfaf6] lg:hidden">
+          <nav aria-label="Mobile" className="container grid gap-6 py-6">
+            {mobileGroups.map((group) => (
+              <div key={group.label}>
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">{group.label}</p>
+                <div className="mt-3 grid gap-1">
+                  {group.items.map((item) => (
+                    <Link
+                      key={`${group.label}-${item.label}`}
+                      href={item.href}
+                      onClick={closeMenus}
+                      className="rounded-md px-3 py-3 text-base font-semibold text-zinc-800 transition hover:bg-white hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ))}
-            <div className="grid gap-3 py-4">
-              <a href={site.phoneHref} className="text-base font-semibold text-molonglo-ink">
-                {site.phone}
-              </a>
-              <Link href="/contact" className="cta w-full px-4 py-3" onClick={closeMenus}>
-                Enquire
-              </Link>
+
+            <div>
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">Actions</p>
+              <div className="mt-3 grid gap-3">
+                <Link href="/contact" className="cta w-full px-4 py-3" onClick={closeMenus}>
+                  Start a Build
+                </Link>
+                <a href={site.phoneHref} className="rounded-md border border-[var(--color-border)] bg-white px-4 py-3 text-center text-base font-semibold text-molonglo-ink" onClick={closeMenus}>
+                  Call {site.phone}
+                </a>
+              </div>
             </div>
           </nav>
         </div>
