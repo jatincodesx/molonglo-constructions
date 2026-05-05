@@ -20,17 +20,17 @@ export function Hero({
   image = "/assets/images/hero.jpg",
   imagePriority = true,
   primaryHref = "/contact#quote",
-  primaryLabel = "Request a Quote",
+  primaryLabel = "Start a Conversation",
   secondaryHref = "/projects",
   secondaryLabel = "View Projects"
 }: HeroProps) {
   return (
     <section className="relative isolate overflow-hidden bg-[var(--color-stone)] text-[var(--color-charcoal)]">
       <div className="absolute inset-0">
-        <Image src={image} alt="" fill priority={imagePriority} className="object-cover opacity-20" sizes="100vw" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(244,239,230,0.96),rgba(244,239,230,0.72))]" />
+        <Image src={image} alt="" fill priority={imagePriority} className="object-cover opacity-24" sizes="100vw" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(244,239,230,0.98),rgba(244,239,230,0.76))]" />
       </div>
-      <div className="container relative flex min-h-[72svh] items-end pb-20 pt-[var(--header-height)] sm:pb-24 lg:min-h-[82svh]">
+      <div className="container relative flex min-h-[62svh] items-end pb-16 pt-[calc(var(--header-height)+3rem)] sm:pb-20 lg:min-h-[72svh]">
         <div className="max-w-4xl">
           {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
           <h1 className="heading-xl mt-5">{title}</h1>

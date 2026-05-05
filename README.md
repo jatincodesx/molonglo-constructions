@@ -163,6 +163,10 @@ npm run build:cf
 
 `build:cf` uses the OpenNext Cloudflare adapter and writes output to `.open-next/`.
 
+## Public UI Notes
+
+The public marketing UI should remain calm, crawlable, and usable without JavaScript. Advanced text measurement experiments such as Pretext may be explored later for editorial text-wrapping tests, but they are not part of the production homepage approach.
+
 ## 9. Cloudflare Preview
 
 Log in to Cloudflare first:

@@ -17,7 +17,7 @@ export async function generateMetadata() {
 }
 
 export default async function HomePage() {
-  const recentBlogs = (await getPublishedBlogs()).slice(0, 3);
+  const recentBlogs = (await getPublishedBlogs()).filter((post) => post.slug !== "test-blog-1" && post.title !== "Test Blog 1").slice(0, 3);
   const schemaOverride = await getSeoSchema("/");
 
   return (

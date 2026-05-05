@@ -4,7 +4,7 @@ import { footerGroups, serviceAreas, site } from "@/lib/site";
 export function Footer() {
   return (
     <footer className="surface-dark text-white">
-      <div className="container grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-4">
+      <div className="container grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-[1.2fr_0.9fr_0.8fr_1.1fr]">
         <div>
           <h2 className="font-display text-2xl font-semibold text-white">{site.name}</h2>
           <p className="mt-4 text-sm leading-7 text-zinc-300">
@@ -18,7 +18,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-molonglo-gold">Contact</h3>
+          <h3 className="text-sm font-semibold text-molonglo-gold">Contact</h3>
           <div className="mt-4 space-y-3 text-sm leading-7 text-zinc-300">
             <p>{site.address}</p>
             <p><a href={site.phoneHref} className="hover:text-white">{site.phone}</a></p>
@@ -28,7 +28,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-molonglo-gold">Explore</h3>
+          <h3 className="text-sm font-semibold text-molonglo-gold">Explore</h3>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
             {footerGroups.core.map((link) => (
               <li key={link.href}>
@@ -46,7 +46,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-molonglo-gold">Services & Areas</h3>
+          <h3 className="text-sm font-semibold text-molonglo-gold">Services & Areas</h3>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
             {footerGroups.services.slice(0, 4).map((link) => (
               <li key={link.href}>

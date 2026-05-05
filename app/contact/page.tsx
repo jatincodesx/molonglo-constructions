@@ -30,14 +30,17 @@ export default async function ContactPage() {
           title="Talk to a Canberra builder about your project."
           text="Share your suburb, project type and priorities, and we will help you understand the most practical next step."
           image="/assets/images/hero.jpg"
-          primaryLabel="Request Consultation"
+          primaryLabel="Start a Conversation"
         />
 
       <section id="quote" className="section bg-white scroll-mt-[var(--header-height)]">
         <div className="container grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="eyebrow">Get In Touch</p>
-            <h2 className="heading-lg mt-3">Request a consultation</h2>
+            <h2 className="heading-lg mt-3">Start with a practical conversation.</h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-700">
+              Send the basics and we will respond with a clear next step. A suburb, block details and project type are enough to begin.
+            </p>
             <div className="mt-8 space-y-5 text-zinc-700">
               <p>
                 <strong>Office</strong>
@@ -71,7 +74,7 @@ export default async function ContactPage() {
         title="Visit Molonglo Construction Group in Denman Prospect"
         tone="stone"
       >
-          <div className="mt-8 overflow-hidden rounded-[1.5rem] shadow-soft">
+          <div className="mt-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
             <MapEmbed />
           </div>
       </IntentionalSection>
