@@ -1,10 +1,9 @@
 {
   "/api/analytics/route": "app/api/analytics/route.js",
-  "/projects/page": "app/projects/page.js",
-  "/display-home/denman-prospect/page": "app/display-home/denman-prospect/page.js",
-  "/success-stories/page": "app/success-stories/page.js",
   "/house-and-land-packages/page": "app/house-and-land-packages/page.js",
-  "/[slug]/page": "app/[slug]/page.js",
-  "/contact/page": "app/contact/page.js",
-  "/page": "app/page.js"
+  "/display-home/denman-prospect/page": "app/display-home/denman-prospect/page.js",
+  "/projects/page": "app/projects/page.js",
+  "/projects/[slug]/page": "app/projects/[slug]/page.js",
+  "/page": "app/page.js",
+  "/admin/login/page": "app/admin/login/page.js"
 }
