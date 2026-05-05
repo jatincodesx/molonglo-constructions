@@ -31,6 +31,7 @@ export default async function ProjectsPage() {
           title="Residential projects shaped by thoughtful planning and quality craftsmanship."
           text="A selection of real project imagery from Molonglo Construction Group homes and residential outcomes across the Canberra region."
           image={projects[0]?.coverImage || "/assets/images/hero.jpg"}
+          primaryHref="/contact"
           primaryLabel="Talk About Your Project"
         />
 
@@ -42,38 +43,41 @@ export default async function ProjectsPage() {
           </div>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {projects.map((project) => (
-              <article key={project.slug} className="surface-panel overflow-hidden transition duration-200 hover:-translate-y-1 hover:border-molonglo-gold">
-                <Link href={`/projects/${project.slug}`} className="block overflow-hidden">
+              <Link
+                key={project.slug}
+                href={`/projects/${project.slug}`}
+                aria-label={`View ${project.title} project gallery`}
+                className="surface-panel group block overflow-hidden transition duration-200 hover:-translate-y-1 hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
+              >
+                <article>
+                  <div className="block overflow-hidden">
                   <Image src={project.coverImage} alt={`${project.title} residential project in ${project.location}`} width={1400} height={980} className="h-80 w-full object-cover transition duration-500 hover:scale-[1.03]" />
-                </Link>
-                <div className="p-6 sm:p-8">
-                  <p className="text-xs font-semibold uppercase tracking-[0.2em] text-molonglo-gold">{project.location} / {project.category}</p>
-                  <h2 className="mt-3 font-display text-2xl font-semibold text-molonglo-ink">
-                    <Link href={`/projects/${project.slug}`} className="transition hover:text-molonglo-gold">
-                      {project.title}
-                    </Link>
-                  </h2>
-                  <p className="mt-3 text-sm leading-7 text-zinc-700">{project.description}</p>
-                  <div className="mt-6 grid grid-cols-3 gap-2">
-                    {project.galleryImages.slice(1, 4).map((image, index) => (
-                      <Link key={image} href={`/projects/${project.slug}`} aria-label={`View ${project.title} gallery`}>
-                        <Image
-                        key={image}
-                        src={image}
-                        alt={`${project.title} gallery image ${index + 1}`}
-                        width={420}
-                        height={320}
-                        className="h-28 w-full rounded-md object-cover transition hover:opacity-85"
-                      />
-                      </Link>
-                    ))}
                   </div>
-                  <Link href={`/projects/${project.slug}`} className="mt-6 inline-flex text-sm font-semibold text-molonglo-gold transition hover:text-molonglo-ink">
-                    View gallery
-                  </Link>
-                  {project.status ? <p className="mt-4 text-sm font-semibold text-zinc-800">{project.status}</p> : null}
-                </div>
-              </article>
+                  <div className="p-6 sm:p-8">
+                    <p className="text-xs font-semibold uppercase tracking-[0.2em] text-molonglo-gold">{project.location} / {project.category}</p>
+                    <h2 className="mt-3 font-display text-2xl font-semibold text-molonglo-ink transition group-hover:text-molonglo-gold">
+                      {project.title}
+                    </h2>
+                    <p className="mt-3 text-sm leading-7 text-zinc-700">{project.description}</p>
+                    <div className="mt-6 grid grid-cols-3 gap-2">
+                      {project.galleryImages.slice(1, 4).map((image, index) => (
+                        <Image
+                          key={image}
+                          src={image}
+                          alt={`${project.title} gallery image ${index + 1}`}
+                          width={420}
+                          height={320}
+                          className="h-28 w-full rounded-md object-cover transition group-hover:opacity-85"
+                        />
+                      ))}
+                    </div>
+                    <span className="mt-6 inline-flex text-sm font-semibold text-molonglo-gold transition group-hover:text-molonglo-ink">
+                      View gallery
+                    </span>
+                    {project.status ? <p className="mt-4 text-sm font-semibold text-zinc-800">{project.status}</p> : null}
+                  </div>
+                </article>
+              </Link>
             ))}
           </div>
         </div>

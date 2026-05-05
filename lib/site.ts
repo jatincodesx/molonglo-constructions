@@ -16,7 +16,7 @@ export const site = {
   actLicense: "2019760",
   nswLicense: "340764C",
   foundedYear: "2019",
-  logo: "/assets/logo/logo_new-removebg-preview.png",
+  logo: "/assets/logo/logo_new.jpg",
   heroImage: "/assets/images/hero.jpg",
   facebook: "https://www.facebook.com/p/Molonglo-Constructions-100063601235529/",
   instagram: "https://www.instagram.com/molonglocg/",
@@ -24,14 +24,21 @@ export const site = {
 } as const;
 
 export const servicesNavLinks = [
-  { href: "/custom-home-builders-canberra", label: "Custom Home Builders" },
+  { href: "/custom-home-builders-canberra", label: "Custom Homes" },
   { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
-  { href: "/new-home-builders-canberra", label: "New Home Builders" },
+  { href: "/new-home-builders-canberra", label: "New Home Builds" },
   { href: "/construction-services-canberra", label: "Construction Services" }
 ] as const;
 
 export const displayHomeNavLinks = [
-  { href: "/display-home/denman-prospect", label: "Molonglo Display Home - Denman Prospect" }
+  { href: "/display-home/denman-prospect", label: "Denman Prospect Display Home" }
+] as const;
+
+export const moreNavLinks = [
+  { href: "/house-and-land-packages", label: "House & Land Packages" },
+  { href: "/success-stories", label: "Reviews" },
+  { href: "/blog", label: "Blog" },
+  { href: "/about", label: "About" }
 ] as const;
 
 export const navLinks = [
@@ -39,8 +46,7 @@ export const navLinks = [
   { href: "/projects", label: "Projects" },
   { label: "Services", children: servicesNavLinks },
   { label: "Display Home", children: displayHomeNavLinks },
-  { href: "/house-and-land-packages", label: "House & Land" },
-  { href: "/success-stories", label: "Reviews" },
+  { label: "More", children: moreNavLinks },
   { href: "/contact", label: "Contact" }
 ] as const;
 

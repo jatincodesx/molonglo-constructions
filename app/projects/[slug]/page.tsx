@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { CTA } from "@/components/CTA";
 import { JsonLd } from "@/components/JsonLd";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
+import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { getProjectBySlug, projects } from "@/lib/projects";
 import { absoluteUrl, breadcrumbSchema, buildMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
@@ -83,7 +84,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 </h1>
                 <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700">{project.description}</p>
                 <div className="mt-8 flex flex-wrap gap-3">
-                  <Link href="/contact#quote" className="cta">
+                  <Link href="/contact" className="cta">
                     Discuss a Similar Project
                   </Link>
                   <Link href="/projects" className="cta-secondary">
@@ -117,23 +118,11 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {project.galleryImages.map((image, index) => (
-                <a
-                  key={image}
-                  href={image}
-                  className={index === 0 ? "group overflow-hidden rounded-lg border border-[var(--color-border)] bg-white sm:col-span-2 lg:col-span-2" : "group overflow-hidden rounded-lg border border-[var(--color-border)] bg-white"}
-                >
-                  <Image
-                    src={image}
-                    alt={`${project.title} gallery image ${index + 1} in ${project.location}`}
-                    width={1200}
-                    height={850}
-                    className={index === 0 ? "h-[22rem] w-full object-cover transition duration-500 group-hover:scale-[1.03]" : "h-64 w-full object-cover transition duration-500 group-hover:scale-[1.03]"}
-                  />
-                </a>
-              ))}
-            </div>
+            <ProjectGallery
+              images={project.galleryImages}
+              projectTitle={project.title}
+              location={project.location}
+            />
           </div>
         </section>
 

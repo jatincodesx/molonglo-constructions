@@ -7,7 +7,7 @@ export function Footer() {
     <footer className="surface-dark text-white">
       <div className="container grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-[1.2fr_0.9fr_0.8fr_1.1fr]">
         <div>
-          <Image src={site.logo} alt="Molonglo Constructions" width={160} height={90} className="h-16 w-auto object-contain" />
+          <Image src={site.logo} alt="Molonglo Construction Group" width={160} height={90} className="h-16 w-auto object-contain" />
           <h2 className="mt-5 font-display text-2xl font-semibold text-white">{site.name}</h2>
           <p className="mt-4 text-sm leading-7 text-zinc-300">
             Local Canberra-focused builder delivering custom homes, knockdown rebuilds and tailored residential construction with a refined process.
