@@ -1,11 +1,1 @@
-{
-  "version": 4,
-  "routes": {},
-  "dynamicRoutes": {},
-  "notFoundRoutes": [],
-  "preview": {
-    "previewModeId": "5fe7a6828560dd17101c6dd488f6198a",
-    "previewModeSigningKey": "3143b8690be47437fc2f5138e27852e0bb166a72f33814ff912d6b6b0af41752",
-    "previewModeEncryptionKey": "4f74fe6c202325c7e9fe2c63539d4b38765a62b6e95cb00cdf4742ac893691cb"
-  }
-}
+{"version":4,"routes":{"/projects/molonglo-1":{},"/projects/78-churcher":{},"/projects/5-towong-street":{},"/projects/sibsado-street":{}},"dynamicRoutes":{"/projects/[slug]":{"dataRoute":null,"dataRouteRegex":null,"fallback":null,"fallbackRevalidate":false,"fallbackSourceRoute":"/projects/[slug]","routeRegex":"^\\/projects\\/([^/]+?)(?:\\/)?$","allowHeader":[]}},"notFoundRoutes":[],"preview":{"previewModeId":"1767775357397be9d90798f0ed8337ec","previewModeSigningKey":"c1c3746110236baf3bd20103f823a618d6e71d0d6ff0f875fdf660cb00675cc6","previewModeEncryptionKey":"496018c6b18c5cec0732a4b214e636b3e18da5d73553ceda9afa412420369a20"}}
