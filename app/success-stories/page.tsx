@@ -10,8 +10,8 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   return resolveMetadata({
-    title: "Success Stories and Google Reviews | Molonglo Construction Group",
-    description: "Verified Google reviews and client success stories for Molonglo Construction Group will be published here once confirmed.",
+    title: "Reviews | Molonglo Construction Group",
+    description: "Verified Google reviews and client feedback for Molonglo Construction Group will be published here once confirmed.",
     path: "/success-stories",
     image: "/assets/images/hero.jpg"
   });
@@ -23,13 +23,13 @@ export default function SuccessStoriesPage() {
       <JsonLd
         data={breadcrumbSchema([
           { name: "Home", href: "/" },
-          { name: "Success Stories", href: "/success-stories" }
+          { name: "Reviews", href: "/success-stories" }
         ])}
       />
       <PremiumScrollShell mode="light">
         <Hero
-          eyebrow="Success Stories"
-          title="Success Stories and Google Reviews"
+          eyebrow="Reviews"
+          title="Reviews and Google feedback"
           text="Verified reviews and client feedback for Molonglo Construction Group will be shown here once confirmed."
           image="/assets/images/hero.jpg"
           primaryLabel="Contact Molonglo"

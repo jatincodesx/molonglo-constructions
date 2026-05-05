@@ -36,13 +36,11 @@ export const displayHomeNavLinks = [
 
 export const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
   { label: "Services", children: servicesNavLinks },
   { label: "Display Home", children: displayHomeNavLinks },
-  { href: "/house-and-land-packages", label: "House & Land Packages" },
-  { href: "/success-stories", label: "Success Stories" },
-  { href: "/blog", label: "Blog" },
+  { href: "/house-and-land-packages", label: "House & Land" },
+  { href: "/success-stories", label: "Reviews" },
   { href: "/contact", label: "Contact" }
 ] as const;
 
@@ -52,8 +50,8 @@ export const footerGroups = {
     { href: "/about", label: "About" },
     { href: "/projects", label: "Projects" },
     { href: "/display-home/denman-prospect", label: "Display Home" },
-    { href: "/house-and-land-packages", label: "House & Land Packages" },
-    { href: "/success-stories", label: "Success Stories" },
+    { href: "/house-and-land-packages", label: "House & Land" },
+    { href: "/success-stories", label: "Reviews" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" }
   ],

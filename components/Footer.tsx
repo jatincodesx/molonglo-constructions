@@ -20,7 +20,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-molonglo-gold">Contact</h3>
+          <h3 className="text-sm font-semibold text-[#f5ead2]">Contact</h3>
           <div className="mt-4 space-y-3 text-sm leading-7 text-zinc-300">
             <p>{site.address}</p>
             <p><a href={site.phoneHref} className="hover:text-white">{site.phone}</a></p>
@@ -31,7 +31,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-molonglo-gold">Explore</h3>
+          <h3 className="text-sm font-semibold text-[#f5ead2]">Explore</h3>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
             {footerGroups.core.map((link) => (
               <li key={link.href}>
@@ -49,7 +49,7 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-molonglo-gold">Services & Areas</h3>
+          <h3 className="text-sm font-semibold text-[#f5ead2]">Services & Areas</h3>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
             {footerGroups.services.slice(0, 4).map((link) => (
               <li key={link.href}>

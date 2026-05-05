@@ -12,7 +12,13 @@ type PremiumHomeExperienceProps = {
   services: ServicePage[];
 };
 
-const trustItems = ["Canberra / ACT builder", "Custom homes", "Knockdown rebuilds", "Licensed builder", "Local project experience"];
+const trustItems = [
+  { label: "Canberra / ACT builder", href: "/builder-canberra" },
+  { label: "Custom homes", href: "/custom-home-builders-canberra" },
+  { label: "Knockdown rebuilds", href: "/knockdown-rebuild-canberra" },
+  { label: "Licensed builder", href: "/about" },
+  { label: "Local project experience", href: "/projects" }
+];
 
 const journey = [
   {
@@ -61,10 +67,10 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
   return (
     <PremiumScrollShell mode="light" className="premium-home">
       <section className="home-hero">
-        <div className="container grid gap-12 py-16 lg:grid-cols-[1.02fr_0.98fr] lg:items-center lg:py-24">
-          <div className="max-w-4xl" data-scroll-reveal>
+        <div className="container grid gap-10 py-12 sm:py-14 lg:grid-cols-[0.95fr_1.05fr] lg:items-center lg:py-20">
+          <div className="max-w-3xl" data-scroll-reveal>
             <p className="eyebrow">Custom homes, rebuilds and residential construction in Canberra</p>
-            <h1 className="mt-5 font-display text-5xl font-semibold leading-[0.96] text-[var(--color-charcoal)] sm:text-6xl lg:text-7xl">
+            <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.02] text-[var(--color-charcoal)] sm:text-5xl lg:text-6xl">
               Build a Canberra home with clarity from the first conversation.
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-zinc-700 sm:text-xl">
@@ -87,11 +93,11 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
               width={1200}
               height={900}
               priority
-              className="h-full min-h-[28rem] w-full object-cover"
+              className="h-full w-full object-cover"
             />
             <div>
               <span>Denman Prospect based</span>
-              <strong>Premium residential building across Canberra and the ACT.</strong>
+              <strong>Residential building across Canberra and the ACT.</strong>
             </div>
           </div>
         </div>
@@ -101,7 +107,9 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
         <div className="container">
           <ul>
             {trustItems.map((item) => (
-              <li key={item}>{item}</li>
+              <li key={item.href}>
+                <Link href={item.href}>{item.label}</Link>
+              </li>
             ))}
           </ul>
         </div>
@@ -186,14 +194,14 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
           </div>
           <div className="project-grid">
             {featuredProjects.map((project) => (
-              <article key={project.title} className="project-card" data-scroll-reveal>
+              <Link key={project.title} href={`/projects/${project.slug}`} className="project-card" data-scroll-reveal>
                 <Image src={project.coverImage} alt={`${project.title} residential project in ${project.location}`} width={1200} height={900} className="h-full w-full object-cover" />
                 <div>
                   <p>{project.location} / {project.category}</p>
                   <h3>{project.title}</h3>
                   <span>{project.description}</span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -266,7 +274,7 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
         <div className="container">
           <div className="final-cta__inner" data-scroll-reveal>
             <div>
-              <p className="eyebrow text-white/68">Start the conversation</p>
+              <p className="eyebrow text-[#f5ead2]">Start the conversation</p>
               <h2>Ready to discuss your build?</h2>
               <p>Share your suburb, site and project goals. We will help you understand the most practical next step for your custom home, new home or knockdown rebuild.</p>
             </div>
