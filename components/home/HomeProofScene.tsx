@@ -26,11 +26,11 @@ export function HomeProofScene({ projects }: HomeProofSceneProps) {
         <div className="mt-12 grid gap-5 lg:grid-cols-3">
           {featured.map((project) => (
             <article key={project.title} className="project-proof-card" data-scroll-reveal>
-              <Image src={project.image} alt={`${project.title} in ${project.location}`} width={1100} height={820} className="h-full min-h-[24rem] w-full object-cover" />
+              <Image src={project.coverImage} alt={`${project.title} residential project in ${project.location}`} width={1100} height={820} className="h-full min-h-[24rem] w-full object-cover" />
               <div>
-                <p>{project.location}</p>
+                <p>{project.location} / {project.category}</p>
                 <h3>{project.title}</h3>
-                <span>{project.specs}</span>
+                <span>{project.description}</span>
               </div>
             </article>
           ))}

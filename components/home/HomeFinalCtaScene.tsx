@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArchitecturalObject } from "@/components/public-ui/ArchitecturalObject";
 import { ScrollScene } from "@/components/public-ui/ScrollScene";
 import type { LocationPage } from "@/lib/content";
+import { actServiceAreas, southCoastServiceAreas } from "@/lib/site";
 
 type HomeFinalCtaSceneProps = {
   locations: LocationPage[];
@@ -36,7 +37,10 @@ export function HomeFinalCtaScene({ locations }: HomeFinalCtaSceneProps) {
         <div className="seo-link-band" data-scroll-reveal>
           <div>
             <p className="eyebrow">Service Areas</p>
-            <h3>Canberra, the ACT and nearby NSW areas</h3>
+            <h3>ACT, Canberra surrounds and South Coast enquiry areas</h3>
+            <p className="mt-4 leading-7 text-zinc-700">
+              ACT and surrounds: {actServiceAreas.join(", ")}. South Coast: {southCoastServiceAreas.join(", ")}.
+            </p>
           </div>
           <div>
             {locations.slice(0, 8).map((location) => (

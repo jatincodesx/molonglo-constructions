@@ -147,7 +147,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
               <div className="rounded-lg bg-molonglo-ink p-6 text-white">
                 <h2 className="font-display text-2xl font-semibold text-white">Talk about your project</h2>
-                <p className="mt-3 text-sm leading-7 text-white/72">
+                <p className="mt-3 text-sm leading-7 text-white/90">
                   Share your block, suburb and project goals and we can discuss the next practical step.
                 </p>
                 <Link href="/contact#quote" className="cta mt-5 w-full">
@@ -251,7 +251,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
             <div className="rounded-lg bg-molonglo-ink p-6 text-white">
               <h2 className="font-display text-2xl font-semibold text-white">Start with a local consultation</h2>
-              <p className="mt-3 text-sm leading-7 text-white/72">
+              <p className="mt-3 text-sm leading-7 text-white/90">
                 We can review the block, suburb context and the most suitable project path for your property.
               </p>
               <Link href="/contact#quote" className="cta mt-5 w-full">

@@ -35,9 +35,9 @@ export function IntentionalSection({
       ) : null}
       <div className="container relative z-10">
         <div className="max-w-4xl" data-scroll-reveal>
-          {eyebrow ? <p className={tone === "dark" ? "eyebrow text-white/64" : "eyebrow"}>{eyebrow}</p> : null}
+          {eyebrow ? <p className={tone === "dark" ? "eyebrow text-white" : "eyebrow"}>{eyebrow}</p> : null}
           <h2 className={tone === "dark" ? "heading-lg mt-4 text-white" : "heading-lg mt-4"}>{title}</h2>
-          {text ? <p className={tone === "dark" ? "mt-5 max-w-3xl text-lg leading-8 text-white/72" : "mt-5 max-w-3xl text-lg leading-8 text-zinc-700"}>{text}</p> : null}
+          {text ? <p className={tone === "dark" ? "mt-5 max-w-3xl text-lg leading-8 text-white/90" : "mt-5 max-w-3xl text-lg leading-8 text-zinc-700"}>{text}</p> : null}
         </div>
         {children ? <div className="relative z-10 mt-12">{children}</div> : null}
       </div>

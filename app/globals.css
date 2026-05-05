@@ -123,6 +123,11 @@ img {
   background: linear-gradient(180deg, var(--color-graphite) 0%, #0b1013 100%);
 }
 
+.surface-dark .eyebrow,
+.final-cta .eyebrow {
+  color: #f5ead2;
+}
+
 .premium-scroll-root {
   background: var(--color-stone);
 }
@@ -224,6 +229,18 @@ img {
   font-size: 1.08rem;
   line-height: 1.8;
   color: #5c5a55;
+}
+
+.section-heading--dark p:not(.eyebrow) {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.section-heading--dark .eyebrow {
+  color: #f5ead2;
+}
+
+.section-heading--dark .heading-lg {
+  color: #fff;
 }
 
 .section-heading--split {
@@ -352,7 +369,7 @@ img {
 .process-timeline p {
   margin-top: 0.85rem;
   line-height: 1.7;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .project-grid {
@@ -396,7 +413,7 @@ img {
   display: block;
   margin-top: 0.85rem;
   max-width: 28rem;
-  color: rgba(255, 255, 255, 0.78);
+  color: rgba(255, 255, 255, 0.9);
   line-height: 1.65;
 }
 
@@ -424,11 +441,33 @@ img {
   color: #5c5a55;
 }
 
-.local-band div:last-child {
+.local-band__areas {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
   align-content: center;
+}
+
+.local-band__areas > div {
+  width: 100%;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-paper);
+  padding: 1rem;
+}
+
+.local-band__areas h3 {
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-bronze);
+}
+
+.local-band__areas p {
+  margin-top: 0.45rem;
+  color: var(--color-charcoal);
+  line-height: 1.65;
 }
 
 .local-band a {
@@ -466,7 +505,7 @@ img {
 .final-cta p:not(.eyebrow) {
   margin-top: 1rem;
   max-width: 44rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.88);
   line-height: 1.75;
 }
 
@@ -479,7 +518,7 @@ img {
 
 .final-cta__inner > div:last-child > a:last-child {
   width: 100%;
-  color: rgba(255, 255, 255, 0.82);
+  color: rgba(255, 255, 255, 0.92);
   font-weight: 700;
 }
 
@@ -929,7 +968,7 @@ img {
   max-width: 34rem;
   font-size: 1rem;
   line-height: 1.75;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.88);
 }
 
 .project-proof-card {
@@ -967,7 +1006,7 @@ img {
 .project-proof-card span {
   display: block;
   margin-top: 0.85rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .editorial-blog-grid {

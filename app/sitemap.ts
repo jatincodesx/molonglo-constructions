@@ -6,7 +6,16 @@ import { site } from "@/lib/site";
 export const dynamic = "force-dynamic";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticPages = ["/", "/about", "/projects", "/contact", "/blog"];
+  const staticPages = [
+    "/",
+    "/about",
+    "/projects",
+    "/contact",
+    "/blog",
+    "/display-home/denman-prospect",
+    "/house-and-land-packages",
+    "/success-stories"
+  ];
   const blogs = await getPublishedBlogs();
   const all = [
     ...staticPages,

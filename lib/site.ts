@@ -16,23 +16,47 @@ export const site = {
   actLicense: "2019760",
   nswLicense: "340764C",
   foundedYear: "2019",
-  logo: "/assets/logo/logo_new.jpg",
+  logo: "/assets/logo/logo_new-removebg-preview.png",
   heroImage: "/assets/images/hero.jpg",
   facebook: "https://www.facebook.com/p/Molonglo-Constructions-100063601235529/",
   instagram: "https://www.instagram.com/molonglocg/",
   linkedin: "https://au.linkedin.com/in/molonglo-cg-825638337"
 } as const;
 
+export const servicesNavLinks = [
+  { href: "/custom-home-builders-canberra", label: "Custom Home Builders" },
+  { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
+  { href: "/new-home-builders-canberra", label: "New Home Builders" },
+  { href: "/construction-services-canberra", label: "Construction Services" }
+] as const;
+
+export const displayHomeNavLinks = [
+  { href: "/display-home/denman-prospect", label: "Molonglo Display Home - Denman Prospect" }
+] as const;
+
 export const navLinks = [
   { href: "/", label: "Home" },
   { href: "/about", label: "About" },
   { href: "/projects", label: "Projects" },
+  { label: "Services", children: servicesNavLinks },
+  { label: "Display Home", children: displayHomeNavLinks },
+  { href: "/house-and-land-packages", label: "House & Land Packages" },
+  { href: "/success-stories", label: "Success Stories" },
   { href: "/blog", label: "Blog" },
   { href: "/contact", label: "Contact" }
 ] as const;
 
 export const footerGroups = {
-  core: navLinks,
+  core: [
+    { href: "/", label: "Home" },
+    { href: "/about", label: "About" },
+    { href: "/projects", label: "Projects" },
+    { href: "/display-home/denman-prospect", label: "Display Home" },
+    { href: "/house-and-land-packages", label: "House & Land Packages" },
+    { href: "/success-stories", label: "Success Stories" },
+    { href: "/blog", label: "Blog" },
+    { href: "/contact", label: "Contact" }
+  ],
   services: [
     { href: "/custom-home-builders-canberra", label: "Custom Home Builders Canberra" },
     { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuild Canberra" },
@@ -51,12 +75,41 @@ export const footerGroups = {
   ]
 } as const;
 
-export const serviceAreas = [
+export const actServiceAreas = [
+  "all of ACT and surrounds",
   "Canberra",
+  "Queanbeyan",
+  "Jerrabomberra",
+  "Googong",
+  "Molonglo Valley",
+  "Denman Prospect",
+  "Wright",
+  "Coombs"
+] as const;
+
+export const southCoastServiceAreas = [
+  "South Coast",
+  "Batemans Bay",
+  "Narooma",
+  "Bega",
+  "Pambula",
+  "Merimbula"
+] as const;
+
+export const serviceAreas = [
   "ACT",
+  "Canberra",
+  "Queanbeyan",
+  "Jerrabomberra",
+  "Googong",
   "Molonglo Valley",
   "Denman Prospect",
   "Wright",
   "Coombs",
-  "Queanbeyan"
+  "South Coast",
+  "Batemans Bay",
+  "Narooma",
+  "Bega",
+  "Pambula",
+  "Merimbula"
 ] as const;

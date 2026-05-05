@@ -55,7 +55,7 @@ export default async function AboutPage() {
 
           <aside className="grid gap-4 lg:pt-14">
             {[
-              ["Canberra Focused", "Local project knowledge across Canberra, Molonglo Valley and nearby regions."],
+              ["Canberra Focused", "Local project knowledge across all of ACT and surrounds, including Canberra, Queanbeyan, Googong and the Molonglo Valley."],
               ["Refined Process", "A clear sequence from consultation to approvals, construction and handover."],
               ["Direct Communication", "A more personalised experience than large-scale volume builder workflows."],
               ["Residential Expertise", "Custom homes, rebuilds, renovations and selected dual occupancy projects."]

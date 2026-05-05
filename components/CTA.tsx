@@ -7,11 +7,11 @@ export function CTA() {
       <div className="container">
       <div className="rounded-lg border border-white/10 bg-white/[0.045] px-6 py-10 sm:px-8 lg:flex lg:items-end lg:justify-between lg:gap-10 lg:px-12">
         <div className="max-w-3xl">
-          <p className="eyebrow text-white/75">Plan Your Build</p>
+          <p className="eyebrow text-white">Plan Your Build</p>
           <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.02] text-white sm:text-5xl">
             Ready to discuss your build?
           </h2>
-          <p className="mt-4 max-w-2xl text-base leading-8 text-white/72 sm:text-lg">
+          <p className="mt-4 max-w-2xl text-base leading-8 text-white/90 sm:text-lg">
             Share your suburb, site and goals. We can help you understand the most practical next step for a custom home, knockdown rebuild or residential construction project.
           </p>
         </div>

@@ -7,12 +7,12 @@ export function SiteChrome({
   children,
   header,
   footer,
-  floatingCta
+  floatingCta = null
 }: {
   children: React.ReactNode;
   header: React.ReactNode;
   footer: React.ReactNode;
-  floatingCta: React.ReactNode;
+  floatingCta?: React.ReactNode;
 }) {
   const pathname = usePathname();
   const isAdmin = pathname.startsWith("/admin");

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import type { BlogPost } from "@/lib/blog";
 import type { LocationPage, Project, ServicePage } from "@/lib/content";
-import { site } from "@/lib/site";
+import { actServiceAreas, site, southCoastServiceAreas } from "@/lib/site";
 
 type PremiumHomeExperienceProps = {
   recentBlogs: BlogPost[];
@@ -156,10 +156,10 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
 
       <section className="section bg-[var(--color-graphite)] text-white">
         <div className="container">
-          <div className="section-heading" data-scroll-reveal>
-            <p className="eyebrow text-white/65">Our Signature Building Process</p>
+          <div className="section-heading section-heading--dark" data-scroll-reveal>
+            <p className="eyebrow text-white">Our Signature Building Process</p>
             <h2 className="heading-lg mt-4 text-white">A calm sequence from first discussion to handover.</h2>
-            <p className="text-white/72">Each stage is designed to keep the project clear, well-managed and aligned with the quality expectations of a premium Canberra home.</p>
+            <p className="text-white">Each stage is designed to keep the project clear, well-managed and aligned with the quality expectations of a premium Canberra home.</p>
           </div>
           <ol className="process-timeline">
             {processSteps.map(([number, title, body]) => (
@@ -187,11 +187,11 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
           <div className="project-grid">
             {featuredProjects.map((project) => (
               <article key={project.title} className="project-card" data-scroll-reveal>
-                <Image src={project.image} alt={`${project.title} in ${project.location}`} width={1200} height={900} className="h-full w-full object-cover" />
+                <Image src={project.coverImage} alt={`${project.title} residential project in ${project.location}`} width={1200} height={900} className="h-full w-full object-cover" />
                 <div>
-                  <p>{project.location}</p>
+                  <p>{project.location} / {project.category}</p>
                   <h3>{project.title}</h3>
-                  <span>{project.summary}</span>
+                  <span>{project.description}</span>
                 </div>
               </article>
             ))}
@@ -204,10 +204,18 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
           <div className="local-band" data-scroll-reveal>
             <div>
               <p className="eyebrow">Local Areas</p>
-              <h2>Building across Canberra, Molonglo Valley and nearby NSW.</h2>
+              <h2>Building across the ACT, Canberra surrounds and selected South Coast areas.</h2>
               <p>Local site knowledge helps with orientation, access, approvals, retaining, estate requirements and the practical decisions that shape a better home.</p>
             </div>
-            <div>
+            <div className="local-band__areas">
+              <div>
+                <h3>ACT and surrounds</h3>
+                <p>{actServiceAreas.join(", ")}</p>
+              </div>
+              <div>
+                <h3>South Coast</h3>
+                <p>{southCoastServiceAreas.join(", ")}</p>
+              </div>
               {featuredLocations.map((location) => (
                 <Link key={location.slug} href={`/${location.slug}`}>
                   {location.suburb}

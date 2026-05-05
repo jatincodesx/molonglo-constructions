@@ -6,7 +6,7 @@ import { IntentionalSection } from "@/components/public-ui/IntentionalSection";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
-import { serviceAreas, site } from "@/lib/site";
+import { actServiceAreas, site, southCoastServiceAreas } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -60,7 +60,9 @@ export default async function ContactPage() {
               <p>
                 <strong>Service Areas</strong>
                 <br />
-                {serviceAreas.join(", ")}
+                ACT and surrounds: {actServiceAreas.join(", ")}
+                <br />
+                South Coast: {southCoastServiceAreas.join(", ")}
               </p>
               {/* TODO: Add confirmed opening hours if the business wants them displayed publicly. */}
             </div>

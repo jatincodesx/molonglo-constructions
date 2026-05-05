@@ -3,6 +3,9 @@ export type PageSection = {
   paragraphs: string[];
 };
 
+export { projects } from "@/lib/projects";
+export type { Project } from "@/lib/projects";
+
 export type FaqItem = {
   question: string;
   answer: string;
@@ -150,7 +153,7 @@ export const services: ServicePage[] = [
       },
       {
         question: "Do you rebuild in established Canberra suburbs?",
-        answer: "Yes. We work across Canberra, Molonglo Valley and nearby areas where owners want to rebuild without leaving their location."
+        answer: "Yes. We work across all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas by enquiry."
       }
     ],
     relatedLocations: ["builder-canberra", "builder-queanbeyan", "builder-wright-act"],
@@ -266,7 +269,7 @@ export const services: ServicePage[] = [
       },
       {
         question: "Do you service Queanbeyan as well as Canberra?",
-        answer: "Yes. Our service area includes Canberra, Molonglo Valley, Queanbeyan and nearby regions where the project is the right fit."
+        answer: "Yes. Our service area includes all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas including Batemans Bay, Narooma, Bega, Pambula and Merimbula by enquiry."
       }
     ],
     relatedLocations: ["builder-canberra", "builder-queanbeyan", "builder-molonglo-valley"],
@@ -483,7 +486,7 @@ export const locations: LocationPage[] = [
     faqs: [
       {
         question: "Do you build across Canberra or only in Molonglo Valley?",
-        answer: "We are based in Denman Prospect and work across Canberra, including Molonglo Valley and nearby ACT service areas."
+        answer: "We are based in Denman Prospect and work across all of ACT and surrounds, including Canberra, Molonglo Valley, Queanbeyan, Jerrabomberra, Googong, Wright and Coombs."
       },
       {
         question: "Can you help before plans are complete?",
@@ -703,7 +706,7 @@ export const locations: LocationPage[] = [
     faqs: [
       {
         question: "Do you take on projects in Queanbeyan?",
-        answer: "Yes. Queanbeyan is within our broader service area for the right residential projects."
+        answer: "Yes. Queanbeyan, Jerrabomberra and Googong are within our broader service area for the right residential projects."
       },
       {
         question: "Can you help compare renovation and rebuild options?",
@@ -715,53 +718,6 @@ export const locations: LocationPage[] = [
     relatedBlogs: ["builder-vs-project-home-company-which-is-better", "cost-to-build-a-house-in-canberra-2026", "new-home-construction-process-in-act"]
   }
 ];
-
-export const projects = [
-  {
-    title: "Churcher Display Home",
-    location: "Whitlam",
-    image: "/assets/images/projects/churcher-whitlam.jpg",
-    specs: "4 bedrooms, 2.5 bathrooms and a double garage.",
-    summary: "A modern family display home focused on natural light, warm material selections and clean everyday functionality."
-  },
-  {
-    title: "Whitlam Display Home",
-    location: "Whitlam",
-    image: "/assets/images/projects/display-whitlam.jpg",
-    specs: "4 bedrooms, 2.5 bathrooms and a double garage.",
-    summary: "A premium display home that balances striking street presentation with practical living spaces."
-  },
-  {
-    title: "Denman Prospect Residence",
-    location: "Denman Prospect",
-    image: "/assets/images/projects/denman-1.jpg",
-    specs: "4 bedrooms, 3 bathrooms and a double garage.",
-    summary: "A tailored family home planned around block conditions, indoor-outdoor flow and long-term comfort."
-  },
-  {
-    title: "Denman Prospect Project",
-    location: "Denman Prospect",
-    image: "/assets/images/projects/denman-3.jpg",
-    specs: "4 bedrooms, 3 bathrooms and a double garage.",
-    summary: "A refined new home with strong street presence and builder-led delivery planning."
-  },
-  {
-    title: "Giordano Project",
-    location: "Canberra",
-    image: "/assets/images/projects/giordano-1.jpg",
-    specs: "4 bedrooms, 3 bathrooms and a double garage.",
-    summary: "A high-quality residential project focused on liveability, finish quality and clear sequencing."
-  },
-  {
-    title: "Wright Residence",
-    location: "Wright",
-    image: "/assets/images/projects/wright-2.jpg",
-    specs: "4 bedrooms, 3 bathrooms and a double garage.",
-    summary: "A Wright project shaped around local site conditions, modern family use and quality craftsmanship."
-  }
-];
-
-export type Project = (typeof projects)[number];
 
 export const blogCategories = [
   "Building Costs",
