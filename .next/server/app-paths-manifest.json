@@ -1,11 +1,11 @@
 {
-  "/manifest.webmanifest/route": "app/manifest.webmanifest/route.js",
   "/api/analytics/route": "app/api/analytics/route.js",
   "/page": "app/page.js",
-  "/about/page": "app/about/page.js",
   "/projects/page": "app/projects/page.js",
+  "/about/page": "app/about/page.js",
   "/contact/page": "app/contact/page.js",
-  "/blog/page": "app/blog/page.js",
-  "/[slug]/page": "app/[slug]/page.js",
-  "/admin/login/page": "app/admin/login/page.js"
+  "/display-home/denman-prospect/page": "app/display-home/denman-prospect/page.js",
+  "/house-and-land-packages/page": "app/house-and-land-packages/page.js",
+  "/success-stories/page": "app/success-stories/page.js",
+  "/blog/page": "app/blog/page.js"
 }
