@@ -121,7 +121,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 <h2 className="heading-lg mt-4">Selected imagery from {project.title}.</h2>
               </div>
               <p className="max-w-2xl text-base leading-7 text-zinc-700">
-                Images open individually for a closer look. Project details are limited to verified folder and location information.
+                Explore selected images from this completed residential project, including exterior details, interior finishes and liveable spaces.
               </p>
             </div>
 

@@ -88,7 +88,7 @@ export function QuoteForm({ source = "website", submitLabel = "Request Consultat
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+    <form onSubmit={submit} className="grid gap-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6 shadow-[0_22px_55px_rgba(23,26,24,0.08)]">
       <input type="hidden" name="source_page" value={source} />
       <p className="text-sm leading-6 text-zinc-600">
         Not sure where to start? Share what you know. We&apos;ll help you understand the next practical step.
@@ -185,7 +185,6 @@ export function QuoteForm({ source = "website", submitLabel = "Request Consultat
           name="message"
           rows={5}
           className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
-          placeholder="Tell us about your block, suburb, project goals and preferred timeframe."
         />
       </label>
 

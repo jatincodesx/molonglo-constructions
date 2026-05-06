@@ -12,8 +12,8 @@
   --color-clay: #e7ddd0;
   --color-muted: #91887c;
   --color-border: #d8cec0;
-  --header-height: 84px;
-  --section-padding: clamp(5rem, 9vw, 9rem);
+  --header-height: 74px;
+  --section-padding: clamp(4.5rem, 8vw, 8rem);
   --primary-color: var(--color-charcoal);
   --secondary-color: var(--color-bronze);
   --button-color: var(--color-bronze);

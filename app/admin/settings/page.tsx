@@ -33,7 +33,7 @@ export default async function AdminSettingsPage() {
         </div>
 
         <div className="rounded-[1.5rem] border border-zinc-200 bg-white p-6 lg:col-span-2">
-          <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Business data TODOs</h2>
+          <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Business data notes</h2>
           <ul className="mt-5 list-disc space-y-2 pl-5 text-sm leading-7 text-zinc-600">
             <li>Confirm whether public opening hours should be shown on the contact page and in structured data.</li>
             <li>Confirm whether the address should continue to be published as the main office address on all marketing channels.</li>

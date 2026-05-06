@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { site } from "@/lib/site";
 
@@ -47,7 +48,26 @@ export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [servicesOpen, setServicesOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const servicesPanelId = useId();
+  const pathname = usePathname();
+  const servicesActive = servicesLinks.some((item) => pathname === item.href) || pathname === "/services";
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
+  const openServices = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setServicesOpen(true);
+  };
+
+  const queueServicesClose = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = setTimeout(() => setServicesOpen(false), 160);
+  };
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -70,6 +90,9 @@ export function Header() {
     return () => {
       document.removeEventListener("mousedown", closeOnOutsideClick);
       document.removeEventListener("keydown", closeOnEscape);
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
     };
   }, []);
 
@@ -85,33 +108,37 @@ export function Header() {
   }, [menuOpen]);
 
   const closeMenus = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
     setServicesOpen(false);
     setMenuOpen(false);
   };
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[#fbfaf6]/96 shadow-[0_14px_34px_rgba(23,26,24,0.06)] backdrop-blur-xl">
-      <div className="container grid min-h-[76px] grid-cols-[auto_1fr_auto] items-center gap-4 py-2 lg:min-h-[82px]">
-        <Link href="/" className="flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2" onClick={closeMenus}>
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[#ded4c6] bg-[#fffdf8]/96 shadow-[0_12px_30px_rgba(23,26,24,0.07)] backdrop-blur-xl">
+      <div className="container grid min-h-[70px] grid-cols-[auto_1fr_auto] items-center gap-4 py-2 lg:min-h-[74px]">
+        <Link href="/" className="flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8]" onClick={closeMenus}>
           <Image
-            src="/assets/logo/logo_new.jpg"
+            src="/assets/logo/logo_new-removebg-preview.png"
             alt="Molonglo Construction Group"
-            width={188}
-            height={94}
+            width={220}
+            height={72}
             priority
-            className="h-[42px] w-auto object-contain sm:h-[48px]"
+            className="h-[46px] w-auto object-contain sm:h-[50px]"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden min-w-0 items-center justify-center gap-5 xl:gap-7 lg:flex">
+        <nav aria-label="Primary" className="hidden min-w-0 items-center justify-end gap-1 xl:gap-2 lg:flex">
           <div
             className="relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-            onFocus={() => setServicesOpen(true)}
+            onMouseEnter={openServices}
+            onMouseLeave={queueServicesClose}
+            onFocus={openServices}
             onBlur={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                setServicesOpen(false);
+                queueServicesClose();
               }
             }}
           >
@@ -119,7 +146,7 @@ export function Header() {
               type="button"
               aria-expanded={servicesOpen}
               aria-controls={servicesPanelId}
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
+              className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold text-[#24241f] transition hover:bg-[#f3eee4] hover:text-[#6f4b25] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] ${servicesActive || servicesOpen ? "bg-[#f3eee4] text-[#5f401f] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.2)]" : ""}`}
               onClick={() => setServicesOpen((open) => !open)}
             >
               Services
@@ -127,14 +154,14 @@ export function Header() {
             </button>
 
             {servicesOpen ? (
-              <div className="absolute left-1/2 top-full z-[70] w-[min(44rem,calc(100vw-2rem))] -translate-x-1/2 pt-3">
+              <div className="absolute left-1/2 top-full z-[70] w-[min(40rem,calc(100vw-2rem))] -translate-x-1/2 pt-3">
                 <div
                   id={servicesPanelId}
-                  className="grid gap-3 rounded-lg border border-[var(--color-border)] bg-[#fbfaf6] p-4 shadow-[0_24px_70px_rgba(23,26,24,0.16)] md:grid-cols-[1fr_1fr]"
+                  className="grid gap-2 rounded-lg border border-[#d8cec0] bg-[#fffdf8] p-3 shadow-[0_24px_70px_rgba(23,26,24,0.16)] md:grid-cols-[1fr_1fr]"
                 >
                   <div className="grid gap-1">
                     {servicesLinks.slice(0, 3).map((item) => (
-                      <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-md p-3 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+                      <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-md p-3 transition hover:bg-[#f6f0e6] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
                         <span className="block text-sm font-semibold text-molonglo-ink">{item.label}</span>
                         <span className="mt-1 block text-xs leading-5 text-zinc-600">{item.description}</span>
                       </Link>
@@ -142,13 +169,13 @@ export function Header() {
                   </div>
                   <div className="grid gap-1">
                     {servicesLinks.slice(3).map((item) => (
-                      <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-md p-3 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+                      <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-md p-3 transition hover:bg-[#f6f0e6] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
                         <span className="block text-sm font-semibold text-molonglo-ink">{item.label}</span>
                         <span className="mt-1 block text-xs leading-5 text-zinc-600">{item.description}</span>
                       </Link>
                     ))}
-                    <Link href="/contact#quote" className="mt-2 rounded-md border border-[var(--color-border)] bg-white p-3 text-sm font-semibold text-molonglo-gold transition hover:border-molonglo-gold hover:text-molonglo-ink" onClick={closeMenus}>
-                      Start a Build enquiry
+                    <Link href="/contact#quote" className="mt-2 rounded-md border border-[#d0c2af] bg-white p-3 text-sm font-semibold text-[#6f4b25] transition hover:border-[#9a7446] hover:bg-[#f6f0e6] hover:text-molonglo-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold" onClick={closeMenus}>
+                      Start a Build
                     </Link>
                   </div>
                 </div>
@@ -161,7 +188,7 @@ export function Header() {
               key={link.href}
               href={link.href}
               onClick={() => setServicesOpen(false)}
-              className="whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
+              className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold text-[#24241f] transition hover:bg-[#f3eee4] hover:text-[#6f4b25] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] ${isActive(link.href) ? "bg-[#f3eee4] text-[#5f401f] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.2)]" : ""}`}
             >
               {link.label}
             </Link>
@@ -169,17 +196,17 @@ export function Header() {
         </nav>
 
         <div className="flex items-center justify-end gap-2 sm:gap-3">
-          <a href={site.phoneHref} className="hidden whitespace-nowrap text-sm font-semibold text-molonglo-ink transition hover:text-molonglo-gold xl:inline-flex">
+          <a href={site.phoneHref} className="hidden whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold text-molonglo-ink transition hover:bg-[#f3eee4] hover:text-[#6f4b25] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] lg:inline-flex">
             Call Now
           </a>
-          <Link href="/contact#quote" className="cta hidden px-4 py-2.5 text-sm sm:inline-flex" onClick={closeMenus}>
+          <Link href="/contact#quote" className="cta hidden px-4 py-2.5 text-sm shadow-[0_12px_26px_rgba(118,83,49,0.18)] sm:inline-flex" onClick={closeMenus}>
             Start a Build
           </Link>
           <button
             type="button"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-molonglo-ink shadow-sm transition hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d8cec0] bg-white text-molonglo-ink shadow-sm transition hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
             onClick={() => {
               setMenuOpen((open) => !open);
               setServicesOpen(false);
@@ -196,7 +223,7 @@ export function Header() {
       </div>
 
       {menuOpen ? (
-        <div id="mobile-menu" className="max-h-[calc(100vh-76px)] overflow-y-auto border-t border-[var(--color-border)] bg-[#fbfaf6] lg:hidden">
+        <div id="mobile-menu" className="max-h-[calc(100vh-70px)] overflow-y-auto border-t border-[#ded4c6] bg-[#fffdf8] lg:hidden">
           <nav aria-label="Mobile" className="container grid gap-6 py-6">
             {mobileGroups.map((group) => (
               <div key={group.label}>
@@ -207,7 +234,7 @@ export function Header() {
                       key={`${group.label}-${item.href}`}
                       href={item.href}
                       onClick={closeMenus}
-                      className="rounded-md px-3 py-3 text-base font-semibold text-zinc-800 transition hover:bg-white hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
+                      className={`rounded-md px-3 py-3 text-base font-semibold text-zinc-800 transition hover:bg-[#f3eee4] hover:text-[#6f4b25] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold ${isActive(item.href) ? "bg-[#f3eee4] text-[#5f401f]" : ""}`}
                     >
                       {item.label}
                     </Link>

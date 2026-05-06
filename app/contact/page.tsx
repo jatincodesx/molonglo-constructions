@@ -64,7 +64,6 @@ export default async function ContactPage() {
                 <br />
                 South Coast: {southCoastServiceAreas.join(", ")}
               </p>
-              {/* TODO: Add confirmed opening hours if the business wants them displayed publicly. */}
             </div>
           </div>
           <QuoteForm source="/contact" submitLabel="Send Enquiry" />
