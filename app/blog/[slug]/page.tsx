@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { CTA } from "@/components/CTA";
 import { JsonLd } from "@/components/JsonLd";
+import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { QuoteForm } from "@/components/QuoteForm";
 import { getBlogBySlug, getPublishedBlogs, markdownToHtml } from "@/lib/blog";
 import { autoInjectInternalLinks } from "@/lib/internal-links";
@@ -60,6 +61,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       />
       {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
 
+      <PremiumScrollShell mode="editorial">
       <article className="bg-white">
         <header className="container py-16">
           <p className="eyebrow">{post.category}</p>
@@ -82,7 +84,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             />
 
             <section className="mt-12 rounded-[1.5rem] bg-[#f6f3ee] p-8">
-              <h2 className="font-display text-3xl font-semibold tracking-[-0.03em] text-molonglo-ink">Planning a similar project?</h2>
+              <h2 className="font-display text-3xl font-semibold text-molonglo-ink">Planning a similar project?</h2>
               <p className="mt-4 text-base leading-7 text-zinc-700">
                 Talk with Molonglo Construction Group about your block, suburb and goals if you want project-specific advice rather than generic online information.
               </p>
@@ -94,7 +96,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
           <aside className="space-y-5">
             <div className="surface-panel p-6">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Relevant services</h2>
+              <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Relevant services</h2>
               <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                 <li><Link href="/custom-home-builders-canberra">Custom Home Builders Canberra</Link></li>
                 <li><Link href="/knockdown-rebuild-canberra">Knockdown Rebuild Canberra</Link></li>
@@ -104,7 +106,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             <div className="surface-panel p-6">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Related articles</h2>
+              <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Related articles</h2>
               <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                 {relatedPosts.map((relatedPost) => (
                   <li key={relatedPost.slug}>
@@ -115,7 +117,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             <div className="surface-panel p-6">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Send an enquiry</h2>
+              <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Send an enquiry</h2>
               <QuoteForm source={`/blog/${post.slug}`} submitLabel="Send Enquiry" />
             </div>
           </aside>
@@ -123,6 +125,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
       </article>
 
       <CTA />
+      </PremiumScrollShell>
     </>
   );
 }

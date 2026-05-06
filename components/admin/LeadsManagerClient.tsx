@@ -3,6 +3,23 @@
 import { useRouter } from "next/navigation";
 import type { LeadRecord, LeadStatus } from "@/lib/admin-db";
 
+function formatLeadDate(value: string | null | undefined) {
+  if (!value) return "—";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) return "—";
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${day}/${month}/${year}, ${hours}:${minutes}`;
+}
+
 export function LeadsManagerClient({ leads }: { leads: LeadRecord[] }) {
   const router = useRouter();
 
@@ -36,16 +53,24 @@ export function LeadsManagerClient({ leads }: { leads: LeadRecord[] }) {
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-200">
+            {leads.length === 0 ? (
+              <tr>
+                <td colSpan={5} className="px-5 py-8 text-sm text-zinc-600">
+                  No lead enquiries yet.
+                </td>
+              </tr>
+            ) : null}
             {leads.map((lead) => (
               <tr key={lead.id}>
                 <td className="px-5 py-4">
                   <p className="font-semibold text-molonglo-ink">{lead.name}</p>
-                  <p className="text-zinc-600">{lead.email} · {lead.phone}</p>
+                  <p className="text-zinc-600">{lead.email || "No email"} · {lead.phone || "No phone"}</p>
                   <p className="text-xs text-zinc-500">{lead.suburb || "Suburb not supplied"}</p>
                   <p className="text-xs text-zinc-500">Source: {lead.source || "Unknown"}</p>
+                  <p className="mt-3 max-w-xl whitespace-pre-wrap text-sm leading-6 text-zinc-700">{lead.message}</p>
                 </td>
-                <td className="px-5 py-4 text-zinc-600">{lead.projectType}</td>
-                <td className="px-5 py-4 text-zinc-600">{lead.createdAt.slice(0, 10)}</td>
+                <td className="px-5 py-4 text-zinc-600">{lead.projectType || "Not supplied"}</td>
+                <td className="px-5 py-4 text-zinc-600">{formatLeadDate(lead.createdAt)}</td>
                 <td className="px-5 py-4 text-zinc-600">{lead.status}</td>
                 <td className="px-5 py-4">
                   <div className="flex flex-wrap gap-2">

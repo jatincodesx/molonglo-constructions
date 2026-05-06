@@ -1,5 +1,6 @@
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import { getAdminSessionSecret } from "@/lib/admin-auth-config";
 
 export const ADMIN_COOKIE = "molonglo_admin_session";
 
@@ -9,13 +10,7 @@ type AdminJwtPayload = {
 };
 
 function getSessionSecret() {
-  const secret = process.env.SESSION_SECRET;
-
-  if (!secret) {
-    throw new Error("Missing SESSION_SECRET.");
-  }
-
-  return secret;
+  return getAdminSessionSecret();
 }
 
 function base64UrlEncode(value: string | Uint8Array) {

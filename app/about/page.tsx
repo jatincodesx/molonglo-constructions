@@ -2,6 +2,7 @@ import { CTA } from "@/components/CTA";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
+import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
 
@@ -22,15 +23,17 @@ export default async function AboutPage() {
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Home", href: "/" }, { name: "About", href: "/about" }])} />
       {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
-      <Hero
-        eyebrow="About Molonglo Construction"
-        title="A local builder focused on clear process, direct communication and quality outcomes."
-        text="Molonglo Construction Group works with Canberra homeowners who want a more personalised building experience grounded in practical planning and careful delivery."
-        image="/assets/images/about-banner.jpg"
-      />
+      <PremiumScrollShell mode="light">
+        <Hero
+          eyebrow="About Molonglo Construction"
+          title="A Canberra builder focused on clear process and carefully delivered homes."
+          text="Molonglo Construction Group works with homeowners who want local building knowledge, practical planning and direct communication from the first conversation to handover."
+          image="/assets/images/about-banner.jpg"
+        />
 
-      <section className="section bg-white">
-        <div className="container grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+        <section className="section bg-white">
+          <div className="container">
+        <div className="grid gap-10 lg:grid-cols-[1.15fr_0.85fr]">
           <div className="prose-seo">
             <h2>Built around local knowledge and practical planning</h2>
             <p>
@@ -50,24 +53,26 @@ export default async function AboutPage() {
             </p>
           </div>
 
-          <aside className="grid gap-4">
+          <aside className="grid gap-4 lg:pt-14">
             {[
-              ["Canberra Focused", "Local project knowledge across Canberra, Molonglo Valley and nearby regions."],
+              ["Canberra Focused", "Local project knowledge across all of ACT and surrounds, including Canberra, Queanbeyan, Googong and the Molonglo Valley."],
               ["Refined Process", "A clear sequence from consultation to approvals, construction and handover."],
               ["Direct Communication", "A more personalised experience than large-scale volume builder workflows."],
               ["Residential Expertise", "Custom homes, rebuilds, renovations and selected dual occupancy projects."]
             ].map(([title, body]) => (
-              <div key={title} className="surface-panel p-6">
-                <h3 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">{title}</h3>
+              <div key={title} className="rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6" data-scroll-reveal>
+                <h3 className="font-display text-2xl font-semibold text-molonglo-ink">{title}</h3>
                 <p className="mt-3 text-sm leading-7 text-zinc-600">{body}</p>
               </div>
             ))}
           </aside>
         </div>
-      </section>
+          </div>
+        </section>
 
-      <SignatureBuildingProcess />
-      <CTA />
+        <SignatureBuildingProcess />
+        <CTA />
+      </PremiumScrollShell>
     </>
   );
 }

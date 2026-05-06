@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { CTA } from "@/components/CTA";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
+import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
 import { getPublishedBlogs } from "@/lib/blog";
 import { getLocationBySlug, getServiceBySlug, locations, services } from "@/lib/content";
@@ -37,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 async function findRelatedBlogs(slugs: string[]) {
-  const posts = await getPublishedBlogs();
+  const posts = (await getPublishedBlogs()).filter((post) => post.slug !== "test-blog-1" && post.title !== "Test Blog 1");
   const matched = slugs
     .map((slug) => posts.find((post) => post.slug === slug))
     .filter((post): post is NonNullable<typeof post> => Boolean(post));
@@ -81,6 +82,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
         />
         {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
 
+        <PremiumScrollShell mode="light">
         <Hero eyebrow="Service" title={service.h1} text={service.intro} image={service.image} />
 
         <section className="section bg-white">
@@ -119,8 +121,8 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
             </article>
 
             <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-              <div className="surface-panel p-6">
-                <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Related locations</h2>
+              <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+                <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Related locations</h2>
                 <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                   {relatedLocations.map((location) => (
                     <li key={location.slug}>
@@ -130,24 +132,26 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
                 </ul>
               </div>
 
-              <div className="surface-panel p-6">
-                <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Relevant guides</h2>
-                <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
-                  {relatedBlogs.map((post) => (
-                    <li key={post.slug}>
-                      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              {relatedBlogs.length ? (
+                <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+                  <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Relevant guides</h2>
+                  <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
+                    {relatedBlogs.map((post) => (
+                      <li key={post.slug}>
+                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ) : null}
 
-              <div className="surface-panel bg-molonglo-ink p-6 text-white">
-                <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-white">Talk about your project</h2>
-                <p className="mt-3 text-sm leading-7 text-white/72">
+              <div className="rounded-lg bg-molonglo-ink p-6 text-white">
+                <h2 className="font-display text-2xl font-semibold text-white">Talk about your project</h2>
+                <p className="mt-3 text-sm leading-7 text-white/90">
                   Share your block, suburb and project goals and we can discuss the next practical step.
                 </p>
                 <Link href="/contact#quote" className="cta mt-5 w-full">
-                  Request a Quote
+                  Start a Conversation
                 </Link>
               </div>
             </aside>
@@ -156,6 +160,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
         <SignatureBuildingProcess />
         <CTA />
+        </PremiumScrollShell>
       </>
     );
   }
@@ -186,6 +191,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
       />
       {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
 
+      <PremiumScrollShell mode="light">
       <Hero eyebrow="Service Area" title={location.h1} text={location.intro} image={location.image} />
 
       <section className="section bg-white">
@@ -219,8 +225,8 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
           </article>
 
           <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
-            <div className="surface-panel p-6">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Nearby service areas</h2>
+            <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+              <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Nearby service areas</h2>
               <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                 {nearbyLocations.map((item) => (
                   <li key={item.slug}>
@@ -230,24 +236,26 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
               </ul>
             </div>
 
-            <div className="surface-panel p-6">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-molonglo-ink">Helpful articles</h2>
-              <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
-                {relatedBlogs.map((post) => (
-                  <li key={post.slug}>
-                    <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            {relatedBlogs.length ? (
+              <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+                <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Helpful articles</h2>
+                <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
+                  {relatedBlogs.map((post) => (
+                    <li key={post.slug}>
+                      <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
 
-            <div className="surface-panel bg-molonglo-ink p-6 text-white">
-              <h2 className="font-display text-2xl font-semibold tracking-[-0.03em] text-white">Start with a local consultation</h2>
-              <p className="mt-3 text-sm leading-7 text-white/72">
+            <div className="rounded-lg bg-molonglo-ink p-6 text-white">
+              <h2 className="font-display text-2xl font-semibold text-white">Start with a local consultation</h2>
+              <p className="mt-3 text-sm leading-7 text-white/90">
                 We can review the block, suburb context and the most suitable project path for your property.
               </p>
               <Link href="/contact#quote" className="cta mt-5 w-full">
-                Request a Quote
+                Start a Conversation
               </Link>
             </div>
           </aside>
@@ -256,6 +264,7 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
       <SignatureBuildingProcess />
       <CTA />
+      </PremiumScrollShell>
     </>
   );
 }

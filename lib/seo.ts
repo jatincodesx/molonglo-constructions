@@ -111,13 +111,22 @@ export function localBusinessSchema() {
       addressCountry: site.countryCode
     },
     areaServed: [
+      "all of ACT and surrounds",
       "Canberra",
       "ACT",
       "Queanbeyan",
+      "Jerrabomberra",
+      "Googong",
       "Molonglo Valley",
       "Denman Prospect",
       "Wright",
-      "Coombs"
+      "Coombs",
+      "South Coast",
+      "Batemans Bay",
+      "Narooma",
+      "Bega",
+      "Pambula",
+      "Merimbula"
     ],
     foundingDate: site.foundedYear,
     identifier: [
@@ -173,7 +182,7 @@ export function serviceSchema(input: {
       name: site.name,
       url: site.url
     },
-    areaServed: input.areaServed || ["Canberra", "ACT", "Molonglo Valley", "Queanbeyan"],
+    areaServed: input.areaServed || ["Canberra", "ACT", "Molonglo Valley", "Queanbeyan", "Googong"],
     serviceType: input.name,
     url: absoluteUrl(input.path)
   };

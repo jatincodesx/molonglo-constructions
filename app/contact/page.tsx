@@ -2,9 +2,11 @@ import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { MapEmbed } from "@/components/MapEmbed";
 import { QuoteForm } from "@/components/QuoteForm";
+import { IntentionalSection } from "@/components/public-ui/IntentionalSection";
+import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
-import { serviceAreas, site } from "@/lib/site";
+import { actServiceAreas, site, southCoastServiceAreas } from "@/lib/site";
 
 export const dynamic = "force-dynamic";
 
@@ -22,19 +24,23 @@ export default async function ContactPage() {
     <>
       <JsonLd data={breadcrumbSchema([{ name: "Home", href: "/" }, { name: "Contact", href: "/contact" }])} />
       {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
-      <Hero
-        eyebrow="Contact"
-        title="Talk to a Canberra builder about your project."
-        text="Share your suburb, project type and priorities, and we will help you understand the most practical next step."
-        image="/assets/images/hero.jpg"
-        primaryLabel="Request Consultation"
-      />
+      <PremiumScrollShell mode="light">
+        <Hero
+          eyebrow="Contact"
+          title="Talk to a Canberra builder about your project."
+          text="Share your suburb, project type and priorities, and we will help you understand the most practical next step."
+          image="/assets/images/hero.jpg"
+          primaryLabel="Start a Conversation"
+        />
 
-      <section id="quote" className="section bg-white">
+      <section id="quote" className="section bg-white scroll-mt-[var(--header-height)]">
         <div className="container grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <p className="eyebrow">Get In Touch</p>
-            <h2 className="heading-lg mt-3">Request a consultation</h2>
+            <h2 className="heading-lg mt-3">Start with a practical conversation.</h2>
+            <p className="mt-5 max-w-xl text-lg leading-8 text-zinc-700">
+              Send the basics and we will respond with a clear next step. A suburb, block details and project type are enough to begin.
+            </p>
             <div className="mt-8 space-y-5 text-zinc-700">
               <p>
                 <strong>Office</strong>
@@ -54,7 +60,9 @@ export default async function ContactPage() {
               <p>
                 <strong>Service Areas</strong>
                 <br />
-                {serviceAreas.join(", ")}
+                ACT and surrounds: {actServiceAreas.join(", ")}
+                <br />
+                South Coast: {southCoastServiceAreas.join(", ")}
               </p>
               {/* TODO: Add confirmed opening hours if the business wants them displayed publicly. */}
             </div>
@@ -63,15 +71,16 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <section className="section bg-[#f6f3ee]">
-        <div className="container">
-          <p className="eyebrow text-center">Location</p>
-          <h2 className="heading-lg mt-3 text-center">Visit Molonglo Construction Group in Denman Prospect</h2>
-          <div className="mt-8 overflow-hidden rounded-[1.5rem] shadow-soft">
+      <IntentionalSection
+        eyebrow="Location"
+        title="Visit Molonglo Construction Group in Denman Prospect"
+        tone="stone"
+      >
+          <div className="mt-8 overflow-hidden rounded-lg border border-[var(--color-border)]">
             <MapEmbed />
           </div>
-        </div>
-      </section>
+      </IntentionalSection>
+      </PremiumScrollShell>
     </>
   );
 }

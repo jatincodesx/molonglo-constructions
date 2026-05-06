@@ -5,7 +5,6 @@ import {
   type SupabaseErrorLike
 } from "@/lib/supabase/errors";
 import { createAdminSupabaseClient } from "@/lib/supabase/admin";
-import { createServerSupabaseClient } from "@/lib/supabase/server";
 
 export type LeadStatus = "new" | "contacted" | "archived";
 
@@ -103,7 +102,7 @@ export async function createLead(input: LeadInput) {
     throw new Error("Lead message is required.");
   }
 
-  const supabase = createServerSupabaseClient();
+  const supabase = createAdminSupabaseClient();
   const { data, error } = await supabase
     .from("leads")
     .insert({

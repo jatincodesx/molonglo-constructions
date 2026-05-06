@@ -8,4 +8,8 @@ if (!password) {
 }
 
 const hash = await bcrypt.hash(password, 12);
+console.log("Local env file:");
+console.log(`ADMIN_PASSWORD_HASH='${hash.replace(/\$/g, "\\$")}'`);
+console.log("");
+console.log("Cloudflare secret value:");
 console.log(hash);

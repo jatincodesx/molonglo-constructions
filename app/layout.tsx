@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import "./globals.css";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
@@ -30,19 +29,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <SiteChrome
           header={<Header />}
           footer={<Footer />}
-          floatingCta={
-            <div className="fixed bottom-4 left-4 right-4 z-40 hidden justify-center gap-3 xl:left-auto xl:flex">
-              <Link href="/contact#quote" className="cta shadow-panel">
-                Request a Quote
-              </Link>
-              <a
-                href={site.phoneHref}
-                className="cta-secondary border-white/40 bg-white/12 text-white shadow-panel backdrop-blur hover:border-white hover:bg-white hover:text-molonglo-ink"
-              >
-                Call {site.phone}
-              </a>
-            </div>
-          }
         >
           {children}
         </SiteChrome>

@@ -94,6 +94,14 @@
       "namedRegex": "^/blog/(?<nxtPslug>[^/]+?)(?:/)?$"
     },
     {
+      "page": "/projects/[slug]",
+      "regex": "^/projects/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPslug": "nxtPslug"
+      },
+      "namedRegex": "^/projects/(?<nxtPslug>[^/]+?)(?:/)?$"
+    },
+    {
       "page": "/[slug]",
       "regex": "^/([^/]+?)(?:/)?$",
       "routeKeys": {
@@ -200,6 +208,18 @@
       "namedRegex": "^/contact(?:/)?$"
     },
     {
+      "page": "/display-home/denman-prospect",
+      "regex": "^/display\\-home/denman\\-prospect(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/display\\-home/denman\\-prospect(?:/)?$"
+    },
+    {
+      "page": "/house-and-land-packages",
+      "regex": "^/house\\-and\\-land\\-packages(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/house\\-and\\-land\\-packages(?:/)?$"
+    },
+    {
       "page": "/manifest.webmanifest",
       "regex": "^/manifest\\.webmanifest(?:/)?$",
       "routeKeys": {},
@@ -222,6 +242,12 @@
       "regex": "^/sitemap\\.xml(?:/)?$",
       "routeKeys": {},
       "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/success-stories",
+      "regex": "^/success\\-stories(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/success\\-stories(?:/)?$"
     }
   ],
   "dataRoutes": [],

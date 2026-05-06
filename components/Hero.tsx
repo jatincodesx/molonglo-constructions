@@ -20,26 +20,26 @@ export function Hero({
   image = "/assets/images/hero.jpg",
   imagePriority = true,
   primaryHref = "/contact#quote",
-  primaryLabel = "Request a Quote",
+  primaryLabel = "Start a Conversation",
   secondaryHref = "/projects",
   secondaryLabel = "View Projects"
 }: HeroProps) {
   return (
-    <section className="surface-dark relative overflow-hidden text-white">
+    <section className="relative isolate overflow-hidden bg-[var(--color-stone)] text-[var(--color-charcoal)]">
       <div className="absolute inset-0">
-        <Image src={image} alt="" fill priority={imagePriority} className="object-cover opacity-30" sizes="100vw" />
-        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,15,14,0.22),rgba(12,15,14,0.88))]" />
+        <Image src={image} alt="" fill priority={imagePriority} className="object-cover opacity-25" sizes="100vw" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(244,239,230,0.98),rgba(244,239,230,0.76))]" />
       </div>
-      <div className="container relative flex min-h-[68svh] items-end py-20 sm:py-24 lg:min-h-[74svh]">
+      <div className="container relative flex min-h-[52svh] items-end pb-14 pt-[calc(var(--header-height)+2.5rem)] sm:pb-16 lg:min-h-[60svh]">
         <div className="max-w-4xl">
-          {eyebrow ? <p className="eyebrow text-white/75">{eyebrow}</p> : null}
-          <h1 className="heading-xl mt-5 text-white">{title}</h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-100/82 sm:text-xl">{text}</p>
+          {eyebrow ? <p className="eyebrow">{eyebrow}</p> : null}
+          <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.02] text-molonglo-ink sm:text-5xl lg:text-6xl">{title}</h1>
+          <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-700 sm:text-xl">{text}</p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Link href={primaryHref} className="cta">
               {primaryLabel}
             </Link>
-            <Link href={secondaryHref} className="cta-secondary border-white/35 bg-white/10 text-white hover:border-white hover:bg-white hover:text-molonglo-ink">
+            <Link href={secondaryHref} className="cta-secondary">
               {secondaryLabel}
             </Link>
           </div>
