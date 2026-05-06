@@ -8,100 +8,58 @@ import { site } from "@/lib/site";
 type NavItem = {
   href: string;
   label: string;
+  description?: string;
 };
 
-type NavGroup = {
-  label: string;
-  items: NavItem[];
-};
-
-const homesGroups: NavGroup[] = [
-  {
-    label: "Build new",
-    items: [
-      { href: "/custom-home-builders-canberra", label: "Custom Homes" },
-      { href: "/new-home-builders-canberra", label: "New Home Builds" },
-      { href: "/house-and-land-packages", label: "House & Land Packages" }
-    ]
-  },
-  {
-    label: "Rebuild & develop",
-    items: [
-      { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
-      { href: "/construction-services-canberra", label: "Construction Services" },
-      { href: "/dual-occupancy-builders-act", label: "Dual Occupancy" }
-    ]
-  },
-  {
-    label: "Where we build",
-    items: [
-      { href: "/builder-canberra", label: "Canberra & ACT" },
-      { href: "/contact", label: "Queanbeyan" },
-      { href: "/contact", label: "Googong" },
-      { href: "/contact", label: "Jerrabomberra" },
-      { href: "/contact", label: "South Coast" }
-    ]
-  }
+const servicesLinks: NavItem[] = [
+  { href: "/custom-home-builders-canberra", label: "Custom Homes", description: "Tailored homes shaped around your block and brief." },
+  { href: "/new-home-builders-canberra", label: "New Home Builds", description: "A clear path from vacant land to handover." },
+  { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds", description: "Stay in the suburb you know with a better home." },
+  { href: "/construction-services-canberra", label: "Construction Services", description: "Residential building support and site delivery." },
+  { href: "/house-and-land-canberra", label: "House & Land Packages", description: "Discuss land, timing and build opportunities." },
+  { href: "/service-areas", label: "Where We Build", description: "Canberra, ACT surrounds and selected South Coast areas." }
 ];
 
-const desktopLinks: NavItem[] = [
+const primaryLinks: NavItem[] = [
   { href: "/projects", label: "Projects" },
-  { href: "/display-home/denman-prospect", label: "Visit Display Home" },
-  { href: "/success-stories", label: "Success Stories" }
+  { href: "/display-home/denman-prospect", label: "Display Home" },
+  { href: "/success-stories", label: "Success Stories" },
+  { href: "/blog", label: "Blog" }
 ];
 
-const mobileGroups: NavGroup[] = [
+const mobileGroups = [
   {
-    label: "Homes",
+    label: "Primary",
     items: [
-      { href: "/custom-home-builders-canberra", label: "Custom Homes" },
-      { href: "/new-home-builders-canberra", label: "New Home Builds" },
-      { href: "/house-and-land-packages", label: "House & Land Packages" },
-      { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
-      { href: "/construction-services-canberra", label: "Construction Services" },
-      { href: "/dual-occupancy-builders-act", label: "Dual Occupancy" }
-    ]
-  },
-  {
-    label: "Main",
-    items: [
-      { href: "/projects", label: "Projects" },
-      { href: "/display-home/denman-prospect", label: "Visit Display Home" },
-      { href: "/success-stories", label: "Success Stories" },
-      { href: "/about", label: "About" },
-      { href: "/blog", label: "Blog" },
+      { href: "/services", label: "Services" },
+      ...primaryLinks,
+      { href: "/service-areas", label: "Service Areas" },
       { href: "/contact", label: "Contact" }
     ]
   },
   {
-    label: "Where We Build",
-    items: [
-      { href: "/builder-canberra", label: "Canberra & ACT" },
-      { href: "/contact", label: "Queanbeyan" },
-      { href: "/contact", label: "Googong" },
-      { href: "/contact", label: "Jerrabomberra" },
-      { href: "/contact", label: "South Coast" }
-    ]
+    label: "Services",
+    items: servicesLinks
   }
 ];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [homesOpen, setHomesOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-  const homesPanelId = useId();
+  const servicesPanelId = useId();
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
       if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setHomesOpen(false);
+        setServicesOpen(false);
         setMenuOpen(false);
       }
     }
 
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setHomesOpen(false);
+        setServicesOpen(false);
         setMenuOpen(false);
       }
     }
@@ -127,13 +85,13 @@ export function Header() {
   }, [menuOpen]);
 
   const closeMenus = () => {
-    setHomesOpen(false);
+    setServicesOpen(false);
     setMenuOpen(false);
   };
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[#fbfaf6]/95 shadow-[0_16px_40px_rgba(23,26,24,0.06)] backdrop-blur-xl">
-      <div className="container flex min-h-[80px] items-center justify-between gap-4 py-2 lg:min-h-[84px]">
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[#fbfaf6]/96 shadow-[0_14px_34px_rgba(23,26,24,0.06)] backdrop-blur-xl">
+      <div className="container grid min-h-[76px] grid-cols-[auto_1fr_auto] items-center gap-4 py-2 lg:min-h-[82px]">
         <Link href="/" className="flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2" onClick={closeMenus}>
           <Image
             src="/assets/logo/logo_new.jpg"
@@ -141,63 +99,56 @@ export function Header() {
             width={188}
             height={94}
             priority
-            className="h-[42px] w-auto object-contain sm:h-[48px] lg:h-[52px]"
+            className="h-[42px] w-auto object-contain sm:h-[48px]"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Primary" className="hidden min-w-0 items-center justify-center gap-5 xl:gap-7 lg:flex">
           <div
             className="relative"
-            onMouseEnter={() => setHomesOpen(true)}
-            onMouseLeave={() => setHomesOpen(false)}
-            onFocus={() => setHomesOpen(true)}
+            onMouseEnter={() => setServicesOpen(true)}
+            onMouseLeave={() => setServicesOpen(false)}
+            onFocus={() => setServicesOpen(true)}
             onBlur={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                setHomesOpen(false);
+                setServicesOpen(false);
               }
             }}
           >
             <button
               type="button"
-              aria-expanded={homesOpen}
-              aria-controls={homesPanelId}
+              aria-expanded={servicesOpen}
+              aria-controls={servicesPanelId}
               className="inline-flex items-center gap-2 whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
-              onClick={() => setHomesOpen((open) => !open)}
+              onClick={() => setServicesOpen((open) => !open)}
             >
-              Homes
-              <span aria-hidden="true" className={`mt-[-0.15rem] h-1.5 w-1.5 border-b-2 border-r-2 border-current transition ${homesOpen ? "-rotate-[135deg]" : "rotate-45"}`} />
+              Services
+              <span aria-hidden="true" className={`mt-[-0.15rem] h-1.5 w-1.5 border-b-2 border-r-2 border-current transition ${servicesOpen ? "-rotate-[135deg]" : "rotate-45"}`} />
             </button>
 
-            {homesOpen ? (
-              <div className="absolute left-1/2 top-full z-50 w-[min(58rem,calc(100vw-3rem))] -translate-x-1/2 pt-3">
+            {servicesOpen ? (
+              <div className="absolute left-1/2 top-full z-[70] w-[min(44rem,calc(100vw-2rem))] -translate-x-1/2 pt-3">
                 <div
-                  id={homesPanelId}
-                  className="grid gap-6 rounded-lg border border-[var(--color-border)] bg-[#fbfaf6] p-6 shadow-[0_28px_80px_rgba(23,26,24,0.16)] lg:grid-cols-[1fr_1fr_1fr_0.95fr]"
+                  id={servicesPanelId}
+                  className="grid gap-3 rounded-lg border border-[var(--color-border)] bg-[#fbfaf6] p-4 shadow-[0_24px_70px_rgba(23,26,24,0.16)] md:grid-cols-[1fr_1fr]"
                 >
-                  {homesGroups.map((group) => (
-                    <div key={group.label}>
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">{group.label}</p>
-                      <div className="mt-4 grid gap-1">
-                        {group.items.map((item) => (
-                          <Link
-                            key={`${group.label}-${item.label}`}
-                            href={item.href}
-                            onClick={closeMenus}
-                            className="rounded-md px-3 py-2.5 text-sm font-semibold text-zinc-800 transition hover:bg-white hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
-                          >
-                            {item.label}
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  ))}
-
-                  <div className="rounded-lg border border-[var(--color-border)] bg-white p-5">
-                    <p className="text-sm font-semibold leading-6 text-molonglo-ink">
-                      Planning a build in Canberra or the South Coast?
-                    </p>
-                    <Link href="/contact" className="cta mt-5 w-full px-4 py-3 text-sm" onClick={closeMenus}>
-                      Start a Build
+                  <div className="grid gap-1">
+                    {servicesLinks.slice(0, 3).map((item) => (
+                      <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-md p-3 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+                        <span className="block text-sm font-semibold text-molonglo-ink">{item.label}</span>
+                        <span className="mt-1 block text-xs leading-5 text-zinc-600">{item.description}</span>
+                      </Link>
+                    ))}
+                  </div>
+                  <div className="grid gap-1">
+                    {servicesLinks.slice(3).map((item) => (
+                      <Link key={item.href} href={item.href} onClick={closeMenus} className="rounded-md p-3 transition hover:bg-white focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+                        <span className="block text-sm font-semibold text-molonglo-ink">{item.label}</span>
+                        <span className="mt-1 block text-xs leading-5 text-zinc-600">{item.description}</span>
+                      </Link>
+                    ))}
+                    <Link href="/contact#quote" className="mt-2 rounded-md border border-[var(--color-border)] bg-white p-3 text-sm font-semibold text-molonglo-gold transition hover:border-molonglo-gold hover:text-molonglo-ink" onClick={closeMenus}>
+                      Start a Build enquiry
                     </Link>
                   </div>
                 </div>
@@ -205,11 +156,11 @@ export function Header() {
             ) : null}
           </div>
 
-          {desktopLinks.map((link) => (
+          {primaryLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => setHomesOpen(false)}
+              onClick={() => setServicesOpen(false)}
               className="whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
             >
               {link.label}
@@ -217,8 +168,11 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/contact" className="cta hidden px-4 py-2.5 text-sm sm:inline-flex" onClick={closeMenus}>
+        <div className="flex items-center justify-end gap-2 sm:gap-3">
+          <a href={site.phoneHref} className="hidden whitespace-nowrap text-sm font-semibold text-molonglo-ink transition hover:text-molonglo-gold xl:inline-flex">
+            Call Now
+          </a>
+          <Link href="/contact#quote" className="cta hidden px-4 py-2.5 text-sm sm:inline-flex" onClick={closeMenus}>
             Start a Build
           </Link>
           <button
@@ -228,7 +182,7 @@ export function Header() {
             className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-molonglo-ink shadow-sm transition hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
             onClick={() => {
               setMenuOpen((open) => !open);
-              setHomesOpen(false);
+              setServicesOpen(false);
             }}
           >
             <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
@@ -242,7 +196,7 @@ export function Header() {
       </div>
 
       {menuOpen ? (
-        <div id="mobile-menu" className="max-h-[calc(100vh-80px)] overflow-y-auto border-t border-[var(--color-border)] bg-[#fbfaf6] lg:hidden">
+        <div id="mobile-menu" className="max-h-[calc(100vh-76px)] overflow-y-auto border-t border-[var(--color-border)] bg-[#fbfaf6] lg:hidden">
           <nav aria-label="Mobile" className="container grid gap-6 py-6">
             {mobileGroups.map((group) => (
               <div key={group.label}>
@@ -250,7 +204,7 @@ export function Header() {
                 <div className="mt-3 grid gap-1">
                   {group.items.map((item) => (
                     <Link
-                      key={`${group.label}-${item.label}`}
+                      key={`${group.label}-${item.href}`}
                       href={item.href}
                       onClick={closeMenus}
                       className="rounded-md px-3 py-3 text-base font-semibold text-zinc-800 transition hover:bg-white hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
@@ -265,7 +219,7 @@ export function Header() {
             <div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">Actions</p>
               <div className="mt-3 grid gap-3">
-                <Link href="/contact" className="cta w-full px-4 py-3" onClick={closeMenus}>
+                <Link href="/contact#quote" className="cta w-full px-4 py-3" onClick={closeMenus}>
                   Start a Build
                 </Link>
                 <a href={site.phoneHref} className="rounded-md border border-[var(--color-border)] bg-white px-4 py-3 text-center text-base font-semibold text-molonglo-ink" onClick={closeMenus}>

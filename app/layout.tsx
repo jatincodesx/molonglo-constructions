@@ -25,10 +25,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en-AU">
       <body className="bg-stone-950 font-sans text-zinc-900 antialiased">
-        <JsonLd data={[organizationSchema(), websiteSchema(), localBusinessSchema()]} />
         <SiteChrome
           header={<Header />}
           footer={<Footer />}
+          publicJsonLd={<JsonLd data={[organizationSchema(), websiteSchema(), localBusinessSchema()]} />}
         >
           {children}
         </SiteChrome>

@@ -6,7 +6,7 @@ import { JsonLd } from "@/components/JsonLd";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { ProjectGallery } from "@/components/projects/ProjectGallery";
 import { getProjectBySlug, projects } from "@/lib/projects";
-import { absoluteUrl, breadcrumbSchema, buildMetadata } from "@/lib/seo";
+import { absoluteUrl, breadcrumbSchema, buildMetadata, imageObjectSchema } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 type ProjectPageProps = {
@@ -60,6 +60,13 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             name: project.title,
             description: project.description,
             image: project.galleryImages.map((image) => absoluteUrl(image)),
+            associatedMedia: project.galleryImages.map((image, index) =>
+              imageObjectSchema({
+                url: image,
+                name: `${project.title} ${project.location} project image ${index + 1}`,
+                caption: `${project.category} project in ${project.location} by ${site.name}.`
+              })
+            ),
             locationCreated: project.location,
             creator: {
               "@type": "Organization",

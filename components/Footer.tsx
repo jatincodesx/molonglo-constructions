@@ -5,7 +5,7 @@ import { actServiceAreas, footerGroups, site, southCoastServiceAreas } from "@/l
 export function Footer() {
   return (
     <footer className="surface-dark text-white">
-      <div className="container grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-[1.2fr_0.9fr_0.8fr_1.1fr]">
+      <div className="container grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr_0.9fr_0.9fr_0.8fr]">
         <div>
           <Image src={site.logo} alt="Molonglo Construction Group" width={160} height={90} className="h-16 w-auto object-contain" />
           <h2 className="mt-5 font-display text-2xl font-semibold text-white">{site.name}</h2>
@@ -31,9 +31,35 @@ export function Footer() {
         </div>
 
         <div>
-          <h3 className="text-sm font-semibold text-[#f5ead2]">Explore</h3>
+          <h3 className="text-sm font-semibold text-[#f5ead2]">Services</h3>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-            {footerGroups.core.map((link) => (
+            {footerGroups.services.slice(0, 6).map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-white">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold text-[#f5ead2]">Service Areas</h3>
+          <ul className="mt-4 space-y-2 text-sm text-zinc-300">
+            {footerGroups.areas.slice(0, 7).map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="hover:text-white">
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold text-[#f5ead2]">Company</h3>
+          <ul className="mt-4 space-y-2 text-sm text-zinc-300">
+            {footerGroups.core.filter((link) => ["/about", "/projects", "/display-home/denman-prospect", "/success-stories", "/blog", "/contact"].includes(link.href)).map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="hover:text-white">
                   {link.label}
@@ -45,26 +71,6 @@ export function Footer() {
                 Admin
               </Link>
             </li>
-          </ul>
-        </div>
-
-        <div>
-          <h3 className="text-sm font-semibold text-[#f5ead2]">Services & Areas</h3>
-          <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-            {footerGroups.services.slice(0, 4).map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="hover:text-white">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
-            {footerGroups.areas.slice(0, 3).map((link) => (
-              <li key={link.href}>
-                <Link href={link.href} className="hover:text-white">
-                  {link.label}
-                </Link>
-              </li>
-            ))}
           </ul>
         </div>
       </div>

@@ -17,7 +17,7 @@ export const site = {
   nswLicense: "340764C",
   foundedYear: "2019",
   logo: "/assets/logo/logo_new.jpg",
-  heroImage: "/assets/images/hero.jpg",
+  heroImage: "/assets/images/FE02BB99-4862-4A69-87E3-2359B9E7FFFD_1_201_a.jpeg",
   facebook: "https://www.facebook.com/p/Molonglo-Constructions-100063601235529/",
   instagram: "https://www.instagram.com/molonglocg/",
   linkedin: "https://au.linkedin.com/in/molonglo-cg-825638337",
@@ -25,10 +25,12 @@ export const site = {
 } as const;
 
 export const servicesNavLinks = [
+  { href: "/services", label: "Services" },
   { href: "/custom-home-builders-canberra", label: "Custom Homes" },
   { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
   { href: "/new-home-builders-canberra", label: "New Home Builds" },
-  { href: "/construction-services-canberra", label: "Construction Services" }
+  { href: "/construction-services-canberra", label: "Construction Services" },
+  { href: "/house-and-land-canberra", label: "House & Land Packages" }
 ] as const;
 
 export const displayHomeNavLinks = [
@@ -43,7 +45,7 @@ export const moreNavLinks = [
 ] as const;
 
 export const navLinks = [
-  { label: "Homes", children: servicesNavLinks },
+  { label: "Services", children: servicesNavLinks },
   { href: "/projects", label: "Projects" },
   { href: "/display-home/denman-prospect", label: "Visit Display Home" },
   { href: "/success-stories", label: "Success Stories" },
@@ -53,29 +55,35 @@ export const navLinks = [
 export const footerGroups = {
   core: [
     { href: "/", label: "Home" },
+    { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
     { href: "/projects", label: "Projects" },
     { href: "/display-home/denman-prospect", label: "Display Home" },
     { href: "/house-and-land-packages", label: "House & Land" },
     { href: "/success-stories", label: "Success Stories" },
+    { href: "/service-areas", label: "Service Areas" },
     { href: "/blog", label: "Blog" },
     { href: "/contact", label: "Contact" }
   ],
   services: [
+    { href: "/services", label: "Services" },
     { href: "/custom-home-builders-canberra", label: "Custom Home Builders Canberra" },
     { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuild Canberra" },
     { href: "/new-home-builders-canberra", label: "New Home Builders Canberra" },
     { href: "/construction-services-canberra", label: "Construction Services Canberra" },
-    { href: "/home-renovations-canberra", label: "Home Renovations Canberra" },
-    { href: "/dual-occupancy-builders-act", label: "Dual Occupancy Builders ACT" }
+    { href: "/house-and-land-canberra", label: "House and Land Canberra" },
+    { href: "/home-renovations-canberra", label: "Home Renovations Canberra" }
   ],
   areas: [
+    { href: "/service-areas", label: "Where We Build" },
     { href: "/builder-canberra", label: "Builder Canberra" },
     { href: "/builder-molonglo-valley", label: "Builder Molonglo Valley" },
     { href: "/builder-denman-prospect", label: "Builder Denman Prospect" },
     { href: "/builder-wright-act", label: "Builder Wright ACT" },
-    { href: "/builder-coombs-act", label: "Builder Coombs ACT" },
-    { href: "/builder-queanbeyan", label: "Builder Queanbeyan" }
+    { href: "/builder-coombs", label: "Builder Coombs" },
+    { href: "/builder-googong", label: "Builder Googong" },
+    { href: "/builder-queanbeyan", label: "Builder Queanbeyan" },
+    { href: "/builder-jerrabomberra", label: "Builder Jerrabomberra" }
   ]
 } as const;
 

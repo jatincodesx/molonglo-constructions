@@ -7,11 +7,13 @@ export function SiteChrome({
   children,
   header,
   footer,
+  publicJsonLd = null,
   floatingCta = null
 }: {
   children: React.ReactNode;
   header: React.ReactNode;
   footer: React.ReactNode;
+  publicJsonLd?: React.ReactNode;
   floatingCta?: React.ReactNode;
 }) {
   const pathname = usePathname();
@@ -24,6 +26,7 @@ export function SiteChrome({
   return (
     <>
       {header}
+      {publicJsonLd}
       <AnalyticsTracker />
       <main className="overflow-x-clip bg-white">{children}</main>
       {footer}

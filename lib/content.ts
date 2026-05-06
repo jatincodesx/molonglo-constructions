@@ -104,8 +104,8 @@ export const services: ServicePage[] = [
   {
     slug: "knockdown-rebuild-canberra",
     title: "Knockdown Rebuild Canberra",
-    metaTitle: "Knockdown Rebuild Canberra | Molonglo Construction Group",
-    metaDescription: "Knockdown rebuild builders in Canberra for demolition planning, approvals and new homes on established blocks.",
+    metaTitle: "Knockdown Rebuild Canberra | Licensed ACT Builder",
+    metaDescription: "Knockdown rebuild builder in Canberra for demolition planning, approvals coordination and new homes on established blocks. Start with a licensed ACT and NSW builder.",
     h1: "Knockdown Rebuild Canberra",
     intro: "Stay in the suburb you know while replacing an ageing home with a better-planned, more efficient new build.",
     image: "/assets/images/projects/wright-1.jpg",
@@ -214,7 +214,7 @@ export const services: ServicePage[] = [
         answer: "Yes. Early builder input often makes pricing, scope alignment and program planning much clearer."
       }
     ],
-    relatedLocations: ["builder-canberra", "builder-coombs-act", "builder-denman-prospect"],
+    relatedLocations: ["builder-canberra", "builder-coombs", "builder-denman-prospect"],
     relatedBlogs: ["how-long-does-it-take-to-build-a-home-in-canberra", "cost-to-build-a-house-in-canberra-2026", "custom-home-builder-canberra-what-to-look-for"]
   },
   {
@@ -388,7 +388,7 @@ export const services: ServicePage[] = [
         answer: "Yes. We service Molonglo Valley and surrounding ACT locations where the site and approvals pathway support the project."
       }
     ],
-    relatedLocations: ["builder-molonglo-valley", "builder-denman-prospect", "builder-coombs-act"],
+    relatedLocations: ["builder-molonglo-valley", "builder-denman-prospect", "builder-coombs"],
     relatedBlogs: ["builder-vs-project-home-company-which-is-better", "building-in-denman-prospect-what-homeowners-should-know", "building-in-wright-act-custom-home-guide"]
   },
   {
@@ -456,7 +456,7 @@ export const locations: LocationPage[] = [
     slug: "builder-canberra",
     suburb: "Canberra",
     metaTitle: "Builder Canberra | Molonglo Construction Group",
-    metaDescription: "Local Canberra builder for custom homes, knockdown rebuilds, renovations and dual occupancy projects.",
+    metaDescription: "Local Canberra builder for custom homes, knockdown rebuilds and residential construction. Talk to a licensed ACT and NSW builder about your project.",
     h1: "Builder Canberra",
     intro: "A Canberra-focused residential builder offering practical planning, direct communication and quality construction across custom homes, rebuilds and selected development projects.",
     image: "/assets/images/hero.jpg",
@@ -538,7 +538,7 @@ export const locations: LocationPage[] = [
       }
     ],
     serviceLinks: ["custom-home-builders-canberra", "new-home-builders-canberra", "dual-occupancy-builders-act"],
-    nearbyLocations: ["builder-wright-act", "builder-coombs-act", "builder-molonglo-valley"],
+    nearbyLocations: ["builder-wright-act", "builder-coombs", "builder-molonglo-valley"],
     relatedBlogs: ["building-in-denman-prospect-what-homeowners-should-know", "cost-to-build-a-house-in-canberra-2026", "canberra-home-construction-timeline-explained"]
   },
   {
@@ -582,15 +582,15 @@ export const locations: LocationPage[] = [
       }
     ],
     serviceLinks: ["custom-home-builders-canberra", "knockdown-rebuild-canberra", "dual-occupancy-builders-act"],
-    nearbyLocations: ["builder-denman-prospect", "builder-coombs-act", "builder-molonglo-valley"],
+    nearbyLocations: ["builder-denman-prospect", "builder-coombs", "builder-molonglo-valley"],
     relatedBlogs: ["building-in-wright-act-custom-home-guide", "questions-to-ask-before-choosing-a-builder-in-canberra", "how-long-does-it-take-to-build-a-home-in-canberra"]
   },
   {
-    slug: "builder-coombs-act",
+    slug: "builder-coombs",
     suburb: "Coombs",
-    metaTitle: "Builder Coombs ACT | Molonglo Construction Group",
+    metaTitle: "Builder Coombs | Molonglo Construction Group",
     metaDescription: "Coombs ACT builder for new homes, custom homes and carefully planned residential construction.",
-    h1: "Builder Coombs ACT",
+    h1: "Builder Coombs",
     intro: "A Coombs builder for homeowners who want thoughtful planning, clear communication and a home that suits both the block and the way they live.",
     image: "/assets/images/projects/giordano-2.jpg",
     sections: [
@@ -670,7 +670,7 @@ export const locations: LocationPage[] = [
       }
     ],
     serviceLinks: ["custom-home-builders-canberra", "new-home-builders-canberra", "dual-occupancy-builders-act", "construction-services-canberra"],
-    nearbyLocations: ["builder-denman-prospect", "builder-wright-act", "builder-coombs-act"],
+    nearbyLocations: ["builder-denman-prospect", "builder-wright-act", "builder-coombs"],
     relatedBlogs: ["building-in-denman-prospect-what-homeowners-should-know", "building-in-wright-act-custom-home-guide", "new-home-construction-process-in-act"]
   },
   {
@@ -714,8 +714,96 @@ export const locations: LocationPage[] = [
       }
     ],
     serviceLinks: ["construction-services-canberra", "home-renovations-canberra", "knockdown-rebuild-canberra"],
-    nearbyLocations: ["builder-canberra", "builder-molonglo-valley", "builder-denman-prospect"],
+    nearbyLocations: ["builder-googong", "builder-jerrabomberra", "builder-canberra"],
     relatedBlogs: ["builder-vs-project-home-company-which-is-better", "cost-to-build-a-house-in-canberra-2026", "new-home-construction-process-in-act"]
+  },
+  {
+    slug: "builder-googong",
+    suburb: "Googong",
+    metaTitle: "Builder Googong | Molonglo Construction Group",
+    metaDescription: "Googong builder for custom homes, new home builds and residential construction near Canberra and Queanbeyan.",
+    h1: "Builder Googong",
+    intro: "Residential building support for Googong homeowners planning a custom home, new build or tailored construction project close to Canberra.",
+    image: "/assets/images/projects/denman-3.jpg",
+    sections: [
+      {
+        title: "Building in Googong",
+        paragraphs: [
+          "Googong combines newer estate conditions with the practical realities of building near the ACT and NSW border. Site levels, garage access, orientation, drainage and estate controls can all influence the right construction pathway.",
+          "Molonglo Construction Group helps clients review those conditions early so the design, documentation and budget stay connected before construction begins."
+        ]
+      },
+      {
+        title: "Block and site considerations",
+        paragraphs: [
+          "A strong Googong home should respond to slope, street presentation, privacy and natural light rather than relying on a generic layout. These decisions affect excavation, retaining, materials and how comfortable the home feels through Canberra-region seasons.",
+          "We work with your designer, architect, or planning team to align the design, documentation, budget, and buildability."
+        ]
+      },
+      {
+        title: "Relevant services for Googong homeowners",
+        paragraphs: [
+          "Googong enquiries commonly suit new home builds, custom homes and broader residential construction advice. If you are still comparing land or have concept plans, an early builder conversation can clarify the likely next step."
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you build in Googong?",
+        answer: "Yes. Googong is within our broader Canberra-region service area for suitable residential projects."
+      },
+      {
+        question: "Can you help before I buy land in Googong?",
+        answer: "Yes. We can discuss likely site considerations, budget pressure points and the type of documentation needed before pricing is meaningful."
+      }
+    ],
+    serviceLinks: ["custom-home-builders-canberra", "new-home-builders-canberra", "construction-services-canberra"],
+    nearbyLocations: ["builder-queanbeyan", "builder-jerrabomberra", "builder-canberra"],
+    relatedBlogs: ["cost-to-build-a-house-in-canberra-2026", "new-home-construction-process-in-act", "questions-to-ask-before-choosing-a-builder-in-canberra"]
+  },
+  {
+    slug: "builder-jerrabomberra",
+    suburb: "Jerrabomberra",
+    metaTitle: "Builder Jerrabomberra | Molonglo Construction Group",
+    metaDescription: "Jerrabomberra builder for custom homes, knockdown rebuilds and residential construction near Canberra and Queanbeyan.",
+    h1: "Builder Jerrabomberra",
+    intro: "A Canberra-region residential builder for Jerrabomberra homeowners comparing custom builds, rebuilds and practical construction pathways.",
+    image: "/assets/images/projects/churcher-whitlam.jpg",
+    sections: [
+      {
+        title: "Residential building in Jerrabomberra",
+        paragraphs: [
+          "Jerrabomberra projects can involve established homes, newer pockets and blocks where access, slope, privacy and orientation need to be assessed together. Those details influence whether a custom home, renovation or knockdown rebuild pathway makes sense.",
+          "Molonglo Construction Group brings Canberra-region building experience to early feasibility conversations so the project starts from real site conditions."
+        ]
+      },
+      {
+        title: "Block and rebuild considerations",
+        paragraphs: [
+          "If an existing house no longer suits the household, the decision between renovation and rebuild should consider structure, services, layout compromises, energy performance and long-term value.",
+          "For vacant or newer blocks, the early focus is usually on orientation, drainage, access, storage, outdoor living and where the budget should work hardest."
+        ]
+      },
+      {
+        title: "Relevant services for Jerrabomberra homeowners",
+        paragraphs: [
+          "Jerrabomberra clients may need custom home planning, knockdown rebuild advice or residential construction services. The right next step depends on the existing home, land status and level of documentation already prepared."
+        ]
+      }
+    ],
+    faqs: [
+      {
+        question: "Do you take on Jerrabomberra projects?",
+        answer: "Yes. Jerrabomberra is within our broader service area for suitable residential projects."
+      },
+      {
+        question: "Can you help compare renovation and knockdown rebuild options?",
+        answer: "Yes. We can discuss the current home, the desired outcome and the likely construction pathway before you commit heavily to design work."
+      }
+    ],
+    serviceLinks: ["custom-home-builders-canberra", "knockdown-rebuild-canberra", "construction-services-canberra"],
+    nearbyLocations: ["builder-queanbeyan", "builder-googong", "builder-canberra"],
+    relatedBlogs: ["knockdown-rebuild-guide-act", "cost-to-build-a-house-in-canberra-2026", "questions-to-ask-before-choosing-a-builder-in-canberra"]
   }
 ];
 

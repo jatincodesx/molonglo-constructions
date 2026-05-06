@@ -1,15 +1,15 @@
 const steps = [
   {
     title: "Initial Consultation",
-    body: "We meet to discuss your vision, requirements, and budget to create the perfect plan for your dream home."
+    body: "We discuss your site, goals, requirements and budget so the project starts from a practical foundation."
   },
   {
     title: "Design & Planning",
-    body: "Our expert architects create detailed designs and plans, incorporating your ideas and our expertise."
+    body: "We work with your designer, architect, or planning team to align the design, documentation, budget, and buildability."
   },
   {
     title: "Approvals & Contracts",
-    body: "We handle all necessary permits and paperwork, ensuring a smooth approval process."
+    body: "Approvals, scope and contract details are coordinated before construction begins."
   },
   {
     title: "Construction",

@@ -14,6 +14,7 @@ const nextConfig: NextConfig = {
       { source: "/blogs", destination: "/blog", permanent: true },
       { source: "/blogs/:slug*", destination: "/blog/:slug*", permanent: true },
       { source: "/home-builders-canberra", destination: "/new-home-builders-canberra", permanent: true },
+      { source: "/builder-coombs-act", destination: "/builder-coombs", permanent: true },
       { source: "/pages/about.html", destination: "/about", permanent: true },
       { source: "/pages/projects.html", destination: "/projects", permanent: true },
       { source: "/pages/contact.html", destination: "/contact", permanent: true },

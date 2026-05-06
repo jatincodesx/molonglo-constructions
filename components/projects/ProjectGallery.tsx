@@ -12,6 +12,7 @@ type ProjectGalleryProps = {
 export function ProjectGallery({ images, projectTitle, location }: ProjectGalleryProps) {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const activeImage = activeIndex === null ? null : images[activeIndex];
+  const imageAlt = (index: number) => `${projectTitle} residential project detail in ${location} by Molonglo Construction Group, image ${index + 1}`;
 
   useEffect(() => {
     if (activeIndex === null) return;
@@ -52,7 +53,7 @@ export function ProjectGallery({ images, projectTitle, location }: ProjectGaller
           >
             <Image
               src={image}
-              alt={`${projectTitle} gallery image ${index + 1} in ${location}`}
+              alt={imageAlt(index)}
               width={1200}
               height={850}
               sizes={index === 0 ? "(min-width: 1024px) 66vw, 100vw" : "(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"}
@@ -78,7 +79,7 @@ export function ProjectGallery({ images, projectTitle, location }: ProjectGaller
             <div className="relative overflow-hidden rounded-lg bg-black shadow-panel">
               <Image
                 src={activeImage}
-                alt={`${projectTitle} enlarged gallery image ${(activeIndex ?? 0) + 1} in ${location}`}
+                alt={imageAlt(activeIndex ?? 0)}
                 width={1800}
                 height={1200}
                 sizes="95vw"

@@ -9,10 +9,10 @@ export const dynamic = "force-dynamic";
 
 export async function generateMetadata() {
   return resolveMetadata({
-    title: "Home Builders Canberra | Molonglo Construction Group",
-    description: "Canberra builder for custom homes, knockdown rebuilds, new homes and residential construction with a refined process and local expertise.",
+    title: "Canberra Home Builder | Custom Homes & Rebuilds",
+    description: "Licensed ACT and NSW builder for Canberra custom homes, knockdown rebuilds and residential construction. Start a practical build conversation.",
     path: "/",
-    image: "/assets/images/hero.jpg"
+    image: "/assets/images/FE02BB99-4862-4A69-87E3-2359B9E7FFFD_1_201_a.jpeg"
   });
 }
 

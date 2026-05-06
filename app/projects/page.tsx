@@ -64,7 +64,7 @@ export default async function ProjectsPage() {
                         <Image
                           key={image}
                           src={image}
-                          alt={`${project.title} gallery image ${index + 1}`}
+                          alt={`${project.title} residential project detail in ${project.location} by Molonglo Construction Group`}
                           width={420}
                           height={320}
                           className="h-28 w-full rounded-md object-cover transition group-hover:opacity-85"
