@@ -16,10 +16,31 @@ export type PageRecord = {
 const corePages = [
   {
     path: "/",
-    title: "Home Builders Canberra | Molonglo Construction Group",
-    description: "Canberra builder for custom homes, knockdown rebuilds, new homes and residential construction with a refined process and local expertise.",
-    h1: "A refined building experience for Canberra homeowners who want clarity from day one.",
-    image: "/assets/images/hero.jpg"
+    title: "Canberra Home Builder | Custom Homes & Rebuilds",
+    description: "Licensed ACT and NSW builder for Canberra custom homes, knockdown rebuilds and residential construction. Start a practical build conversation.",
+    h1: "Build a Canberra home with clarity from the first conversation.",
+    image: "/assets/images/FE02BB99-4862-4A69-87E3-2359B9E7FFFD_1_201_a.jpeg"
+  },
+  {
+    path: "/services",
+    title: "Services | Custom Homes, Rebuilds & Residential Construction Canberra",
+    description: "Explore Molonglo Construction Group services for custom homes, knockdown rebuilds, new homes and residential construction in Canberra.",
+    h1: "Services",
+    image: "/assets/images/FE02BB99-4862-4A69-87E3-2359B9E7FFFD_1_201_a.jpeg"
+  },
+  {
+    path: "/service-areas",
+    title: "Service Areas | Canberra, ACT & NSW Surrounds Builder",
+    description: "See where Molonglo Construction Group builds, including Canberra, Molonglo Valley, Queanbeyan, Googong and Jerrabomberra.",
+    h1: "Service Areas",
+    image: "/assets/images/projects/display-whitlam.jpg"
+  },
+  {
+    path: "/house-and-land-canberra",
+    title: "House and Land Canberra | Molonglo Construction Group",
+    description: "Discuss house and land package opportunities in Canberra, ACT surrounds and selected South Coast areas with a licensed ACT and NSW builder.",
+    h1: "House and Land Canberra",
+    image: "/assets/images/FE02BB99-4862-4A69-87E3-2359B9E7FFFD_1_201_a.jpeg"
   },
   {
     path: "/about",

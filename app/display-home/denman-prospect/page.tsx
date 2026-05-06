@@ -73,7 +73,7 @@ export default function DenmanProspectDisplayHomePage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-molonglo-gold">Location</p>
                 <h2 className="mt-3 font-display text-2xl font-semibold text-molonglo-ink">Denman Prospect</h2>
                 <p className="mt-3 text-sm leading-7 text-zinc-700">
-                  Opening hours and a street address are not published here until confirmed. Please enquire before planning a visit.
+                  Please contact the team before planning a visit so we can confirm the best appointment time for your enquiry.
                 </p>
               </div>
             </div>

@@ -13,11 +13,10 @@ type PremiumHomeExperienceProps = {
 };
 
 const trustItems = [
-  { label: "Canberra / ACT builder", href: "/builder-canberra" },
-  { label: "Custom homes", href: "/custom-home-builders-canberra" },
-  { label: "Knockdown rebuilds", href: "/knockdown-rebuild-canberra" },
-  { label: "Licensed builder", href: "/about" },
-  { label: "Local project experience", href: "/projects" }
+  { label: "Licensed ACT & NSW Builder", href: "/about" },
+  { label: "Denman Prospect Based", href: "/builder-denman-prospect" },
+  { label: "Custom Homes & Rebuilds", href: "/services" },
+  { label: "Canberra & Surrounds", href: "/service-areas" }
 ];
 
 const journey = [
@@ -41,7 +40,7 @@ const journey = [
 
 const processSteps = [
   ["01", "Initial Consultation", "We discuss your vision, site, requirements and budget so the project starts from a practical foundation."],
-  ["02", "Design & Planning", "The brief becomes drawings, selections and buildable documentation shaped around Canberra conditions."],
+  ["02", "Design & Planning", "We work with your designer, architect, or planning team to align the design, documentation, budget, and buildability."],
   ["03", "Approvals & Contracts", "Approvals, scope and contract details are coordinated before construction begins."],
   ["04", "Construction", "Your home is delivered through clear sequencing, trade coordination and regular communication."],
   ["05", "Final Inspection", "The completed work is reviewed carefully so quality and details are resolved before handover."],
@@ -55,13 +54,32 @@ const featuredServiceSlugs = [
   "construction-services-canberra"
 ];
 
+const whyMolonglo = [
+  {
+    title: "Builder-led planning",
+    body: "Practical input before drawings, scope, and budget drift apart."
+  },
+  {
+    title: "Canberra site knowledge",
+    body: "Experience with slope, orientation, access, estate requirements, approvals, and climate."
+  },
+  {
+    title: "Direct communication",
+    body: "A clear process from first conversation to handover."
+  },
+  {
+    title: "Premium residential focus",
+    body: "Custom homes, rebuilds, and tailored residential construction."
+  }
+];
+
 export function PremiumHomeExperience({ recentBlogs, locations, projects, services }: PremiumHomeExperienceProps) {
   const featuredServices = featuredServiceSlugs
     .map((slug) => services.find((service) => service.slug === slug))
     .filter((service): service is ServicePage => Boolean(service));
   const featuredProjects = projects.slice(0, 3);
   const featuredLocations = locations.filter((location) =>
-    ["builder-canberra", "builder-denman-prospect", "builder-wright-act", "builder-coombs-act", "builder-molonglo-valley", "builder-queanbeyan"].includes(location.slug)
+    ["builder-canberra", "builder-denman-prospect", "builder-wright-act", "builder-coombs", "builder-molonglo-valley", "builder-queanbeyan", "builder-googong", "builder-jerrabomberra"].includes(location.slug)
   );
 
   return (
@@ -84,12 +102,21 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
                 View Projects
               </Link>
             </div>
+            <ul className="mt-6 flex flex-wrap gap-2 text-sm font-semibold text-zinc-700" aria-label="Molonglo Construction Group credentials">
+              {trustItems.map((item) => (
+                <li key={item.href}>
+                  <Link href={item.href} className="inline-flex rounded-full border border-[var(--color-border)] bg-white/70 px-3 py-2 transition hover:border-molonglo-gold hover:text-molonglo-gold">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <div className="home-hero__visual" aria-hidden="true" data-scroll-reveal>
+          <div className="home-hero__visual" data-scroll-reveal>
             <Image
-              src="/assets/images/hero.jpg"
-              alt=""
+              src={site.heroImage}
+              alt="Contemporary Canberra custom home exterior by Molonglo Construction Group"
               width={1200}
               height={900}
               priority
@@ -103,15 +130,25 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
         </div>
       </section>
 
-      <section className="trust-strip" aria-label="Molonglo Construction Group credentials">
+      <section className="section bg-white">
         <div className="container">
-          <ul>
-            {trustItems.map((item) => (
-              <li key={item.href}>
-                <Link href={item.href}>{item.label}</Link>
-              </li>
+          <div className="section-heading section-heading--split" data-scroll-reveal>
+            <div>
+              <p className="eyebrow">Why Molonglo</p>
+              <h2 className="heading-lg mt-4">Why build with Molonglo Construction Group?</h2>
+            </div>
+            <Link href="/services" className="cta-secondary">
+              Explore Services
+            </Link>
+          </div>
+          <div className="why-grid">
+            {whyMolonglo.map((item) => (
+              <article key={item.title} className="why-card" data-scroll-reveal>
+                <h3>{item.title}</h3>
+                <p>{item.body}</p>
+              </article>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
 

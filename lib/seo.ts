@@ -95,7 +95,7 @@ export function websiteSchema() {
 export function localBusinessSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "ConstructionCompany"],
+    "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
     name: site.name,
     url: site.url,
     image: absoluteUrl(site.logo),
@@ -178,13 +178,33 @@ export function serviceSchema(input: {
     name: input.name,
     description: input.description,
     provider: {
-      "@type": "ConstructionCompany",
+      "@type": "HomeAndConstructionBusiness",
       name: site.name,
       url: site.url
     },
     areaServed: input.areaServed || ["Canberra", "ACT", "Molonglo Valley", "Queanbeyan", "Googong"],
     serviceType: input.name,
     url: absoluteUrl(input.path)
+  };
+}
+
+export function imageObjectSchema(input: {
+  url: string;
+  name: string;
+  caption?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    contentUrl: absoluteUrl(input.url),
+    url: absoluteUrl(input.url),
+    name: input.name,
+    caption: input.caption || input.name,
+    creator: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url
+    }
   };
 }
 

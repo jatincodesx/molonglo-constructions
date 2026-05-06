@@ -7,6 +7,7 @@ import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
 import { getPublishedBlogs } from "@/lib/blog";
 import { getLocationBySlug, getServiceBySlug, locations, services } from "@/lib/content";
+import { projects } from "@/lib/projects";
 import { breadcrumbSchema, faqSchema, resolveMetadata, serviceSchema } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
 
@@ -173,6 +174,10 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
   const serviceLinks = findServiceLinks(location.serviceLinks);
   const nearbyLocations = findLocationLinks(location.nearbyLocations);
   const relatedBlogs = await findRelatedBlogs(location.relatedBlogs);
+  const relevantProjects = projects
+    .filter((project) => project.location.toLowerCase().includes(location.suburb.toLowerCase()) || location.suburb === "Canberra")
+    .slice(0, 3);
+  const projectLinks = relevantProjects.length ? relevantProjects : projects.slice(0, 2);
   const schemaOverride = await getSeoSchema(`/${location.slug}`);
 
   return (
@@ -211,6 +216,15 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
               {serviceLinks.map((serviceItem) => (
                 <li key={serviceItem.slug}>
                   <Link href={`/${serviceItem.slug}`}>{serviceItem.title}</Link>
+                </li>
+              ))}
+            </ul>
+
+            <h2>Nearby project references</h2>
+            <ul>
+              {projectLinks.map((project) => (
+                <li key={project.slug}>
+                  <Link href={`/projects/${project.slug}`}>{project.title} in {project.location}</Link>
                 </li>
               ))}
             </ul>

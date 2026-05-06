@@ -149,7 +149,7 @@ export const projects: Project[] = [
     category: "Custom home",
     coverImage: projectImage("molonglo-1", molonglo1Cover),
     galleryImages: projectGallery("molonglo-1", molonglo1Cover, molonglo1Images),
-    description: "A completed Molonglo Valley residential project shown through verified project imagery."
+    description: "A completed Molonglo Valley home with refined interior detailing, practical living spaces and a calm contemporary finish."
   },
   {
     title: "78 Churcher",
@@ -158,7 +158,7 @@ export const projects: Project[] = [
     category: "Residential build",
     coverImage: projectImage("78-churcher", churcher78Cover),
     galleryImages: projectGallery("78-churcher", churcher78Cover, churcher78Images),
-    description: "A Canberra-region residential project shown through verified project imagery."
+    description: "A Canberra-region residential build with considered proportions, durable finishes and a polished family-home feel."
   },
   {
     title: "5 Towong Street",
@@ -167,7 +167,7 @@ export const projects: Project[] = [
     category: "Residential build",
     coverImage: projectImage("5-towong-street", towong5Cover),
     galleryImages: projectGallery("5-towong-street", towong5Cover, towong5Images),
-    description: "A Googong residential project shown through verified project imagery."
+    description: "A Googong residential project with a strong street presence, generous living spaces and carefully resolved finishes."
   },
   {
     title: "Sibsado Street",
@@ -176,7 +176,7 @@ export const projects: Project[] = [
     category: "Residential build",
     coverImage: projectImage("sibsado-street", sibsadoCover),
     galleryImages: projectGallery("sibsado-street", sibsadoCover, sibsadoImages),
-    description: "A Canberra-region residential project shown through verified project imagery."
+    description: "A Canberra-region home showcasing clean detailing, balanced material selections and a practical residential layout."
   }
 ];
 

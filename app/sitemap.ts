@@ -9,10 +9,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticPages = [
     "/",
     "/about",
+    "/services",
+    "/service-areas",
     "/projects",
     "/contact",
     "/blog",
     "/display-home/denman-prospect",
+    "/house-and-land-canberra",
     "/house-and-land-packages",
     "/success-stories"
   ];

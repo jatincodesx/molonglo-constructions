@@ -14,7 +14,7 @@ export function HomeServicesScene({ services }: HomeServicesSceneProps) {
           <p className="eyebrow">Services as spaces</p>
           <h2 className="heading-lg mt-4">Choose the path that fits the block, the brief and the way you want to live.</h2>
           <p className="mt-5 text-lg leading-8 text-zinc-700">
-            The service structure remains simple and crawlable, but the homepage now presents each pathway as a distinct room in the same build journey.
+            Each service pathway keeps the focus on practical planning, clear decisions and a home that fits the way you want to live.
           </p>
         </div>
 

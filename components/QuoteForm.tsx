@@ -17,6 +17,44 @@ const projectTypes = [
   "General enquiry"
 ] as const;
 
+const budgetRanges = [
+  "$600k - $800k",
+  "$800k - $1.1m",
+  "$1.1m - $1.5m",
+  "$1.5m+",
+  "Not sure yet"
+] as const;
+
+const timeframeOptions = [
+  "As soon as practical",
+  "3-6 months",
+  "6-12 months",
+  "12+ months",
+  "Still researching"
+] as const;
+
+const landStatusOptions = [
+  "Own land",
+  "Looking for land",
+  "House to demolish",
+  "House & land",
+  "Not sure yet"
+] as const;
+
+const designStatusOptions = [
+  "No plans yet",
+  "Concept plans",
+  "DA submitted",
+  "Approved plans",
+  "Not sure yet"
+] as const;
+
+const contactMethodOptions = [
+  "Phone",
+  "Email",
+  "Either"
+] as const;
+
 export function QuoteForm({ source = "website", submitLabel = "Request Consultation" }: QuoteFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -50,8 +88,11 @@ export function QuoteForm({ source = "website", submitLabel = "Request Consultat
   }
 
   return (
-    <form onSubmit={submit} className="grid gap-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+    <form onSubmit={submit} className="grid gap-4 rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6 shadow-[0_22px_55px_rgba(23,26,24,0.08)]">
       <input type="hidden" name="source_page" value={source} />
+      <p className="text-sm leading-6 text-zinc-600">
+        Not sure where to start? Share what you know. We&apos;ll help you understand the next practical step.
+      </p>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-semibold">
@@ -85,6 +126,58 @@ export function QuoteForm({ source = "website", submitLabel = "Request Consultat
         </select>
       </label>
 
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="grid gap-2 text-sm font-semibold">
+          Budget range
+          <select name="budget_range" defaultValue="" className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+            <option value="">Select a budget range</option>
+            {budgetRanges.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-semibold">
+          Approximate timeframe
+          <select name="timeframe" defaultValue="" className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+            <option value="">Select a timeframe</option>
+            {timeframeOptions.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <label className="grid gap-2 text-sm font-semibold">
+          Land status
+          <select name="land_status" defaultValue="" className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+            <option value="">Select land status</option>
+            {landStatusOptions.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </label>
+        <label className="grid gap-2 text-sm font-semibold">
+          Design status
+          <select name="design_status" defaultValue="" className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+            <option value="">Select design status</option>
+            {designStatusOptions.map((option) => (
+              <option key={option} value={option}>{option}</option>
+            ))}
+          </select>
+        </label>
+      </div>
+
+      <label className="grid gap-2 text-sm font-semibold">
+        Preferred contact method
+        <select name="preferred_contact_method" defaultValue="" className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold">
+          <option value="">Select a preference</option>
+          {contactMethodOptions.map((option) => (
+            <option key={option} value={option}>{option}</option>
+          ))}
+        </select>
+      </label>
+
       <label className="grid gap-2 text-sm font-semibold">
         Message
         <textarea
@@ -92,7 +185,6 @@ export function QuoteForm({ source = "website", submitLabel = "Request Consultat
           name="message"
           rows={5}
           className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
-          placeholder="Tell us about your block, suburb, project goals and preferred timeframe."
         />
       </label>
 

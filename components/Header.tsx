@@ -2,12 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useId, useRef, useState } from "react";
 import { site } from "@/lib/site";
 
 type NavItem = {
   href: string;
   label: string;
+  description?: string;
 };
 
 type NavGroup = {
@@ -15,13 +17,13 @@ type NavGroup = {
   items: NavItem[];
 };
 
-const homesGroups: NavGroup[] = [
+const serviceGroups: NavGroup[] = [
   {
     label: "Build new",
     items: [
       { href: "/custom-home-builders-canberra", label: "Custom Homes" },
       { href: "/new-home-builders-canberra", label: "New Home Builds" },
-      { href: "/house-and-land-packages", label: "House & Land Packages" }
+      { href: "/house-and-land-canberra", label: "House & Land Packages" }
     ]
   },
   {
@@ -36,72 +38,70 @@ const homesGroups: NavGroup[] = [
     label: "Where we build",
     items: [
       { href: "/builder-canberra", label: "Canberra & ACT" },
-      { href: "/contact", label: "Queanbeyan" },
-      { href: "/contact", label: "Googong" },
-      { href: "/contact", label: "Jerrabomberra" },
-      { href: "/contact", label: "South Coast" }
+      { href: "/builder-queanbeyan", label: "Queanbeyan" },
+      { href: "/builder-googong", label: "Googong" },
+      { href: "/builder-jerrabomberra", label: "Jerrabomberra" },
+      { href: "/service-areas", label: "South Coast" }
     ]
   }
 ];
 
-const desktopLinks: NavItem[] = [
+const primaryLinks: NavItem[] = [
   { href: "/projects", label: "Projects" },
-  { href: "/display-home/denman-prospect", label: "Visit Display Home" },
-  { href: "/success-stories", label: "Success Stories" }
+  { href: "/display-home/denman-prospect", label: "Display Home" },
+  { href: "/success-stories", label: "Success Stories" },
+  { href: "/blog", label: "Blog" }
 ];
 
-const mobileGroups: NavGroup[] = [
+const mobileGroups = [
   {
-    label: "Homes",
+    label: "Primary",
     items: [
-      { href: "/custom-home-builders-canberra", label: "Custom Homes" },
-      { href: "/new-home-builders-canberra", label: "New Home Builds" },
-      { href: "/house-and-land-packages", label: "House & Land Packages" },
-      { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
-      { href: "/construction-services-canberra", label: "Construction Services" },
-      { href: "/dual-occupancy-builders-act", label: "Dual Occupancy" }
-    ]
-  },
-  {
-    label: "Main",
-    items: [
-      { href: "/projects", label: "Projects" },
-      { href: "/display-home/denman-prospect", label: "Visit Display Home" },
-      { href: "/success-stories", label: "Success Stories" },
-      { href: "/about", label: "About" },
-      { href: "/blog", label: "Blog" },
+      { href: "/services", label: "Services" },
+      ...primaryLinks,
       { href: "/contact", label: "Contact" }
     ]
   },
-  {
-    label: "Where We Build",
-    items: [
-      { href: "/builder-canberra", label: "Canberra & ACT" },
-      { href: "/contact", label: "Queanbeyan" },
-      { href: "/contact", label: "Googong" },
-      { href: "/contact", label: "Jerrabomberra" },
-      { href: "/contact", label: "South Coast" }
-    ]
-  }
+  ...serviceGroups
 ];
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [homesOpen, setHomesOpen] = useState(false);
+  const [servicesOpen, setServicesOpen] = useState(false);
   const headerRef = useRef<HTMLElement>(null);
-  const homesPanelId = useId();
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const servicesPanelId = useId();
+  const pathname = usePathname();
+  const servicesLinks = serviceGroups.flatMap((group) => group.items);
+  const servicesActive = servicesLinks.some((item) => pathname === item.href || pathname.startsWith(`${item.href}/`)) || pathname === "/services";
+  const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
+
+  const openServices = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setServicesOpen(true);
+  };
+
+  const queueServicesClose = () => {
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+    }
+    closeTimerRef.current = setTimeout(() => setServicesOpen(false), 160);
+  };
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
       if (headerRef.current && !headerRef.current.contains(event.target as Node)) {
-        setHomesOpen(false);
+        setServicesOpen(false);
         setMenuOpen(false);
       }
     }
 
     function closeOnEscape(event: KeyboardEvent) {
       if (event.key === "Escape") {
-        setHomesOpen(false);
+        setServicesOpen(false);
         setMenuOpen(false);
       }
     }
@@ -112,6 +112,9 @@ export function Header() {
     return () => {
       document.removeEventListener("mousedown", closeOnOutsideClick);
       document.removeEventListener("keydown", closeOnEscape);
+      if (closeTimerRef.current) {
+        clearTimeout(closeTimerRef.current);
+      }
     };
   }, []);
 
@@ -127,63 +130,67 @@ export function Header() {
   }, [menuOpen]);
 
   const closeMenus = () => {
-    setHomesOpen(false);
+    if (closeTimerRef.current) {
+      clearTimeout(closeTimerRef.current);
+      closeTimerRef.current = null;
+    }
+    setServicesOpen(false);
     setMenuOpen(false);
   };
 
   return (
-    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[var(--color-border)] bg-[#fbfaf6]/95 shadow-[0_16px_40px_rgba(23,26,24,0.06)] backdrop-blur-xl">
-      <div className="container flex min-h-[80px] items-center justify-between gap-4 py-2 lg:min-h-[84px]">
-        <Link href="/" className="flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2" onClick={closeMenus}>
+    <header ref={headerRef} className="sticky top-0 z-50 border-b border-[#ded4c6] bg-[#fffdf8]/95 shadow-[0_14px_34px_rgba(23,26,24,0.065)] backdrop-blur-xl">
+      <div className="container grid min-h-[74px] grid-cols-[auto_1fr_auto] items-center gap-3 py-2 lg:min-h-[78px] xl:gap-5">
+        <Link href="/" className="flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8]" onClick={closeMenus}>
           <Image
-            src="/assets/logo/logo_new.jpg"
+            src="/assets/logo/logo_new-removebg-preview.png"
             alt="Molonglo Construction Group"
-            width={188}
-            height={94}
+            width={500}
+            height={500}
             priority
-            className="h-[42px] w-auto object-contain sm:h-[48px] lg:h-[52px]"
+            className="h-[52px] w-[160px] object-cover object-center sm:h-[60px] sm:w-[184px] lg:h-[62px] lg:w-[190px]"
           />
         </Link>
 
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
+        <nav aria-label="Primary" className="hidden min-w-0 items-center justify-center gap-1 lg:flex xl:gap-2">
           <div
             className="relative"
-            onMouseEnter={() => setHomesOpen(true)}
-            onMouseLeave={() => setHomesOpen(false)}
-            onFocus={() => setHomesOpen(true)}
+            onMouseEnter={openServices}
+            onMouseLeave={queueServicesClose}
+            onFocus={openServices}
             onBlur={(event) => {
               if (!event.currentTarget.contains(event.relatedTarget as Node | null)) {
-                setHomesOpen(false);
+                queueServicesClose();
               }
             }}
           >
             <button
               type="button"
-              aria-expanded={homesOpen}
-              aria-controls={homesPanelId}
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
-              onClick={() => setHomesOpen((open) => !open)}
+              aria-expanded={servicesOpen}
+              aria-controls={servicesPanelId}
+              className={`inline-flex items-center gap-2 whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold text-[#24241f] transition hover:bg-[#f4eee4] hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] xl:px-3.5 ${servicesActive || servicesOpen ? "bg-[#f4eee4] text-[#5f401f] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.18)]" : ""}`}
+              onClick={() => setServicesOpen((open) => !open)}
             >
-              Homes
-              <span aria-hidden="true" className={`mt-[-0.15rem] h-1.5 w-1.5 border-b-2 border-r-2 border-current transition ${homesOpen ? "-rotate-[135deg]" : "rotate-45"}`} />
+              Services
+              <span aria-hidden="true" className={`mt-[-0.15rem] h-1.5 w-1.5 border-b-2 border-r-2 border-current transition ${servicesOpen ? "-rotate-[135deg]" : "rotate-45"}`} />
             </button>
 
-            {homesOpen ? (
-              <div className="absolute left-1/2 top-full z-50 w-[min(58rem,calc(100vw-3rem))] -translate-x-1/2 pt-3">
+            {servicesOpen ? (
+              <div className="fixed left-0 top-[78px] z-[70] hidden w-full px-4 pb-4 pt-3 lg:block">
                 <div
-                  id={homesPanelId}
-                  className="grid gap-6 rounded-lg border border-[var(--color-border)] bg-[#fbfaf6] p-6 shadow-[0_28px_80px_rgba(23,26,24,0.16)] lg:grid-cols-[1fr_1fr_1fr_0.95fr]"
+                  id={servicesPanelId}
+                  className="mx-auto grid w-[min(58rem,calc(100vw-3rem))] gap-6 rounded-lg border border-[#d8cec0] bg-[#fbfaf6] p-6 shadow-[0_28px_80px_rgba(23,26,24,0.16)] lg:grid-cols-[1fr_1fr_1fr_0.95fr]"
                 >
-                  {homesGroups.map((group) => (
+                  {serviceGroups.map((group) => (
                     <div key={group.label}>
-                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">{group.label}</p>
+                      <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a642f]">{group.label}</p>
                       <div className="mt-4 grid gap-1">
                         {group.items.map((item) => (
                           <Link
                             key={`${group.label}-${item.label}`}
                             href={item.href}
                             onClick={closeMenus}
-                            className="rounded-md px-3 py-2.5 text-sm font-semibold text-zinc-800 transition hover:bg-white hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
+                            className={`rounded-md px-3 py-2.5 text-sm font-semibold text-zinc-800 transition hover:bg-white hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold ${isActive(item.href) ? "bg-white text-[#5f401f] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.16)]" : ""}`}
                           >
                             {item.label}
                           </Link>
@@ -192,11 +199,11 @@ export function Header() {
                     </div>
                   ))}
 
-                  <div className="rounded-lg border border-[var(--color-border)] bg-white p-5">
+                  <div className="rounded-lg border border-[#d8cec0] bg-white p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.8)]">
                     <p className="text-sm font-semibold leading-6 text-molonglo-ink">
                       Planning a build in Canberra or the South Coast?
                     </p>
-                    <Link href="/contact" className="cta mt-5 w-full px-4 py-3 text-sm" onClick={closeMenus}>
+                    <Link href="/contact#quote" className="cta mt-5 w-full px-4 py-3 text-sm" onClick={closeMenus}>
                       Start a Build
                     </Link>
                   </div>
@@ -205,30 +212,34 @@ export function Header() {
             ) : null}
           </div>
 
-          {desktopLinks.map((link) => (
+          {primaryLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              onClick={() => setHomesOpen(false)}
-              className="whitespace-nowrap rounded-md px-1 py-3 text-sm font-semibold text-zinc-800 transition hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2"
+              onClick={() => setServicesOpen(false)}
+              onFocus={() => setServicesOpen(false)}
+              className={`whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold text-[#24241f] transition hover:bg-[#f4eee4] hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] xl:px-3.5 ${isActive(link.href) ? "bg-[#f4eee4] text-[#5f401f] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.18)]" : ""}`}
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
-          <Link href="/contact" className="cta hidden px-4 py-2.5 text-sm sm:inline-flex" onClick={closeMenus}>
+        <div className="flex items-center justify-end gap-2 sm:gap-3">
+          <a href={site.phoneHref} className="hidden whitespace-nowrap rounded-full px-3 py-2 text-sm font-semibold text-molonglo-ink transition hover:bg-[#f4eee4] hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] lg:inline-flex" onFocus={() => setServicesOpen(false)}>
+            Call Now
+          </a>
+          <Link href="/contact#quote" className="cta hidden px-4 py-2.5 text-sm shadow-[0_12px_26px_rgba(118,83,49,0.18)] sm:inline-flex" onClick={closeMenus}>
             Start a Build
           </Link>
           <button
             type="button"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[var(--color-border)] bg-white text-molonglo-ink shadow-sm transition hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d8cec0] bg-white text-molonglo-ink shadow-sm transition hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
             onClick={() => {
               setMenuOpen((open) => !open);
-              setHomesOpen(false);
+              setServicesOpen(false);
             }}
           >
             <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
@@ -242,18 +253,18 @@ export function Header() {
       </div>
 
       {menuOpen ? (
-        <div id="mobile-menu" className="max-h-[calc(100vh-80px)] overflow-y-auto border-t border-[var(--color-border)] bg-[#fbfaf6] lg:hidden">
+        <div id="mobile-menu" className="max-h-[calc(100vh-74px)] overflow-y-auto border-t border-[#ded4c6] bg-[#fffdf8] lg:hidden">
           <nav aria-label="Mobile" className="container grid gap-6 py-6">
             {mobileGroups.map((group) => (
               <div key={group.label}>
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">{group.label}</p>
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a642f]">{group.label}</p>
                 <div className="mt-3 grid gap-1">
                   {group.items.map((item) => (
                     <Link
-                      key={`${group.label}-${item.label}`}
+                      key={`${group.label}-${item.href}`}
                       href={item.href}
                       onClick={closeMenus}
-                      className="rounded-md px-3 py-3 text-base font-semibold text-zinc-800 transition hover:bg-white hover:text-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"
+                      className={`rounded-md px-3 py-3 text-base font-semibold text-zinc-800 transition hover:bg-[#f4eee4] hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold ${isActive(item.href) ? "bg-[#f4eee4] text-[#5f401f]" : ""}`}
                     >
                       {item.label}
                     </Link>
@@ -263,9 +274,9 @@ export function Header() {
             ))}
 
             <div>
-              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-molonglo-gold">Actions</p>
+              <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a642f]">Actions</p>
               <div className="mt-3 grid gap-3">
-                <Link href="/contact" className="cta w-full px-4 py-3" onClick={closeMenus}>
+                <Link href="/contact#quote" className="cta w-full px-4 py-3" onClick={closeMenus}>
                   Start a Build
                 </Link>
                 <a href={site.phoneHref} className="rounded-md border border-[var(--color-border)] bg-white px-4 py-3 text-center text-base font-semibold text-molonglo-ink" onClick={closeMenus}>
