@@ -17,27 +17,82 @@ Full-stack Next.js App Router website for Molonglo Construction Group, prepared 
 npm install
 ```
 
-Step 1: create `.env.local` from `.env.example`.
+Step 1: create `.env.development.local` from `.env.example`.
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env.development.local
 ```
 
-Fill `.env.local` with real values for:
+Fill `.env.development.local` with real values for:
 
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 - `SUPABASE_SERVICE_ROLE_KEY`
 - `SUPABASE_SECRET_KEY` if you use it
 - `ADMIN_EMAIL`
-- `ADMIN_PASSWORD_HASH`
-- `SESSION_SECRET`
+- `ADMIN_PASSWORD` for local development, or `ADMIN_PASSWORD_HASH`
+- `SESSION_SECRET`, or `ADMIN_JWT_SECRET` for local development fallback
 
-This repository does not commit real secrets. Put real values only in `.env.local` and Cloudflare Worker secrets.
+This repository does not commit real secrets. Put real local values only in ignored env files and Cloudflare Worker secrets.
 
 For local development only, admin login can fall back to `ADMIN_PASSWORD` when `ADMIN_PASSWORD_HASH` is not set, and `ADMIN_JWT_SECRET` when `SESSION_SECRET` is not set. Production must use `ADMIN_PASSWORD_HASH` and `SESSION_SECRET`; do not configure plain `ADMIN_PASSWORD` in production.
 
-## 3. Supabase CLI Workflow
+## 3. Environment Setup: Local vs Cloudflare
+
+### Local dev
+
+Use `.env.development.local` for local development values. `ADMIN_PASSWORD` is allowed only here.
+
+```bash
+npm run check:env:dev
+npm run dev
+```
+
+### Manual Cloudflare deploy
+
+Do not set `ADMIN_PASSWORD` in any production or deploy env file. Use `ADMIN_PASSWORD_HASH` and `SESSION_SECRET`.
+
+If local production build values are needed, put them in `.env.production.local`. Keep `ADMIN_PASSWORD` out of that file.
+
+```bash
+npm run check:env:deploy
+npm run deploy:cf
+```
+
+`deploy:cf` runs the deploy env check before building and deploying. Do not deploy if the check fails.
+
+Cloudflare Worker secrets required:
+
+- `ADMIN_PASSWORD_HASH`
+- `SESSION_SECRET`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `SUPABASE_SECRET_KEY`
+
+Cloudflare Worker secret optional/fallback:
+
+- `ADMIN_JWT_SECRET`
+
+Cloudflare Worker vars:
+
+- `ADMIN_EMAIL`
+- `NEXT_PUBLIC_SITE_URL`
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
+
+### GitHub auto deploy
+
+The workflow in `.github/workflows/deploy-cloudflare.yml` deploys pushes to `main` and can also be run manually.
+
+Add these GitHub repository secrets:
+
+- `CLOUDFLARE_API_TOKEN`
+- `CLOUDFLARE_ACCOUNT_ID`
+
+Do not put app secrets in GitHub Actions. Cloudflare Worker secrets remain configured in the Cloudflare dashboard or with Wrangler.
+
+## 4. Supabase CLI Workflow
 
 Step 2: log in to the Supabase CLI.
 
@@ -76,7 +131,7 @@ npm run db:link
 npm run db:push
 ```
 
-## 4. Supabase Migrations
+## 5. Supabase Migrations
 
 The source of truth is:
 
@@ -95,28 +150,29 @@ The initial migration creates:
 - `public.set_updated_at()`
 - triggers, constraints, indexes, and RLS policies
 
-## 5. Environment Variables
+## 6. Environment Variables
 
-Required values in `.env.local`:
+Required local values in `.env.development.local`:
 
 ```bash
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 NEXT_PUBLIC_SUPABASE_URL=https://vloamtiochlgrvouafgm.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=...
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=...
 SUPABASE_SERVICE_ROLE_KEY=...
 SUPABASE_SECRET_KEY=...
 ADMIN_EMAIL=...
-ADMIN_PASSWORD_HASH=...
-SESSION_SECRET=...
-ADMIN_PASSWORD=... # development-only fallback
-ADMIN_JWT_SECRET=... # legacy local fallback
+ADMIN_PASSWORD=...
+ADMIN_PASSWORD_HASH=... # optional when ADMIN_PASSWORD is set locally
+SESSION_SECRET=... # or ADMIN_JWT_SECRET locally
+ADMIN_JWT_SECRET=... # legacy local fallback only
 ```
 
 Notes:
 
-- `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY` are browser-safe.
+- `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` are browser-safe.
 - `SUPABASE_SERVICE_ROLE_KEY`, `SUPABASE_SECRET_KEY`, `ADMIN_PASSWORD_HASH`, `SESSION_SECRET`, `ADMIN_PASSWORD`, and `ADMIN_JWT_SECRET` must stay secret.
-- `.env.local` is gitignored and must not be committed.
+- `.env.local`, `.env.development.local`, and `.env.production.local` are gitignored and must not be committed.
 
 Optional future contact email placeholders. The contact form stores leads in Supabase and does not require email sending:
 
@@ -124,7 +180,7 @@ Optional future contact email placeholders. The contact form stores leads in Sup
 - `CONTACT_TO_EMAIL`
 - `CONTACT_FROM_EMAIL`
 
-## 6. Admin Password Hash Generation
+## 7. Admin Password Hash Generation
 
 Generate a bcrypt password hash with the same library used by the login route:
 
@@ -132,12 +188,18 @@ Generate a bcrypt password hash with the same library used by the login route:
 node scripts/hash-password.mjs "Admin12345!"
 ```
 
-Copy the output line into `.env.local`. Keep the single quotes around the bcrypt hash so dotenv does not expand the `$` characters:
+Copy the local env output line into `.env.development.local` or `.env.production.local`. Keep the single quotes and escaped dollar signs so Next dotenv loading does not expand the hash:
 
 ```bash
 ADMIN_EMAIL=admin@example.com
-ADMIN_PASSWORD_HASH='$2b$12$...'
+ADMIN_PASSWORD_HASH='\$2b\$12\$...'
 SESSION_SECRET=<long-random-secret>
+```
+
+For a Cloudflare secret, paste only the raw hash value:
+
+```text
+$2b$12$...
 ```
 
 Then sign in at `/admin/login` with:
@@ -151,15 +213,16 @@ Do not type the hash into the login form. The hash belongs only in `ADMIN_PASSWO
 
 For quick local testing, you may instead set `ADMIN_PASSWORD=<plain-local-password>` without `ADMIN_PASSWORD_HASH`. This fallback is ignored in production and must never be committed.
 
-## 7. Local Development
+## 8. Local Development
 
 ```bash
+npm run check:env:dev
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
 
-## 8. Cloudflare/OpenNext Build
+## 9. Cloudflare/OpenNext Build
 
 ```bash
 npm run build
@@ -172,7 +235,7 @@ npm run build:cf
 
 The public marketing UI should remain calm, crawlable, and usable without JavaScript. Advanced text measurement experiments such as Pretext may be explored later for editorial text-wrapping tests, but they are not part of the production homepage approach.
 
-## 9. Cloudflare Preview
+## 10. Cloudflare Preview
 
 Log in to Cloudflare first:
 
@@ -188,15 +251,16 @@ npm run preview:cf
 
 First hosted deployment will use a Cloudflare preview URL, not the live GoDaddy domain.
 
-## 10. Cloudflare Deploy
+## 11. Cloudflare Deploy
 
 ```bash
+npm run check:env:deploy
 npm run deploy:cf
 ```
 
-The Worker name is `molonglo-constructions`.
+The Worker name is `molonglo-constructions`. Never set `ADMIN_PASSWORD` for Cloudflare production; use `ADMIN_PASSWORD_HASH` and `SESSION_SECRET`.
 
-## 11. Cloudflare Environment Variables / Secrets
+## 12. Cloudflare Environment Variables / Secrets
 
 Set public vars in the Cloudflare dashboard or as Worker vars, and set secrets with Wrangler:
 
@@ -212,25 +276,26 @@ Also configure:
 - `NEXT_PUBLIC_SITE_URL`
 - `NEXT_PUBLIC_SUPABASE_URL`
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 - `ADMIN_EMAIL`
 
 Cloudflare secrets must be configured outside Git-tracked files. Store sensitive values as Worker secrets, not plain text vars.
 
-## 12. GitHub Deployment Flow
+## 13. GitHub Deployment Flow
 
-1. Push changes to GitHub.
-2. Review build output locally with `npm run build` and `npm run build:cf`.
-3. Deploy to Cloudflare from the chosen branch.
+1. Add GitHub repository secrets `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`.
+2. Keep application secrets configured in Cloudflare Worker settings, not GitHub.
+3. Push to `main` to trigger the Cloudflare deployment workflow.
 4. Keep GoDaddy DNS unchanged until preview approval is complete.
 
-## 13. Client Preview Workflow
+## 14. Client Preview Workflow
 
 1. Deploy to the generated Cloudflare preview URL.
 2. Verify core marketing pages, blog pages, lead capture, and admin login.
 3. Share the preview URL with the client for review.
 4. Only attach `preview.molongloconstructions.com.au` or production domains after sign-off.
 
-## 14. Later Custom Domain Setup
+## 15. Later Custom Domain Setup
 
 Later target domains:
 
@@ -240,13 +305,13 @@ Later target domains:
 
 Do not change GoDaddy DNS until preview deployment is approved.
 
-## 15. Rollback Plan
+## 16. Rollback Plan
 
 1. Leave the current GoDaddy/cPanel site live until Cloudflare preview is approved.
 2. When production cutover happens, keep the old hosting available during DNS propagation.
 3. If the new Worker deployment has issues, point traffic back to the existing live site until fixed.
 
-## 16. Security Notes
+## 17. Security Notes
 
 - No real Supabase keys should be committed.
 - The admin session cookie is signed with `SESSION_SECRET`.

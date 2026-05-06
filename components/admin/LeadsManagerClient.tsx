@@ -3,6 +3,23 @@
 import { useRouter } from "next/navigation";
 import type { LeadRecord, LeadStatus } from "@/lib/admin-db";
 
+function formatLeadDate(value: string | null | undefined) {
+  if (!value) return "—";
+
+  const date = new Date(value);
+
+  if (Number.isNaN(date.getTime())) return "—";
+
+  const day = String(date.getDate()).padStart(2, "0");
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const year = date.getFullYear();
+
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  return `${day}/${month}/${year}, ${hours}:${minutes}`;
+}
+
 export function LeadsManagerClient({ leads }: { leads: LeadRecord[] }) {
   const router = useRouter();
 
@@ -53,7 +70,7 @@ export function LeadsManagerClient({ leads }: { leads: LeadRecord[] }) {
                   <p className="mt-3 max-w-xl whitespace-pre-wrap text-sm leading-6 text-zinc-700">{lead.message}</p>
                 </td>
                 <td className="px-5 py-4 text-zinc-600">{lead.projectType || "Not supplied"}</td>
-                <td className="px-5 py-4 text-zinc-600">{new Date(lead.createdAt).toLocaleString("en-AU")}</td>
+                <td className="px-5 py-4 text-zinc-600">{formatLeadDate(lead.createdAt)}</td>
                 <td className="px-5 py-4 text-zinc-600">{lead.status}</td>
                 <td className="px-5 py-4">
                   <div className="flex flex-wrap gap-2">
