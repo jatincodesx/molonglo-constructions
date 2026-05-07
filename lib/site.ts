@@ -16,7 +16,8 @@ export const site = {
   actLicense: "2019760",
   nswLicense: "340764C",
   foundedYear: "2019",
-  logo: "/assets/logo/logo_new.jpg",
+  logo: "/assets/logo/logo_new-removebg-preview.png",
+  icon: "/assets/logo/favicon.jpg",
   heroImage: "/assets/images/FE02BB99-4862-4A69-87E3-2359B9E7FFFD_1_201_a.jpeg",
   facebook: "https://www.facebook.com/p/Molonglo-Constructions-100063601235529/",
   instagram: "https://www.instagram.com/molonglocg/",
@@ -88,7 +89,7 @@ export const footerGroups = {
 } as const;
 
 export const actServiceAreas = [
-  "all of ACT and surrounds",
+  "the ACT and nearby NSW surrounds",
   "Canberra",
   "Queanbeyan",
   "Jerrabomberra",

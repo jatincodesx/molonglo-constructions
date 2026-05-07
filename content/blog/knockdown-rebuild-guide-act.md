@@ -8,7 +8,7 @@ faqs:
   - question: "When should I speak to a builder?"
     answer: "Speak to a builder before drawings are final so feasibility, budget and site risks can be reviewed early."
   - question: "Does Molonglo Construction build across Canberra?"
-    answer: "Yes. Molonglo Construction Group services all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas by enquiry."
+    answer: "Yes. Molonglo Construction Group services the ACT and nearby NSW surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas by enquiry."
 ---
 
 ## Knockdown Rebuild Guide ACT
@@ -31,7 +31,7 @@ Speak to a builder before drawings are final. Early construction input helps tes
 
 ### Does Molonglo Construction build across Canberra?
 
-Yes. Molonglo Construction Group services all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs. Selected South Coast enquiries are also considered, including Batemans Bay, Narooma, Bega, Pambula and Merimbula.
+Yes. Molonglo Construction Group services the ACT and nearby NSW surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs. Selected South Coast enquiries are also considered, including Batemans Bay, Narooma, Bega, Pambula and Merimbula.
 
 ### What makes a project easier to price?
 

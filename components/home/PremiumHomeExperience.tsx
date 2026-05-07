@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
+import { RotatingHeroImage, type HeroImageItem } from "@/components/home/RotatingHeroImage";
 import type { BlogPost } from "@/lib/blog";
 import type { LocationPage, Project, ServicePage } from "@/lib/content";
 import { actServiceAreas, site, southCoastServiceAreas } from "@/lib/site";
@@ -78,6 +79,13 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
     .map((slug) => services.find((service) => service.slug === slug))
     .filter((service): service is ServicePage => Boolean(service));
   const featuredProjects = projects.slice(0, 3);
+  const heroImages: HeroImageItem[] = [
+    { src: site.heroImage, label: "Canberra residential project" },
+    ...projects.map((project) => ({
+      src: project.coverImage,
+      label: `${project.title} / ${project.location}`
+    }))
+  ];
   const featuredLocations = locations.filter((location) =>
     ["builder-canberra", "builder-denman-prospect", "builder-wright-act", "builder-coombs", "builder-molonglo-valley", "builder-queanbeyan", "builder-googong", "builder-jerrabomberra"].includes(location.slug)
   );
@@ -114,18 +122,7 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
           </div>
 
           <div className="home-hero__visual" data-scroll-reveal>
-            <Image
-              src={site.heroImage}
-              alt="Contemporary Canberra custom home exterior by Molonglo Construction Group"
-              width={1200}
-              height={900}
-              priority
-              className="h-full w-full object-cover"
-            />
-            <div>
-              <span>Denman Prospect based</span>
-              <strong>Residential building across Canberra and the ACT.</strong>
-            </div>
+            <RotatingHeroImage images={heroImages} />
           </div>
         </div>
       </section>

@@ -111,7 +111,7 @@ export function localBusinessSchema() {
       addressCountry: site.countryCode
     },
     areaServed: [
-      "all of ACT and surrounds",
+      "the ACT and nearby NSW surrounds",
       "Canberra",
       "ACT",
       "Queanbeyan",

@@ -141,7 +141,7 @@ export function Header() {
         <div className="flex min-w-0 items-center gap-3 lg:gap-4 xl:gap-5">
           <Link href="/" className="flex shrink-0 items-center rounded-md focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8]" onClick={closeMenus}>
             <Image
-              src="/assets/logo/logo_new-removebg-preview.png"
+              src={site.logo}
               alt="Molonglo Construction Group"
               width={500}
               height={500}
@@ -151,6 +151,20 @@ export function Header() {
           </Link>
 
           <nav aria-label="Primary" className="hidden min-w-0 items-center gap-1 lg:flex xl:gap-1.5">
+            <Link
+              href="/"
+              aria-label="Home"
+              onClick={() => setServicesOpen(false)}
+              onFocus={() => setServicesOpen(false)}
+              className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-transparent text-[#5f5140] transition hover:border-[#d8cec0] hover:bg-white hover:text-[#765331] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] ${pathname === "/" ? "bg-white text-[#6f4c25] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.16)]" : ""}`}
+            >
+              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[1.125rem] w-[1.125rem]" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+                <path d="m4.5 10.8 7.5-6.3 7.5 6.3" />
+                <path d="M6.5 10.2V19a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-8.8" />
+                <path d="M10 20v-5.5h4V20" />
+              </svg>
+            </Link>
+
             <div
               className="relative"
               onMouseEnter={openServices}

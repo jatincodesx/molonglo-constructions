@@ -10,7 +10,7 @@ faqs:
   - question: "When should I speak to a builder?"
     answer: "Before drawings are final so feasibility, budget, access, structure and staging can be reviewed early."
   - question: "Can Molonglo Construction help with suburb-specific advice?"
-    answer: "Yes. The team works across all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas by enquiry."
+    answer: "Yes. The team works across the ACT and nearby NSW surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas by enquiry."
 ---
 
 ## Why To Buy In Canberra Guide
@@ -49,7 +49,7 @@ Before drawings are final. Early builder input helps test feasibility, budget, a
 
 ### Can Molonglo Construction help with suburb-specific advice?
 
-Yes. The team works across all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs. Selected South Coast enquiries are also considered, including Batemans Bay, Narooma, Bega, Pambula and Merimbula.
+Yes. The team works across the ACT and nearby NSW surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs. Selected South Coast enquiries are also considered, including Batemans Bay, Narooma, Bega, Pambula and Merimbula.
 
 ### Should I rely on online build cost averages?
 
