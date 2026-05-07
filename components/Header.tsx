@@ -47,6 +47,7 @@ const serviceGroups: NavGroup[] = [
 ];
 
 const primaryLinks: NavItem[] = [
+  { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
   { href: "/display-home/denman-prospect", label: "Display Home" },
   { href: "/success-stories", label: "Success Stories" },
@@ -153,16 +154,11 @@ export function Header() {
           <nav aria-label="Primary" className="hidden min-w-0 items-center gap-1 lg:flex xl:gap-1.5">
             <Link
               href="/"
-              aria-label="Home"
               onClick={() => setServicesOpen(false)}
               onFocus={() => setServicesOpen(false)}
-              className={`inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-transparent text-[#5f5140] transition hover:border-[#d8cec0] hover:bg-white hover:text-[#765331] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] ${pathname === "/" ? "bg-white text-[#6f4c25] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.16)]" : ""}`}
+              className={navLinkClass(pathname === "/")}
             >
-              <svg aria-hidden="true" viewBox="0 0 24 24" className="h-[1.125rem] w-[1.125rem]" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
-                <path d="m4.5 10.8 7.5-6.3 7.5 6.3" />
-                <path d="M6.5 10.2V19a1 1 0 0 0 1 1h9a1 1 0 0 0 1-1v-8.8" />
-                <path d="M10 20v-5.5h4V20" />
-              </svg>
+              Home
             </Link>
 
             <div
@@ -225,7 +221,7 @@ export function Header() {
               ) : null}
             </div>
 
-            {primaryLinks.map((link) => (
+            {primaryLinks.filter((link) => link.href !== "/").map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
@@ -271,6 +267,13 @@ export function Header() {
         <div id="mobile-menu" className="max-h-[calc(100vh-74px)] overflow-y-auto border-t border-[#ded4c6] bg-[#fffdf8] lg:hidden">
           <nav aria-label="Mobile" className="container grid gap-5 py-5">
             <div className="grid gap-1">
+              <Link
+                href="/"
+                onClick={closeMenus}
+                className={mobileItemClass(pathname === "/")}
+              >
+                Home
+              </Link>
               <button
                 type="button"
                 aria-expanded={mobileServicesOpen}
@@ -304,7 +307,7 @@ export function Header() {
                 </div>
               ) : null}
 
-              {primaryLinks.map((item) => (
+              {primaryLinks.filter((item) => item.href !== "/").map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}

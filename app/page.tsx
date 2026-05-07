@@ -2,7 +2,8 @@ import { PremiumHomeExperience } from "@/components/home/PremiumHomeExperience";
 import { JsonLd } from "@/components/JsonLd";
 import { getPublishedBlogs } from "@/lib/blog";
 import { locations, projects, services } from "@/lib/content";
-import { breadcrumbSchema, resolveMetadata, serviceSchema } from "@/lib/seo";
+import { homeFaqs } from "@/lib/home-faqs";
+import { breadcrumbSchema, faqSchema, resolveMetadata, serviceSchema } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
 
 export const dynamic = "force-dynamic";
@@ -29,7 +30,8 @@ export default async function HomePage() {
             name: "Residential construction services in Canberra",
             description: "Custom homes, new homes, knockdown rebuilds and residential construction planning in Canberra and surrounding areas.",
             path: "/"
-          })
+          }),
+          faqSchema(homeFaqs)
         ]}
       />
       {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
