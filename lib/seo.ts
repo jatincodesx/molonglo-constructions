@@ -151,7 +151,7 @@ export function breadcrumbSchema(items: { name: string; href: string }[]) {
   };
 }
 
-export function faqSchema(faqs: { question: string; answer: string }[]) {
+export function faqSchema(faqs: readonly { question: string; answer: string }[]) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",

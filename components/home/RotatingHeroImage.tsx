@@ -46,16 +46,26 @@ export function RotatingHeroImage({ images }: RotatingHeroImageProps) {
     <>
       <div className="home-hero__image-stack" aria-hidden="true">
         {uniqueImages.map((image, index) => (
-          <Image
-            key={image.src}
-            src={image.src}
-            alt=""
-            width={1200}
-            height={900}
-            priority={index === 0}
-            sizes="(min-width: 1024px) 48vw, 100vw"
-            className={`home-hero__image ${index === activeIndex ? "home-hero__image--active" : ""}`}
-          />
+          <div key={image.src} className={`home-hero__image-frame ${index === activeIndex ? "home-hero__image-frame--active" : ""}`}>
+            <Image
+              src={image.src}
+              alt=""
+              width={1200}
+              height={900}
+              priority={index === 0}
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              className="home-hero__image-fill"
+            />
+            <Image
+              src={image.src}
+              alt=""
+              width={1200}
+              height={900}
+              priority={index === 0}
+              sizes="(min-width: 1024px) 48vw, 100vw"
+              className="home-hero__image"
+            />
+          </div>
         ))}
       </div>
       <div className="home-hero__caption">

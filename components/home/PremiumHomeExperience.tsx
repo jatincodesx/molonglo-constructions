@@ -4,6 +4,7 @@ import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { RotatingHeroImage, type HeroImageItem } from "@/components/home/RotatingHeroImage";
 import type { BlogPost } from "@/lib/blog";
 import type { LocationPage, Project, ServicePage } from "@/lib/content";
+import { homeFaqs } from "@/lib/home-faqs";
 import { actServiceAreas, site, southCoastServiceAreas } from "@/lib/site";
 
 type PremiumHomeExperienceProps = {
@@ -301,6 +302,30 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
               <p>New Canberra building guides will appear here after they are reviewed and published.</p>
             </div>
           )}
+        </div>
+      </section>
+
+      <section className="section bg-white">
+        <div className="container">
+          <div className="home-faq" data-scroll-reveal>
+            <div className="home-faq__intro">
+              <p className="eyebrow">FAQs</p>
+              <h2 className="heading-lg mt-4">New home builder FAQs</h2>
+              <p>
+                Planning a new home, knockdown rebuild or residential project comes with practical questions about budget, timing, land, approvals and design. These answers cover common early questions clients often raise before starting a conversation with Molonglo Construction Group.
+              </p>
+            </div>
+            <div className="home-faq__items">
+              {homeFaqs.map((faq) => (
+                <details key={faq.question} className="home-faq__item">
+                  <summary>
+                    <span>{faq.question}</span>
+                  </summary>
+                  <p>{faq.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
