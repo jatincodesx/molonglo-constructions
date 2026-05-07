@@ -13,15 +13,15 @@ const steps = [
   },
   {
     title: "Construction",
-    body: "Our skilled team brings your vision to life with quality craftsmanship and attention to detail."
+    body: "Site work is managed through clear sequencing, trade coordination and practical communication."
   },
   {
     title: "Final Inspection",
-    body: "Thorough quality checks ensure everything meets our high standards before handover."
+    body: "The completed work is reviewed carefully so key details are resolved before handover."
   },
   {
     title: "Handover",
-    body: "Welcome to your new home. We provide full documentation and support even after completion."
+    body: "You receive the keys, final documentation and the support needed to settle into the finished home."
   }
 ];
 

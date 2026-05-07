@@ -153,7 +153,7 @@ export const services: ServicePage[] = [
       },
       {
         question: "Do you rebuild in established Canberra suburbs?",
-        answer: "Yes. We work across all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas by enquiry."
+        answer: "Yes. We work across the ACT and nearby NSW surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas by enquiry."
       }
     ],
     relatedLocations: ["builder-canberra", "builder-queanbeyan", "builder-wright-act"],
@@ -269,7 +269,7 @@ export const services: ServicePage[] = [
       },
       {
         question: "Do you service Queanbeyan as well as Canberra?",
-        answer: "Yes. Our service area includes all of ACT and surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas including Batemans Bay, Narooma, Bega, Pambula and Merimbula by enquiry."
+        answer: "Yes. Our service area includes the ACT and nearby NSW surrounds, including Canberra, Queanbeyan, Jerrabomberra, Googong, Molonglo Valley, Denman Prospect, Wright and Coombs, plus selected South Coast areas including Batemans Bay, Narooma, Bega, Pambula and Merimbula by enquiry."
       }
     ],
     relatedLocations: ["builder-canberra", "builder-queanbeyan", "builder-molonglo-valley"],
@@ -486,7 +486,7 @@ export const locations: LocationPage[] = [
     faqs: [
       {
         question: "Do you build across Canberra or only in Molonglo Valley?",
-        answer: "We are based in Denman Prospect and work across all of ACT and surrounds, including Canberra, Molonglo Valley, Queanbeyan, Jerrabomberra, Googong, Wright and Coombs."
+        answer: "We are based in Denman Prospect and work across the ACT and nearby NSW surrounds, including Canberra, Molonglo Valley, Queanbeyan, Jerrabomberra, Googong, Wright and Coombs."
       },
       {
         question: "Can you help before plans are complete?",

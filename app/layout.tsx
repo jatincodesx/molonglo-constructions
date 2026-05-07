@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   },
   description: "Canberra-focused custom home builder for new homes, knockdown rebuilds, renovations and residential construction planning.",
   icons: {
-    icon: site.logo,
-    shortcut: site.logo,
-    apple: site.logo
+    icon: site.icon,
+    shortcut: site.icon,
+    apple: site.icon
   }
 };
 

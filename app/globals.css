@@ -136,8 +136,8 @@ img {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(244, 239, 230, 0.98), rgba(244, 239, 230, 0.9) 48%, rgba(244, 239, 230, 0.74)),
-    url("/assets/images/FE02BB99-4862-4A69-87E3-2359B9E7FFFD_1_201_a.jpeg") center / cover;
+    radial-gradient(circle at 86% 18%, rgba(154, 116, 70, 0.13), transparent 30rem),
+    linear-gradient(90deg, rgba(244, 239, 230, 0.98), rgba(244, 239, 230, 0.92) 52%, rgba(244, 239, 230, 0.82));
 }
 
 .home-hero::after {
@@ -161,10 +161,30 @@ img {
   position: absolute;
   inset: 0;
   content: "";
-  background: linear-gradient(180deg, transparent 58%, rgba(17, 24, 28, 0.54));
+  background:
+    linear-gradient(90deg, rgba(17, 24, 28, 0.22), transparent 42%),
+    linear-gradient(180deg, transparent 48%, rgba(17, 24, 28, 0.7));
 }
 
-.home-hero__visual > div {
+.home-hero__image-stack,
+.home-hero__image {
+  position: absolute;
+  inset: 0;
+}
+
+.home-hero__image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 900ms ease;
+}
+
+.home-hero__image--active {
+  opacity: 1;
+}
+
+.home-hero__caption {
   position: absolute;
   right: 1rem;
   bottom: 1rem;
@@ -196,6 +216,18 @@ img {
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   font-weight: 600;
   line-height: 1.12;
+}
+
+.home-hero__visual small {
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.78);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-hero__image {
+    transition: none;
+  }
 }
 
 .trust-strip {

@@ -3,9 +3,11 @@ import { CTA } from "@/components/CTA";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
+import { ServiceAreaSuburbSearch } from "@/components/service-areas/ServiceAreaSuburbSearch";
 import { locations } from "@/lib/content";
 import { breadcrumbSchema, faqSchema, resolveMetadata, serviceSchema } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
+import { serviceAreaGroups } from "@/lib/service-areas";
 
 export const dynamic = "force-dynamic";
 
@@ -96,6 +98,8 @@ export default async function ServiceAreasPage() {
           secondaryHref="/services"
           secondaryLabel="Services"
         />
+
+        <ServiceAreaSuburbSearch groups={serviceAreaGroups} />
 
         <section className="section bg-white">
           <div className="container grid gap-8">
