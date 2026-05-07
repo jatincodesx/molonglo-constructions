@@ -84,7 +84,8 @@ export const footerGroups = {
     { href: "/builder-coombs", label: "Builder Coombs" },
     { href: "/builder-googong", label: "Builder Googong" },
     { href: "/builder-queanbeyan", label: "Builder Queanbeyan" },
-    { href: "/builder-jerrabomberra", label: "Builder Jerrabomberra" }
+    { href: "/builder-jerrabomberra", label: "Builder Jerrabomberra" },
+    { href: "/builder-batemans-bay", label: "Builder Batemans Bay" }
   ]
 } as const;
 

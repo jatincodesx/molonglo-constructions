@@ -1,6 +1,11 @@
+import { actSuburbRegions } from "@/lib/act-suburbs";
+
 export type ServiceAreaSuburb = {
   name: string;
-  href?: string;
+  href: string;
+  region: string;
+  suburbType: string;
+  summary: string;
 };
 
 export type ServiceAreaGroup = {
@@ -9,96 +14,33 @@ export type ServiceAreaGroup = {
   suburbs: ServiceAreaSuburb[];
 };
 
-export const serviceAreaGroups: ServiceAreaGroup[] = [
-  {
-    region: "Inner Canberra",
-    summary: "Central and established Canberra suburbs where rebuilds, renovations and custom homes often need careful planning around access, trees and existing streetscapes.",
-    suburbs: [
-      { name: "Canberra", href: "/builder-canberra" },
-      { name: "Ainslie" },
-      { name: "Braddon" },
-      { name: "Campbell" },
-      { name: "Deakin" },
-      { name: "Griffith" },
-      { name: "Kingston" },
-      { name: "Narrabundah" },
-      { name: "O'Connor" },
-      { name: "Red Hill" },
-      { name: "Turner" },
-      { name: "Yarralumla" }
-    ]
-  },
-  {
-    region: "Molonglo Valley and Weston Creek",
-    summary: "Nearby growth and established suburbs where slope, outlook, retaining and solar orientation can strongly influence the build strategy.",
-    suburbs: [
-      { name: "Molonglo Valley", href: "/builder-molonglo-valley" },
-      { name: "Denman Prospect", href: "/builder-denman-prospect" },
-      { name: "Wright", href: "/builder-wright-act" },
-      { name: "Coombs", href: "/builder-coombs" },
-      { name: "Whitlam" },
-      { name: "Holder" },
-      { name: "Rivett" },
-      { name: "Stirling" },
-      { name: "Waramanga" },
-      { name: "Weston" }
-    ]
-  },
-  {
-    region: "Belconnen and Gungahlin",
-    summary: "Northern Canberra suburbs suited to new homes, custom builds and rebuild conversations where the site and project scope are a good fit.",
-    suburbs: [
-      { name: "Aranda" },
-      { name: "Belconnen" },
-      { name: "Bruce" },
-      { name: "Cook" },
-      { name: "Florey" },
-      { name: "Hawker" },
-      { name: "Kaleen" },
-      { name: "Macquarie" },
-      { name: "Gungahlin" },
-      { name: "Crace" },
-      { name: "Franklin" },
-      { name: "Harrison" },
-      { name: "Nicholls" },
-      { name: "Taylor" },
-      { name: "Throsby" }
-    ]
-  },
-  {
-    region: "Woden Valley and Tuggeranong",
-    summary: "Established southern suburbs where knockdown rebuilds, extensions and custom residential work need early feasibility and budget alignment.",
-    suburbs: [
-      { name: "Curtin" },
-      { name: "Farrer" },
-      { name: "Garran" },
-      { name: "Hughes" },
-      { name: "Isaacs" },
-      { name: "Mawson" },
-      { name: "O'Malley" },
-      { name: "Pearce" },
-      { name: "Torrens" },
-      { name: "Wanniassa" },
-      { name: "Kambah" },
-      { name: "Greenway" },
-      { name: "Calwell" },
-      { name: "Gordon" }
-    ]
-  },
-  {
-    region: "NSW surrounds and selected South Coast",
-    summary: "Nearby NSW and South Coast enquiries are reviewed by project scope, location, access and program fit.",
-    suburbs: [
-      { name: "Queanbeyan", href: "/builder-queanbeyan" },
-      { name: "Googong", href: "/builder-googong" },
-      { name: "Jerrabomberra", href: "/builder-jerrabomberra" },
-      { name: "Bungendore" },
-      { name: "Murrumbateman" },
-      { name: "Batemans Bay" },
-      { name: "Narooma" },
-      { name: "Bega" },
-      { name: "Pambula" },
-      { name: "Merimbula" }
-    ]
-  }
-];
+const regionSummaries: Record<string, string> = {
+  "Inner North": "Established inner-north suburbs where rebuilds, custom homes and residential upgrades often need careful planning around trees, access and streetscape.",
+  "Inner South": "Premium and established inner-south locations where site planning, neighbouring homes, mature landscaping and documentation quality matter early.",
+  "Molonglo Valley": "Newer Molonglo Valley estates where slope, outlook, orientation, access and estate requirements can strongly influence the build strategy.",
+  Gungahlin: "Northern growth-area suburbs suited to new homes and family-focused custom builds where block orientation and estate controls should be reviewed early.",
+  Belconnen: "Established Belconnen suburbs with varied block sizes, rebuild potential, slope, orientation and access considerations.",
+  "Woden Valley": "Established Woden Valley locations where mature trees, access, rebuild planning and practical family design need early coordination.",
+  "Weston Creek": "Weston Creek suburbs with established residential blocks, mature services and practical rebuild or custom home opportunities.",
+  Tuggeranong: "Southern Canberra suburbs where larger family blocks, established services, driveway access and practical layouts can shape the brief.",
+  "NSW Surrounds": "Nearby NSW service areas where ACT and NSW project planning, established blocks and new-estate requirements need to be considered by site.",
+  "South Coast": "Selected South Coast locations where coastal conditions, distance planning, site access and early feasibility should be reviewed before documentation is fixed."
+};
+
+function fallbackSummary(region: string) {
+  return `Residential building enquiries in ${region} are assessed around the site, access, planning pathway, project scope and buildability.`;
+}
+
+export const serviceAreaGroups: ServiceAreaGroup[] = actSuburbRegions.map((group) => ({
+  region: group.region,
+  summary: regionSummaries[group.region] || fallbackSummary(group.region),
+  suburbs: group.suburbs.map((suburb) => ({
+    name: suburb.name,
+    href: suburb.pagePath,
+    region: suburb.region,
+    suburbType: suburb.suburbType,
+    summary: suburb.introAngle
+  }))
+}));
+
+export const serviceAreaSuburbs = serviceAreaGroups.flatMap((group) => group.suburbs);
