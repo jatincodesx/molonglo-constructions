@@ -55,7 +55,8 @@ export default function DenmanProspectDisplayHomePage() {
               <p className="eyebrow">Denman Prospect</p>
               <h2 className="heading-lg mt-4">A local display home enquiry point for Canberra clients.</h2>
               <p className="mt-5 text-lg leading-8 text-zinc-700">
-                The Molonglo display home is associated with Denman Prospect. Contact the team to request a visit, confirm current availability and discuss whether a custom home, new home or house and land pathway suits your site.
+                Visit our Denman Prospect display home during opening hours to explore the build quality, finishes and layout in person.<br /><br />
+                Open Thursday to Monday, 10:00 AM - 4:00 PM. Outside these hours, our team can arrange a private appointment at a suitable time.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <Link href="/contact#quote" className="cta">
@@ -73,7 +74,8 @@ export default function DenmanProspectDisplayHomePage() {
                 <p className="text-xs font-semibold uppercase tracking-[0.2em] text-molonglo-gold">Location</p>
                 <h2 className="mt-3 font-display text-2xl font-semibold text-molonglo-ink">Denman Prospect</h2>
                 <p className="mt-3 text-sm leading-7 text-zinc-700">
-                  Please contact the team before planning a visit so we can confirm the best appointment time for your enquiry.
+                  Visit our Denman Prospect display home from Thursday to Monday, 10:00 AM to 4:00 PM.Walk-ins are welcome during opening hours.<br />
+                  If you’d like to visit outside these times, please contact our team and we’ll arrange a time that suits you.
                 </p>
               </div>
             </div>
