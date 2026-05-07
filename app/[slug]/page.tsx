@@ -5,6 +5,7 @@ import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { SignatureBuildingProcess } from "@/components/SignatureBuildingProcess";
+import { actSuburbs, getNearbySuburbs, getSuburbBySlug } from "@/lib/act-suburbs";
 import { getPublishedBlogs } from "@/lib/blog";
 import { getLocationBySlug, getServiceBySlug, locations, services } from "@/lib/content";
 import { projects } from "@/lib/projects";
@@ -25,6 +26,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     });
   }
 
+  const suburb = getSuburbBySlug(slug);
+  if (suburb) {
+    return resolveMetadata({
+      title: suburb.metaTitle,
+      description: suburb.metaDescription,
+      path: suburb.pagePath
+    });
+  }
+
   const location = getLocationBySlug(slug);
   if (location) {
     return resolveMetadata({
@@ -36,6 +46,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   }
 
   return {};
+}
+
+export function generateStaticParams() {
+  const slugs = [
+    ...services.map((service) => ({ slug: service.slug })),
+    ...locations.map((location) => ({ slug: location.slug })),
+    ...actSuburbs.map((suburb) => ({ slug: suburb.pagePath.replace(/^\//, "") }))
+  ];
+
+  return Array.from(new Map(slugs.map((item) => [item.slug, item])).values());
 }
 
 async function findRelatedBlogs(slugs: string[]) {
@@ -57,6 +77,23 @@ function findServiceLinks(slugs: string[]) {
   return slugs
     .map((slug) => getServiceBySlug(slug))
     .filter((service): service is NonNullable<typeof service> => Boolean(service));
+}
+
+function Breadcrumbs({ items }: { items: { name: string; href: string }[] }) {
+  return (
+    <nav aria-label="Breadcrumb" className="text-sm font-semibold text-zinc-600">
+      <ol className="flex flex-wrap gap-2">
+        {items.map((item, index) => (
+          <li key={item.href} className="flex items-center gap-2">
+            {index > 0 ? <span aria-hidden="true" className="text-zinc-400">/</span> : null}
+            <Link href={item.href} className="transition hover:text-molonglo-gold">
+              {item.name}
+            </Link>
+          </li>
+        ))}
+      </ol>
+    </nav>
+  );
 }
 
 export default async function SlugPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -161,6 +198,169 @@ export default async function SlugPage({ params }: { params: Promise<{ slug: str
 
         <SignatureBuildingProcess />
         <CTA />
+        </PremiumScrollShell>
+      </>
+    );
+  }
+
+  const suburb = getSuburbBySlug(slug);
+  if (suburb) {
+    const nearbySuburbs = getNearbySuburbs(suburb);
+    const schemaOverride = await getSeoSchema(suburb.pagePath);
+    const projectTypes = new Set(suburb.commonProjectTypes);
+
+    return (
+      <>
+        <JsonLd
+          data={[
+            breadcrumbSchema([
+              { name: "Home", href: "/" },
+              { name: "Service Areas", href: "/service-areas" },
+              { name: `Builder in ${suburb.name}`, href: suburb.pagePath }
+            ]),
+            serviceSchema({
+              name: `Builder in ${suburb.name}`,
+              description: suburb.metaDescription,
+              path: suburb.pagePath,
+              areaServed: [suburb.name, suburb.region, "Canberra", "ACT"]
+            }),
+            ...(suburb.faqs.length ? [faqSchema(suburb.faqs)] : [])
+          ]}
+        />
+        {schemaOverride ? <JsonLd data={schemaOverride} /> : null}
+
+        <PremiumScrollShell mode="light">
+          <section className="bg-[var(--color-stone)] pt-[calc(var(--header-height)+2.5rem)]">
+            <div className="container grid gap-10 pb-14 pt-10 lg:grid-cols-[0.95fr_0.55fr] lg:items-end">
+              <div>
+                <Breadcrumbs
+                  items={[
+                    { name: "Home", href: "/" },
+                    { name: "Service Areas", href: "/service-areas" },
+                    { name: suburb.name, href: suburb.pagePath }
+                  ]}
+                />
+                <p className="eyebrow mt-8">{suburb.heroEyebrow}</p>
+                <h1 className="mt-5 font-display text-4xl font-semibold leading-[1.02] text-molonglo-ink sm:text-5xl lg:text-6xl">
+                  Builder in {suburb.name}
+                </h1>
+                <p className="mt-6 max-w-3xl text-lg leading-8 text-zinc-700 sm:text-xl">{suburb.introAngle}</p>
+                <div className="mt-8 flex flex-wrap gap-4">
+                  <Link href="/contact#quote" className="cta">
+                    Start a Conversation
+                  </Link>
+                  <Link href="/service-areas" className="cta-secondary">
+                    View Service Areas
+                  </Link>
+                </div>
+              </div>
+              <aside className="rounded-lg border border-[var(--color-border)] bg-white/70 p-6">
+                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#8a642f]">Location context</p>
+                <dl className="mt-5 grid gap-4 text-sm text-zinc-700">
+                  <div>
+                    <dt className="font-semibold text-molonglo-ink">Region</dt>
+                    <dd className="mt-1">{suburb.region}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-semibold text-molonglo-ink">Suburb type</dt>
+                    <dd className="mt-1">{suburb.suburbType}</dd>
+                  </div>
+                </dl>
+              </aside>
+            </div>
+          </section>
+
+          <section className="section bg-white">
+            <div className="container grid gap-10 lg:grid-cols-[1fr_320px]">
+              <article className="prose-seo">
+                <section>
+                  <h2>Building in {suburb.name}</h2>
+                  <p>{suburb.buildingContext}</p>
+                  {suburb.localTalkingPoints.slice(0, 2).map((point) => (
+                    <p key={point}>{point}</p>
+                  ))}
+                </section>
+
+                <section>
+                  <h2>Common project types in {suburb.name}</h2>
+                  <ul>
+                    {[...projectTypes].map((type) => (
+                      <li key={type}>{type}</li>
+                    ))}
+                  </ul>
+                  <p>
+                    The right pathway depends on the site, documentation, planning requirements and how the finished home needs to perform.
+                  </p>
+                </section>
+
+                <section>
+                  <h2>Site and planning considerations</h2>
+                  <p>{suburb.blockConsiderations}</p>
+                  <p>{suburb.planningConsiderations}</p>
+                  {suburb.localTalkingPoints.slice(2).map((point) => (
+                    <p key={point}>{point}</p>
+                  ))}
+                </section>
+
+                <section>
+                  <h2>Relevant services for {suburb.name}</h2>
+                  <ul>
+                    {suburb.relevantServices.map((service) => (
+                      <li key={`${service.href}-${service.label}`}>
+                        <Link href={service.href}>{service.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+
+                {suburb.faqs.length ? (
+                  <section>
+                    <h2>Frequently asked questions</h2>
+                    {suburb.faqs.map((faq) => (
+                      <section key={faq.question}>
+                        <h3>{faq.question}</h3>
+                        <p>{faq.answer}</p>
+                      </section>
+                    ))}
+                  </section>
+                ) : null}
+              </article>
+
+              <aside className="space-y-5 lg:sticky lg:top-28 lg:self-start">
+                <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+                  <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Nearby suburbs</h2>
+                  <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
+                    {nearbySuburbs.map((nearby) => (
+                      <li key={nearby.slug}>
+                        <Link href={nearby.pagePath}>Builder in {nearby.name}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-paper)] p-6">
+                  <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Service links</h2>
+                  <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
+                    {suburb.relevantServices.map((service) => (
+                      <li key={`${service.href}-${service.label}`}>
+                        <Link href={service.href}>{service.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="rounded-lg bg-molonglo-ink p-6 text-white">
+                  <h2 className="font-display text-2xl font-semibold text-white">{suburb.ctaHeading}</h2>
+                  <p className="mt-3 text-sm leading-7 text-white/90">{suburb.ctaText}</p>
+                  <Link href="/contact#quote" className="cta mt-5 w-full">
+                    Contact Molonglo
+                  </Link>
+                </div>
+              </aside>
+            </div>
+          </section>
+
+          <CTA />
         </PremiumScrollShell>
       </>
     );

@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { getAllSuburbPaths } from "@/lib/act-suburbs";
 import { getPublishedBlogs } from "@/lib/blog";
 import { locations, projects, services } from "@/lib/content";
 import { site } from "@/lib/site";
@@ -24,10 +25,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...services.map((page) => `/${page.slug}`),
     ...locations.map((page) => `/${page.slug}`),
+    ...getAllSuburbPaths(),
     ...projects.map((project) => `/projects/${project.slug}`),
     ...blogs.map((post) => `/blog/${post.slug}`)
   ];
-  return all.map((path) => ({
+
+  const uniquePaths = Array.from(new Set(all));
+  return uniquePaths.map((path) => ({
     url: `${site.url}${path}`,
     lastModified: new Date(),
     changeFrequency: path.includes("/blog/") ? "weekly" : "monthly",

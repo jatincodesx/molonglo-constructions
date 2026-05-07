@@ -37,7 +37,7 @@ const serviceGroups: NavGroup[] = [
   {
     label: "WHERE WE BUILD",
     items: [
-      { href: "/builder-canberra", label: "Canberra & ACT" },
+      { href: "/service-areas", label: "Canberra & ACT" },
       { href: "/builder-queanbeyan", label: "Queanbeyan" },
       { href: "/builder-googong", label: "Googong" },
       { href: "/builder-jerrabomberra", label: "Jerrabomberra" },

@@ -46,7 +46,7 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-semibold text-[#f5ead2]">Service Areas</h3>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-            {footerGroups.areas.slice(0, 7).map((link) => (
+            {footerGroups.areas.slice(0, 10).map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="hover:text-white">
                   {link.label}
