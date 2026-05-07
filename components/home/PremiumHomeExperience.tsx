@@ -5,6 +5,7 @@ import { RotatingHeroImage, type HeroImageItem } from "@/components/home/Rotatin
 import type { BlogPost } from "@/lib/blog";
 import type { LocationPage, Project, ServicePage } from "@/lib/content";
 import { homeFaqs } from "@/lib/home-faqs";
+import { googleReviewSummary, homepageReviews } from "@/lib/reviews";
 import { actServiceAreas, site, southCoastServiceAreas } from "@/lib/site";
 
 type PremiumHomeExperienceProps = {
@@ -238,6 +239,54 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section home-reviews-section">
+        <div className="container">
+          <div className="section-heading section-heading--split" data-scroll-reveal>
+            <div>
+              <p className="eyebrow">Client Reviews</p>
+              <h2 className="heading-lg mt-4">Clear communication, careful detail and a better build experience.</h2>
+              <p>
+                A curated selection from the supplied Google review summary for Molonglo Construction Group.
+              </p>
+            </div>
+            <div className="home-reviews-summary">
+              <span>Google rating summary</span>
+              <strong>{googleReviewSummary.ratingValue.toFixed(1)}</strong>
+              <p>{googleReviewSummary.reviewCount} Google reviews</p>
+            </div>
+          </div>
+
+          <div className="home-review-grid" data-scroll-reveal>
+            {homepageReviews.map((review) => (
+              <article key={review.authorName} className="home-review-card">
+                <div className="review-card__topline">
+                  <span className="review-stars" aria-label={`${review.rating} out of 5 stars`}>
+                    {"★".repeat(review.rating)}
+                  </span>
+                  <span>{review.source} review</span>
+                </div>
+                <blockquote>{review.reviewText}</blockquote>
+                <p>
+                  <strong>{review.authorName}</strong>
+                  <span>{review.dateLabel || "Google review"}</span>
+                </p>
+              </article>
+            ))}
+          </div>
+
+          <div className="home-reviews-actions" data-scroll-reveal>
+            <Link href="/success-stories" className="cta">
+              View success stories
+            </Link>
+            {site.googleReviewsUrl ? (
+              <Link href={site.googleReviewsUrl} className="cta-secondary" target="_blank" rel="noopener noreferrer">
+                Read Google reviews
+              </Link>
+            ) : null}
           </div>
         </div>
       </section>

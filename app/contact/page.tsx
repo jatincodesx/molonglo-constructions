@@ -7,6 +7,7 @@ import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
 import { getSeoSchema } from "@/lib/seo-overrides";
 import { actServiceAreas, site, southCoastServiceAreas } from "@/lib/site";
+import Link from "next/link";
 
 export const dynamic = "force-dynamic";
 
@@ -64,6 +65,13 @@ export default async function ContactPage() {
                 <br />
                 South Coast: {southCoastServiceAreas.join(", ")}
               </p>
+              {site.googleReviewsUrl ? (
+                <p>
+                  <Link href={site.googleReviewsUrl} className="text-molonglo-gold" target="_blank" rel="noopener noreferrer">
+                    Read our Google reviews
+                  </Link>
+                </p>
+              ) : null}
             </div>
           </div>
           <QuoteForm source="/contact" submitLabel="Send Enquiry" />
