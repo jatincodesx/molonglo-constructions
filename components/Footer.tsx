@@ -77,7 +77,7 @@ export function Footer() {
 
       <div className="border-t border-white/10 py-6">
         <div className="container flex flex-col gap-2 text-sm text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
-          <p>© 2026 Molonglo Construction Group Pty Ltd. All rights reserved.</p>
+          <p>© 2026 Molonglo Construction Group Pty Ltd. Powered by Lumox Technologies</p>
           <p>ACT, Canberra surrounds and South Coast residential building enquiries.</p>
         </div>
       </div>
