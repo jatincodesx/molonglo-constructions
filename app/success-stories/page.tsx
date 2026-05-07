@@ -3,7 +3,7 @@ import { CTA } from "@/components/CTA";
 import { Hero } from "@/components/Hero";
 import { JsonLd } from "@/components/JsonLd";
 import { PremiumScrollShell } from "@/components/public-ui/PremiumScrollShell";
-import { reviews } from "@/lib/reviews";
+import { googleReviewSummary, reviews } from "@/lib/reviews";
 import { breadcrumbSchema, resolveMetadata } from "@/lib/seo";
 import { site } from "@/lib/site";
 
@@ -30,51 +30,66 @@ export default function SuccessStoriesPage() {
       <PremiumScrollShell mode="light">
         <Hero
           eyebrow="Reviews"
-          title="Success stories shaped by clear planning and careful delivery."
-          text="Explore how Molonglo Construction Group builds confidence through practical advice, direct communication and completed residential work."
+          title="Success Stories"
+          text="What clients say about working with Molonglo Construction Group."
           image="/assets/images/hero.jpg"
-          primaryLabel="Contact Molonglo"
+          primaryLabel="Start your build"
           secondaryHref="/projects"
-          secondaryLabel="View Projects"
+          secondaryLabel="View projects"
         />
 
         <section className="section bg-white">
           <div className="container">
-            <div className="max-w-3xl">
-              <p className="eyebrow">Client Confidence</p>
-              <h2 className="heading-lg mt-4">A build experience grounded in clarity.</h2>
-              <p className="mt-5 text-lg leading-8 text-zinc-700">
-                The strongest client outcomes start with a clear scope, practical site advice and steady communication from the first conversation through to handover.
-              </p>
+            <div className="review-page-intro">
+              <div>
+                <p className="eyebrow">Client Confidence</p>
+                <h2 className="heading-lg mt-4">A build experience grounded in clarity.</h2>
+                <p>
+                  The strongest client outcomes start with a clear scope, practical site advice and steady communication from the first conversation through to handover.
+                </p>
+              </div>
+              <aside aria-label="Google rating summary">
+                <span>Google rating summary</span>
+                <strong>{googleReviewSummary.ratingValue.toFixed(1)}</strong>
+                <p>{googleReviewSummary.reviewCount} Google reviews supplied for {googleReviewSummary.businessName}.</p>
+              </aside>
             </div>
 
-            {reviews.length ? (
-              <div className="mt-12 grid gap-6 md:grid-cols-2">
-                {reviews.map((review) => (
-                  <article key={`${review.author}-${review.date || review.review}`} className="surface-panel p-6 sm:p-8">
-                    <p className="text-sm font-semibold text-molonglo-gold">{review.source} / {review.rating} stars</p>
-                    <blockquote className="mt-4 text-lg leading-8 text-zinc-800">{review.review}</blockquote>
-                    <p className="mt-5 text-sm font-semibold text-zinc-700">{review.author}{review.date ? `, ${review.date}` : ""}</p>
-                  </article>
-                ))}
+            <div className="review-grid">
+              {reviews.map((review) => (
+                <article key={`${review.authorName}-${review.dateLabel || review.reviewText}`} className="review-card">
+                  <div className="review-card__topline">
+                    <span className="review-stars" aria-label={`${review.rating} out of 5 stars`}>
+                      {"★".repeat(review.rating)}
+                    </span>
+                    <span>{review.source} review</span>
+                  </div>
+                  <blockquote>{review.reviewText}</blockquote>
+                  <div className="review-card__meta">
+                    <strong>{review.authorName}</strong>
+                    <span>{review.dateLabel || "Google review"}</span>
+                  </div>
+                  {review.isExcerpt ? <p className="review-card__note">Visible review excerpt</p> : null}
+                </article>
+              ))}
+            </div>
+
+            <div className="review-cta-band">
+              <div>
+                <p className="eyebrow">Next Step</p>
+                <h2>Discuss your own build with Molonglo.</h2>
               </div>
-            ) : (
-              <div className="mt-12 rounded-lg border border-[var(--color-border)] bg-[var(--color-stone)] p-8">
-                <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Talk with the team about your build goals.</h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-zinc-700">
-                  For a clearer view of the work, browse completed projects or start a conversation about your site, budget and preferred construction pathway.
-                </p>
+              <div>
                 {site.googleReviewsUrl ? (
-                  <Link href={site.googleReviewsUrl} className="cta mt-6" target="_blank" rel="noopener noreferrer">
-                    Read our Google Reviews
+                  <Link href={site.googleReviewsUrl} className="cta-secondary" target="_blank" rel="noopener noreferrer">
+                    Read more Google reviews
                   </Link>
-                ) : (
-                  <Link href="/projects" className="cta-secondary mt-6">
-                    View Completed Projects
-                  </Link>
-                )}
+                ) : null}
+                <Link href="/contact" className="cta">
+                  Start your build
+                </Link>
               </div>
-            )}
+            </div>
           </div>
         </section>
 

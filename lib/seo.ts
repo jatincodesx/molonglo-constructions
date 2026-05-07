@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { googleReviewSummary } from "@/lib/reviews";
 import { getSeoOverride } from "@/lib/seo-overrides";
 import { site } from "@/lib/site";
 
@@ -129,6 +130,13 @@ export function localBusinessSchema() {
       "Merimbula"
     ],
     foundingDate: site.foundedYear,
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: googleReviewSummary.ratingValue,
+      reviewCount: googleReviewSummary.reviewCount,
+      bestRating: 5,
+      worstRating: 1
+    },
     identifier: [
       { "@type": "PropertyValue", name: "ABN", value: site.abn },
       { "@type": "PropertyValue", name: "ACT Licence", value: site.actLicense },

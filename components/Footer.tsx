@@ -7,8 +7,8 @@ export function Footer() {
     <footer className="surface-dark text-white">
       <div className="container grid gap-10 py-16 md:grid-cols-2 xl:grid-cols-[1.2fr_0.8fr_0.9fr_0.9fr_0.8fr]">
         <div>
-          <div className="inline-flex rounded-lg bg-[#fbfaf6] px-5 py-4 shadow-[0_16px_38px_rgba(0,0,0,0.18)] ring-1 ring-white/10">
-            <Image src="/assets/logo/logo_new-removebg-preview.png" alt="Molonglo Construction Group logo" width={500} height={500} className="h-24 w-48 object-contain sm:h-28 sm:w-56" />
+          <div className="footer-logo-tile">
+            <Image src="/assets/logo/logo_new-footer.png" alt="Molonglo Construction Group logo" width={380} height={112} className="footer-logo-tile__image" />
           </div>
           <h2 className="mt-5 font-display text-2xl font-semibold text-white">{site.name}</h2>
           <p className="mt-4 text-sm leading-7 text-zinc-300">
@@ -73,6 +73,13 @@ export function Footer() {
                 Admin
               </Link>
             </li>
+            {site.googleReviewsUrl ? (
+              <li>
+                <Link href={site.googleReviewsUrl} className="hover:text-white" target="_blank" rel="noopener noreferrer">
+                  Google Reviews
+                </Link>
+              </li>
+            ) : null}
           </ul>
         </div>
       </div>
