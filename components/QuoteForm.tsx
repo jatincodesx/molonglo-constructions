@@ -55,6 +55,15 @@ const contactMethodOptions = [
   "Either"
 ] as const;
 
+function RequiredAsterisk() {
+  return (
+    <>
+      <span aria-hidden="true" className="text-molonglo-gold"> *</span>
+      <span className="sr-only"> required</span>
+    </>
+  );
+}
+
 export function QuoteForm({ source = "website", submitLabel = "Request Consultation" }: QuoteFormProps) {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -96,8 +105,8 @@ export function QuoteForm({ source = "website", submitLabel = "Request Consultat
 
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="grid gap-2 text-sm font-semibold">
-          Name
-          <input required name="name" className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold" autoComplete="name" />
+          <span>Name<RequiredAsterisk /></span>
+          <input required aria-required="true" name="name" className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold" autoComplete="name" />
         </label>
         <label className="grid gap-2 text-sm font-semibold">
           Email
@@ -179,9 +188,10 @@ export function QuoteForm({ source = "website", submitLabel = "Request Consultat
       </label>
 
       <label className="grid gap-2 text-sm font-semibold">
-        Message
+        <span>Message<RequiredAsterisk /></span>
         <textarea
           required
+          aria-required="true"
           name="message"
           rows={5}
           className="rounded-md border border-zinc-300 px-3 py-3 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold"

@@ -59,6 +59,7 @@ export const footerGroups = {
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
+    { href: "/our-team", label: "Our Team" },
     { href: "/projects", label: "Projects" },
     { href: "/display-home/denman-prospect", label: "Display Home" },
     { href: "/house-and-land-packages", label: "House & Land" },

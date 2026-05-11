@@ -152,7 +152,7 @@ export const projects: Project[] = [
     description: "A completed Molonglo Valley home with refined interior detailing, practical living spaces and a calm contemporary finish."
   },
   {
-    title: "78 Churcher",
+    title: "Molonglo Vista",
     slug: "78-churcher",
     location: "Canberra region",
     category: "Residential build",
@@ -161,7 +161,7 @@ export const projects: Project[] = [
     description: "A Canberra-region residential build with considered proportions, durable finishes and a polished family-home feel."
   },
   {
-    title: "5 Towong Street",
+    title: "Molonglo Fresco",
     slug: "5-towong-street",
     location: "Googong",
     category: "Residential build",
@@ -170,7 +170,7 @@ export const projects: Project[] = [
     description: "A Googong residential project with a strong street presence, generous living spaces and carefully resolved finishes."
   },
   {
-    title: "Sibsado Street",
+    title: "Molonglo Summit",
     slug: "sibsado-street",
     location: "Canberra region",
     category: "Residential build",
