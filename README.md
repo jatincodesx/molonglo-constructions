@@ -4,6 +4,7 @@ Full-stack Next.js App Router website for Molonglo Construction Group, prepared 
 
 ## 1. Project Overview
 
+- More Photos at https://cafe.batch.media/delivery/xpszkXO-2MQT
 - Frontend: Next.js App Router, TypeScript, Tailwind CSS
 - Hosting target: Cloudflare Workers via `@opennextjs/cloudflare`
 - Database: Supabase Postgres
