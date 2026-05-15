@@ -71,7 +71,7 @@ export const footerGroups = {
   services: [
     { href: "/services", label: "Services" },
     { href: "/custom-home-builders-canberra", label: "Custom Home Builders Canberra" },
-    { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuild Canberra" },
+    { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
     { href: "/new-home-builders-canberra", label: "New Home Builders Canberra" },
     { href: "/construction-services-canberra", label: "Construction Services Canberra" },
     { href: "/house-and-land-canberra", label: "House and Land Canberra" },
