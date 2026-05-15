@@ -143,8 +143,8 @@ const sibsadoImages = [
 
 export const projects: Project[] = [
   {
-    title: "Molonglo 1",
-    slug: "molonglo-1",
+    title: "Molonglo One",
+    slug: "molonglo-One",
     location: "Molonglo Valley",
     category: "Custom home",
     coverImage: projectImage("molonglo-1", molonglo1Cover),
