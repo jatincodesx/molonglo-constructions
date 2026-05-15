@@ -61,7 +61,7 @@ export function Footer() {
         <div>
           <h3 className="text-sm font-semibold text-[#f5ead2]">Company</h3>
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
-            {footerGroups.core.filter((link) => ["/about", "/projects", "/display-home/denman-prospect", "/success-stories", "/blog", "/contact"].includes(link.href)).map((link) => (
+            {footerGroups.core.filter((link) => ["/about", "/our-team", "/projects", "/display-home/denman-prospect", "/success-stories", "/blog", "/contact"].includes(link.href)).map((link) => (
               <li key={link.href}>
                 <Link href={link.href} className="hover:text-white">
                   {link.label}

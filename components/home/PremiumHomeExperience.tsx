@@ -57,6 +57,13 @@ const featuredServiceSlugs = [
   "construction-services-canberra"
 ];
 
+const homepageServiceTitles: Record<string, string> = {
+  "custom-home-builders-canberra": "Custom homes",
+  "knockdown-rebuild-canberra": "Knockdown rebuilds in Canberra",
+  "new-home-builders-canberra": "New homes",
+  "construction-services-canberra": "Construction services"
+};
+
 const whyMolonglo = [
   {
     title: "Builder-led planning",
@@ -189,7 +196,7 @@ export function PremiumHomeExperience({ recentBlogs, locations, projects, servic
           <div className="service-grid">
             {featuredServices.map((service) => (
               <Link key={service.slug} href={`/${service.slug}`} className="service-card" data-scroll-reveal>
-                <h3>{service.title}</h3>
+                <h3>{homepageServiceTitles[service.slug] || service.title}</h3>
                 <p>{service.intro}</p>
                 <span>Learn more</span>
               </Link>

@@ -59,6 +59,7 @@ export const footerGroups = {
     { href: "/", label: "Home" },
     { href: "/services", label: "Services" },
     { href: "/about", label: "About" },
+    { href: "/our-team", label: "Our Team" },
     { href: "/projects", label: "Projects" },
     { href: "/display-home/denman-prospect", label: "Display Home" },
     { href: "/house-and-land-packages", label: "House & Land" },
@@ -70,7 +71,7 @@ export const footerGroups = {
   services: [
     { href: "/services", label: "Services" },
     { href: "/custom-home-builders-canberra", label: "Custom Home Builders Canberra" },
-    { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuild Canberra" },
+    { href: "/knockdown-rebuild-canberra", label: "Knockdown Rebuilds" },
     { href: "/new-home-builders-canberra", label: "New Home Builders Canberra" },
     { href: "/construction-services-canberra", label: "Construction Services Canberra" },
     { href: "/house-and-land-canberra", label: "House and Land Canberra" },

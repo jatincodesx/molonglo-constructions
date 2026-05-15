@@ -15,9 +15,12 @@ export const metadata: Metadata = {
   },
   description: "Canberra-focused custom home builder for new homes, knockdown rebuilds, renovations and residential construction planning.",
   icons: {
-    icon: site.icon,
-    shortcut: site.icon,
-    apple: site.appleIcon
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: site.icon, type: "image/png", sizes: "512x512" }
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: site.appleIcon, type: "image/png", sizes: "180x180" }]
   }
 };
 

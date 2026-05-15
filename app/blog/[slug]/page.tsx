@@ -99,7 +99,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               <h2 className="font-display text-2xl font-semibold text-molonglo-ink">Relevant services</h2>
               <ul className="mt-4 space-y-2 text-sm font-semibold text-molonglo-gold">
                 <li><Link href="/custom-home-builders-canberra">Custom Home Builders Canberra</Link></li>
-                <li><Link href="/knockdown-rebuild-canberra">Knockdown Rebuild Canberra</Link></li>
+                <li><Link href="/knockdown-rebuild-canberra">Knockdown rebuilds in Canberra</Link></li>
                 <li><Link href="/builder-canberra">Builder Canberra</Link></li>
                 <li><Link href="/contact#quote">Request a Quote</Link></li>
               </ul>
