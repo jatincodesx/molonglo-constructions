@@ -69,12 +69,12 @@ img {
 }
 
 .cta {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2;
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold text-white shadow-soft transition duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2;
   background: var(--color-bronze);
 }
 
 .cta-secondary {
-  @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition duration-300 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2;
+  @apply inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-semibold transition duration-200 hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2;
   border: 1px solid color-mix(in srgb, var(--color-bronze) 62%, transparent);
   color: var(--color-bronze);
   background: color-mix(in srgb, var(--color-paper) 82%, transparent);
@@ -84,6 +84,8 @@ img {
 .cta-secondary:hover {
   background: #765331;
   color: #fff;
+  border-color: #765331;
+  box-shadow: 0 18px 36px rgba(118, 83, 49, 0.2);
 }
 
 .prose-seo {
@@ -117,6 +119,43 @@ img {
   background: color-mix(in srgb, #fff 84%, var(--color-stone));
   box-shadow: 0 28px 70px rgba(23, 26, 24, 0.09);
   backdrop-filter: blur(16px);
+}
+
+.interactive-card,
+.team-card {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background-color 220ms ease;
+}
+
+.interactive-card:hover,
+.team-card:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-bronze) 52%, var(--color-border));
+  box-shadow: 0 30px 74px rgba(23, 26, 24, 0.12);
+}
+
+.footer-link {
+  display: inline;
+  color: inherit;
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.28em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: #fff;
+  text-decoration-color: rgba(215, 189, 138, 0.82);
+}
+
+.footer-link:focus-visible {
+  outline: 2px solid var(--color-champagne);
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .surface-dark {
@@ -300,7 +339,7 @@ img {
   font-size: 0.9rem;
   font-weight: 700;
   color: var(--color-charcoal);
-  transition: background-color 180ms ease, color 180ms ease;
+  transition: background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
 }
 
 .trust-strip a::before {
@@ -312,6 +351,7 @@ img {
 .trust-strip a:focus-visible {
   background: color-mix(in srgb, var(--color-bronze) 12%, transparent);
   color: var(--color-bronze);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-bronze) 18%, transparent);
 }
 
 .section-heading {
@@ -605,13 +645,15 @@ img {
   border-radius: 8px;
   background: color-mix(in srgb, #fff 82%, var(--color-stone));
   padding: clamp(1.35rem, 2.5vw, 2rem);
-  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  box-shadow: 0 16px 42px rgba(23, 26, 24, 0.045);
+  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .service-card:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--color-bronze) 58%, var(--color-border));
   background: #fff;
+  box-shadow: 0 22px 54px rgba(23, 26, 24, 0.1);
 }
 
 .service-card span {
@@ -667,6 +709,8 @@ img {
   overflow: hidden;
   border-radius: 8px;
   background: var(--color-charcoal);
+  box-shadow: 0 20px 48px rgba(23, 26, 24, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .project-card::after {
@@ -674,6 +718,25 @@ img {
   inset: 0;
   content: "";
   background: linear-gradient(180deg, transparent 35%, rgba(17, 24, 28, 0.84));
+  transition: background 220ms ease;
+}
+
+.project-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 68px rgba(23, 26, 24, 0.16);
+}
+
+.project-card:hover::after {
+  background: linear-gradient(180deg, transparent 28%, rgba(17, 24, 28, 0.9));
+}
+
+.project-card img {
+  transition: transform 520ms ease, filter 220ms ease;
+}
+
+.project-card:hover img {
+  transform: scale(1.025);
+  filter: saturate(1.03);
 }
 
 .project-card div {
@@ -760,6 +823,15 @@ img {
   background: var(--color-paper);
   color: var(--color-charcoal);
   font-weight: 700;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.local-band a:hover,
+.local-band a:focus-visible {
+  border-color: color-mix(in srgb, var(--color-bronze) 58%, var(--color-border));
+  background: #fff;
+  color: var(--color-bronze);
+  box-shadow: 0 10px 24px rgba(23, 26, 24, 0.08);
 }
 
 .empty-state {
@@ -1255,13 +1327,15 @@ img {
   padding: clamp(1.25rem, 2.4vw, 1.75rem);
   color: var(--color-charcoal);
   background: var(--color-paper);
-  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease;
+  box-shadow: 0 16px 42px rgba(23, 26, 24, 0.045);
+  transition: transform 220ms ease, border-color 220ms ease, background-color 220ms ease, box-shadow 220ms ease;
 }
 
 .spatial-panel:hover {
-  transform: translateY(-4px);
+  transform: translateY(-2px);
   border-color: color-mix(in srgb, var(--color-bronze) 62%, var(--color-border));
   background: #fff;
+  box-shadow: 0 22px 54px rgba(23, 26, 24, 0.1);
 }
 
 .spatial-panel span,
@@ -1338,6 +1412,8 @@ img {
   overflow: hidden;
   border-radius: 8px;
   background: var(--color-charcoal);
+  box-shadow: 0 20px 48px rgba(23, 26, 24, 0.08);
+  transition: transform 220ms ease, box-shadow 220ms ease;
 }
 
 .project-proof-card::after {
@@ -1345,6 +1421,25 @@ img {
   inset: 0;
   content: "";
   background: linear-gradient(180deg, transparent 30%, rgba(17, 24, 28, 0.82) 100%);
+  transition: background 220ms ease;
+}
+
+.project-proof-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 28px 68px rgba(23, 26, 24, 0.16);
+}
+
+.project-proof-card:hover::after {
+  background: linear-gradient(180deg, transparent 24%, rgba(17, 24, 28, 0.9) 100%);
+}
+
+.project-proof-card img {
+  transition: transform 520ms ease, filter 220ms ease;
+}
+
+.project-proof-card:hover img {
+  transform: scale(1.025);
+  filter: saturate(1.03);
 }
 
 .project-proof-card div {
@@ -1381,6 +1476,14 @@ img {
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background: var(--color-paper);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+.editorial-blog-grid article:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--color-bronze) 52%, var(--color-border));
+  background: #fff;
+  box-shadow: 0 22px 54px rgba(23, 26, 24, 0.1);
 }
 
 .editorial-blog-grid article div {
@@ -1411,6 +1514,16 @@ img {
   letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-bronze);
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 0.32em;
+  transition: color 180ms ease, text-decoration-color 180ms ease;
+}
+
+.editorial-blog-grid a:last-child:hover,
+.editorial-blog-grid a:last-child:focus-visible {
+  color: #765331;
+  text-decoration-color: currentColor;
 }
 
 .seo-link-band {
@@ -1443,6 +1556,15 @@ img {
   color: var(--color-charcoal);
   font-size: 0.9rem;
   font-weight: 600;
+  transition: border-color 180ms ease, background-color 180ms ease, color 180ms ease, box-shadow 180ms ease;
+}
+
+.seo-link-band a:hover,
+.seo-link-band a:focus-visible {
+  border-color: color-mix(in srgb, var(--color-bronze) 58%, var(--color-border));
+  background: #fff;
+  color: var(--color-bronze);
+  box-shadow: 0 10px 24px rgba(23, 26, 24, 0.08);
 }
 
 @media (min-width: 768px) {
@@ -1576,5 +1698,21 @@ img {
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .cta:hover,
+  .cta-secondary:hover,
+  .interactive-card:hover,
+  .team-card:hover,
+  .service-card:hover,
+  .spatial-panel:hover,
+  .project-card:hover,
+  .project-card:hover img,
+  .project-proof-card:hover,
+  .project-proof-card:hover img,
+  .editorial-blog-grid article:hover,
+  .hover\:-translate-y-0\.5:hover,
+  .hover\:-translate-y-1:hover {
+    transform: none !important;
   }
 }

@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { actServiceAreas, footerGroups, site, southCoastServiceAreas } from "@/lib/site";
 
+const footerLinkClass = "footer-link";
+
 export function Footer() {
   return (
     <footer className="surface-dark text-white">
@@ -25,8 +27,8 @@ export function Footer() {
           <h3 className="text-sm font-semibold text-[#f5ead2]">Contact</h3>
           <div className="mt-4 space-y-3 text-sm leading-7 text-zinc-300">
             <p>{site.address}</p>
-            <p><a href={site.phoneHref} className="hover:text-white">{site.phone}</a></p>
-            <p><a href={site.emailHref} className="hover:text-white">{site.email}</a></p>
+            <p><a href={site.phoneHref} className={footerLinkClass}>{site.phone}</a></p>
+            <p><a href={site.emailHref} className={footerLinkClass}>{site.email}</a></p>
             <p>Service areas: {actServiceAreas.join(", ")}</p>
             <p>South Coast enquiries: {southCoastServiceAreas.join(", ")}</p>
           </div>
@@ -37,7 +39,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
             {footerGroups.services.slice(0, 6).map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-white">
+                <Link href={link.href} className={footerLinkClass}>
                   {link.label}
                 </Link>
               </li>
@@ -50,7 +52,7 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
             {footerGroups.areas.slice(0, 10).map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-white">
+                <Link href={link.href} className={footerLinkClass}>
                   {link.label}
                 </Link>
               </li>
@@ -63,19 +65,19 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-zinc-300">
             {footerGroups.core.filter((link) => ["/about", "/our-team", "/projects", "/display-home/denman-prospect", "/success-stories", "/blog", "/contact"].includes(link.href)).map((link) => (
               <li key={link.href}>
-                <Link href={link.href} className="hover:text-white">
+                <Link href={link.href} className={footerLinkClass}>
                   {link.label}
                 </Link>
               </li>
             ))}
             <li>
-              <Link href="/admin" className="hover:text-white">
+              <Link href="/admin" className={footerLinkClass}>
                 Admin
               </Link>
             </li>
             {site.googleReviewsUrl ? (
               <li>
-                <Link href={site.googleReviewsUrl} className="hover:text-white" target="_blank" rel="noopener noreferrer">
+                <Link href={site.googleReviewsUrl} className={footerLinkClass} target="_blank" rel="noopener noreferrer">
                   Google Reviews
                 </Link>
               </li>
