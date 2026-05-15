@@ -67,9 +67,9 @@ export function Header() {
   const servicesActive = servicesLinks.some((item) => pathname === item.href || pathname.startsWith(`${item.href}/`)) || pathname === "/services";
   const isActive = (href: string) => pathname === href || pathname.startsWith(`${href}/`);
   const navLinkClass = (active = false) =>
-    `relative inline-flex h-10 items-center whitespace-nowrap px-2 text-sm font-semibold transition after:absolute after:inset-x-2 after:bottom-1 after:h-px after:origin-left after:bg-[#9a7446] after:transition-transform hover:text-[#765331] focus:outline-none focus-visible:rounded-md focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] xl:px-2.5 ${active ? "text-[#6f4c25] after:scale-x-100" : "text-[#232520] after:scale-x-0 hover:after:scale-x-100"}`;
+    `relative inline-flex h-10 items-center whitespace-nowrap rounded-md px-2 text-sm font-semibold transition-[background-color,color,box-shadow] duration-200 after:absolute after:inset-x-2 after:bottom-1 after:h-[2px] after:origin-left after:rounded-full after:bg-[#9a7446] after:transition-transform after:duration-200 hover:bg-[#f4eee4]/80 hover:text-[#765331] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] xl:px-2.5 ${active ? "bg-[#f4eee4]/70 text-[#6f4c25] after:scale-x-100" : "text-[#232520] after:scale-x-0 hover:after:scale-x-100"}`;
   const mobileItemClass = (active = false) =>
-    `flex min-h-12 items-center rounded-md px-3 text-base font-semibold transition hover:bg-[#f4eee4] hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold ${active ? "bg-[#f4eee4] text-[#5f401f]" : "text-[#232520]"}`;
+    `flex min-h-12 items-center rounded-md px-3 text-base font-semibold transition-[background-color,color,box-shadow] duration-200 hover:bg-[#f4eee4] hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold ${active ? "bg-[#f4eee4] text-[#5f401f] shadow-[inset_3px_0_0_rgba(154,116,70,0.72)]" : "text-[#232520]"}`;
 
   const openServices = () => {
     if (closeTimerRef.current) {
@@ -199,7 +199,7 @@ export function Header() {
                               key={`${group.label}-${item.label}`}
                               href={item.href}
                               onClick={closeMenus}
-                              className={`rounded-md px-3 py-2.5 text-sm font-semibold text-[#272923] transition hover:bg-white hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold ${isActive(item.href) ? "bg-white text-[#5f401f] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.16)]" : ""}`}
+                              className={`block rounded-md px-3 py-2.5 text-sm font-semibold text-[#272923] transition duration-200 hover:-translate-y-0.5 hover:bg-white hover:text-[#73512b] hover:shadow-[0_10px_22px_rgba(23,26,24,0.08),inset_0_0_0_1px_rgba(154,116,70,0.14)] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold ${isActive(item.href) ? "bg-white text-[#5f401f] shadow-[inset_0_0_0_1px_rgba(154,116,70,0.16)]" : ""}`}
                             >
                               {item.label}
                             </Link>
@@ -236,7 +236,7 @@ export function Header() {
         </div>
 
         <div className="ml-auto flex items-center justify-end gap-2 sm:gap-3">
-          <a href={site.phoneHref} className="hidden whitespace-nowrap rounded-md px-3 py-2 text-sm font-semibold text-molonglo-ink transition hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] lg:inline-flex" onFocus={() => setServicesOpen(false)}>
+          <a href={site.phoneHref} className="hidden whitespace-nowrap rounded-md px-3 py-2 text-sm font-semibold text-molonglo-ink transition duration-200 hover:bg-[#f4eee4]/80 hover:text-[#73512b] hover:shadow-[inset_0_0_0_1px_rgba(154,116,70,0.12)] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold focus-visible:ring-offset-2 focus-visible:ring-offset-[#fffdf8] lg:inline-flex" onFocus={() => setServicesOpen(false)}>
             Call Now
           </a>
           <Link href="/contact" className="cta hidden px-4 py-2.5 text-sm shadow-[0_12px_26px_rgba(118,83,49,0.18)] sm:inline-flex" onClick={closeMenus}>
@@ -246,7 +246,7 @@ export function Header() {
             type="button"
             aria-expanded={menuOpen}
             aria-controls="mobile-menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d8cec0] bg-white text-molonglo-ink shadow-sm transition hover:border-molonglo-gold focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#d8cec0] bg-white text-molonglo-ink shadow-sm transition duration-200 hover:border-molonglo-gold hover:bg-[#f8f2e8] hover:shadow-[0_10px_22px_rgba(23,26,24,0.1)] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold lg:hidden"
             onClick={() => {
               setMenuOpen((open) => !open);
               setServicesOpen(false);
@@ -322,7 +322,7 @@ export function Header() {
             <div>
               <p className="text-[0.68rem] font-semibold uppercase tracking-[0.24em] text-[#8a642f]">Actions</p>
               <div className="mt-3 grid gap-3">
-                <a href={site.phoneHref} className="rounded-md border border-[var(--color-border)] bg-white px-4 py-3 text-center text-base font-semibold text-molonglo-ink" onClick={closeMenus}>
+                <a href={site.phoneHref} className="rounded-md border border-[var(--color-border)] bg-white px-4 py-3 text-center text-base font-semibold text-molonglo-ink transition duration-200 hover:border-molonglo-gold hover:bg-[#f8f2e8] hover:text-[#73512b] focus:outline-none focus-visible:ring-2 focus-visible:ring-molonglo-gold" onClick={closeMenus}>
                   Call Now
                 </a>
                 <Link href="/contact" className="cta w-full px-4 py-3" onClick={closeMenus}>

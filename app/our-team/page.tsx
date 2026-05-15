@@ -17,7 +17,7 @@ const teamMembers = [
   {
     name: "Claudio",
     role: "Sales Consultant",
-    image: "/assets/team/claudio.jpeg",
+    image: "/assets/team/claudio-updated.jpeg",
     description: "Claudio supports clients through the enquiry and sales process, helping them understand build options and next steps.",
     imagePosition: "center 30%"
   },
@@ -81,7 +81,7 @@ export default function OurTeamPage() {
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
               {teamMembers.map((member) => (
-                <article key={member.name} className="surface-panel overflow-hidden">
+                <article key={member.name} className="surface-panel team-card overflow-hidden">
                   <div className="relative aspect-[4/5] bg-[var(--color-clay)]">
                     <Image
                       src={member.image}
